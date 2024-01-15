@@ -1,5 +1,18 @@
 <script>
+import { defineComponent } from 'vue';
 
+export default defineComponent({
+  name: 'BackCall',
+
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+
+  }
+});
 </script>
 
 <template>
@@ -19,5 +32,8 @@
   color: var(--color-blue);
   cursor: pointer;
   background-color: transparent;
+}
+.button:hover {
+  text-decoration-line: none;
 }
 </style>  

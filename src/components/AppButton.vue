@@ -1,15 +1,29 @@
 <script>
+import { defineComponent } from 'vue';
 
+export default defineComponent({
+  name: 'AppButton',
+
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+
+  }
+});
 </script>
 
 <template>
-  <button class="button"></button>
+  <button class="button">
+    <slot></slot>
+  </button>
 </template>
 
 <style scoped>
 .button {
   padding: 16px 0;
-  max-width: 250px;
   width: 100%;
   display: flex;
   align-items: center;

@@ -3,12 +3,14 @@ import { defineComponent } from 'vue';
 import AppLink from './AppLink.vue';
 
 export default defineComponent({
+  name: 'dropDown',
+
   components: {
     AppLink,
   },
   data() {
     return {
-
+      
     }
   },
   methods: {
@@ -18,8 +20,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <a href="" class="link dropdown">
-    <slot></slot>
     <ul class="dropdown-list">
       <li class="dropdown-list__item">
         <app-link>
@@ -39,9 +39,13 @@ export default defineComponent({
         </app-link>
       </li>
     </ul>
-  </a>
 </template>
 
 <style scoped>
+.dropdown-list {
 
+}
+.dropdown-list__item {
+
+}
 </style>

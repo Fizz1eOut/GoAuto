@@ -1,12 +1,14 @@
 <script>
 import { defineComponent } from 'vue';
 import AppLink from './AppLink.vue';
-import AppLinkDropdown from './AppLinkDropdown.vue'
+import dropDown from './dropDown.vue'
 
 export default defineComponent({
+  name: 'AppNav',
+
   components: {
     AppLink,
-    AppLinkDropdown,
+    dropDown,
   },
   data() {
     return {
@@ -47,9 +49,11 @@ export default defineComponent({
       </li>
 
       <li class="nav__item">
-        <app-link-dropdown>
-          Клієнтам
-        </app-link-dropdown>
+
+        <app-link>
+          Клієнтам <span>svg-arrow</span>
+          <drop-down />
+        </app-link>
       </li>
 
       <li class="nav__item">

@@ -1,5 +1,18 @@
 <script>
+import { defineComponent } from 'vue';
 
+export default defineComponent({
+  name: 'linkNumber',
+
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+
+  }
+});
 </script>
 
 <template>
