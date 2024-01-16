@@ -1,16 +1,16 @@
 <script>
 import { defineComponent } from 'vue';
-import AppLink from './AppLink.vue';
+import AppDropdownLink from './AppDropdownLink.vue';
 
 export default defineComponent({
-  name: 'dropDown',
+  name: 'AppDropdown',
 
   components: {
-    AppLink,
+    AppDropdownLink,
   },
   data() {
     return {
-      dropdownActive: false,
+
     }
   },
   methods: {
@@ -20,50 +20,51 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="dropdown">
+  <div class="dropdown" 
+
+  >
     <ul class="dropdown-list">
       <li class="dropdown-list__item">
-        <app-link>
-          Головна
-        </app-link>
+        <app-dropdown-link>
+          Шиномонтаж
+        </app-dropdown-link>
       </li>
 
       <li class="dropdown-list__item">
-        <app-link>
-          Головна
-        </app-link>
-      </li>
-
-      <li class="dropdown-list__item">
-        <app-link>
-          Головна
-        </app-link>
+        <app-dropdown-link>
+          Фарбування дисків
+        </app-dropdown-link>
       </li>
     </ul>
   </div>
 </template>
 
 <style scoped>
-/* .dropdown {
+.dropdown {
   position: absolute;
-  left: 0;
+  left: -40px;
   z-index: 2;
   top: 100%;
-  width: 100%;
   background-color: var(--color-white);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  border-radius: 8px;
+  background: #F5F7FA;
+  padding: 16px;
+  width: 158px;
 }
 .dropdown--active {
     opacity: 1;
     visibility: visible;
     box-shadow: 0px 0px 10px 1px rgba(95, 95, 95, 0.25);
-} */
+}
 .dropdown-list {
 
-}
-.dropdown-list__item {
 
 }
+.dropdown-list__item:not(:last-child) {
+  margin-bottom: 16px;
+} 
+
 </style>

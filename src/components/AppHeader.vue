@@ -4,7 +4,7 @@ import AppLogo from './AppLogo.vue'
 import AppNav from './AppNav.vue'
 import linkNumber from './linkNumber.vue'
 import BackCall from './BackCall.vue'
-import AppCart from './AppCart.vue';
+import AppIconCart from './icons/AppIconCart.vue';
 
 
 export default defineComponent({
@@ -15,15 +15,24 @@ export default defineComponent({
     AppNav,
     linkNumber,
     BackCall,
-    AppCart,
+    AppIconCart,
   },
-  data() {
-    return {
-      
+  props: {
+    dropdownActive: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
-  methods: {
 
+  data() {
+    return {
+
+    }
+  },
+
+  methods: {
+    
   }
 });
 </script>
@@ -41,7 +50,7 @@ export default defineComponent({
         <back-call />
       </div>
 
-      <AppCart />
+      <app-icon-cart />
       </div>
     </div>
   </div>

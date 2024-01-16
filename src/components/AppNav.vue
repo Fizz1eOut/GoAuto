@@ -1,22 +1,27 @@
 <script>
 import { defineComponent } from 'vue';
 import AppLink from './AppLink.vue';
-import dropDown from './dropDown.vue'
+import AppDropdown from './AppDropdown.vue'
+import IconArrow from './icons/IconArrow.vue'
 
 export default defineComponent({
   name: 'AppNav',
 
   components: {
     AppLink,
-    dropDown,
+    AppDropdown,
+    IconArrow,
+
   },
   data() {
     return {
-
+      dropdownActive: false,
     }
   },
   methods: {
-
+    toggle() {
+      this.dropdownActive = !this.dropdownActive;
+    },
   }
 });
 </script>
@@ -49,10 +54,17 @@ export default defineComponent({
       </li>
 
       <li class="nav__item">
-
-        <app-link>
-          Клієнтам <span>svg-arrow</span>
-          <drop-down />
+        <app-link 
+          @click="toggle"
+        >
+          Клієнтам 
+          <icon-arrow 
+            :class="{ 'active': dropdownActive }"
+            
+          />
+         <app-dropdown 
+          :class="{ 'dropdown--active ': dropdownActive }"
+         />
         </app-link>
       </li>
 
@@ -75,5 +87,8 @@ export default defineComponent({
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+}
+.nav__item {
+  position: relative;
 }
 </style>
