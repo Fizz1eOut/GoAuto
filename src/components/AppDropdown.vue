@@ -1,13 +1,22 @@
 <script>
 import { defineComponent } from 'vue';
-import AppDropdownLink from './AppDropdownLink.vue';
+import AppDropdownItem from './AppDropdownItem.vue';
 
 export default defineComponent({
   name: 'AppDropdown',
 
   components: {
-    AppDropdownLink,
+    AppDropdownItem,
   },
+
+  props: {
+    dropdownActive: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+  },
+
   data() {
     return {
 
@@ -20,21 +29,14 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="dropdown" 
-
+  <div 
+    :class="{ 'dropdown--active': dropdownActive }"
+    class="dropdown"
   >
     <ul class="dropdown-list">
-      <li class="dropdown-list__item">
-        <app-dropdown-link>
-          Шиномонтаж
-        </app-dropdown-link>
-      </li>
-
-      <li class="dropdown-list__item">
-        <app-dropdown-link>
-          Фарбування дисків
-        </app-dropdown-link>
-      </li>
+      <AppDropdownItem>
+        <slot></slot>
+      </AppDropdownItem>
     </ul>
   </div>
 </template>
@@ -63,8 +65,4 @@ export default defineComponent({
 
 
 }
-.dropdown-list__item:not(:last-child) {
-  margin-bottom: 16px;
-} 
-
 </style>

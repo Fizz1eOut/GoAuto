@@ -2,7 +2,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'AppDropdownLink',
+  name: 'AppDropdownItem',
 
   data() {
     return {
@@ -16,12 +16,17 @@ export default defineComponent({
 </script>
 
 <template>
-  <a href="#" class="link line">
-    <slot></slot>
-  </a>
+  <li class="dropdown-list__item">
+    <a href="" class="link">
+      <slot></slot>
+    </a>
+  </li>
 </template>
 
 <style scoped>
+.dropdown-list__item:not(:last-child) {
+  margin-bottom: 16px;
+} 
 .link {
   font-family: 'Manrope';
   font-size: 14px;

@@ -1,8 +1,9 @@
 <script>
 import { defineComponent } from 'vue';
 import AppLink from './AppLink.vue';
-import AppDropdown from './AppDropdown.vue'
-import IconArrow from './icons/IconArrow.vue'
+import AppDropdown from './AppDropdown.vue';
+import IconArrow from './icons/IconArrow.vue';
+import AppDropdownItem from './AppDropdownItem.vue';
 
 export default defineComponent({
   name: 'AppNav',
@@ -11,7 +12,7 @@ export default defineComponent({
     AppLink,
     AppDropdown,
     IconArrow,
-
+    AppDropdownItem,
   },
   data() {
     return {
@@ -59,12 +60,19 @@ export default defineComponent({
         >
           Клієнтам 
           <icon-arrow 
-            :class="{ 'active': dropdownActive }"
-            
+            :dropdownActive="dropdownActive"
           />
          <app-dropdown 
-          :class="{ 'dropdown--active ': dropdownActive }"
-         />
+          :dropdownActive="dropdownActive"
+         >
+          <app-dropdown-item>
+            Шиномонтаж
+          </app-dropdown-item>
+
+          <app-dropdown-item>
+            Фарбування дисків
+          </app-dropdown-item>
+         </app-dropdown>
         </app-link>
       </li>
 

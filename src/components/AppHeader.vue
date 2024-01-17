@@ -17,13 +17,6 @@ export default defineComponent({
     BackCall,
     AppIconCart,
   },
-  props: {
-    dropdownActive: {
-      type: Boolean,
-      required: false,
-      default: false
-    }
-  },
 
   data() {
     return {
