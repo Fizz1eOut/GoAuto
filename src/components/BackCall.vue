@@ -3,15 +3,6 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'BackCall',
-
-  data() {
-    return {
-      
-    }
-  },
-  methods: {
-
-  }
 });
 </script>
 

@@ -11,15 +11,6 @@ export default defineComponent({
       default: false
     },
   },
-
-  data() {
-    return {
-
-    }
-  },
-  methods: {
-
-  }
 });
 </script>
 

@@ -8,6 +8,14 @@ import AppDropdownItem from './AppDropdownItem.vue';
 export default defineComponent({
   name: 'AppNav',
 
+  props: {
+    open: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
+
   components: {
     AppLink,
     AppDropdown,
@@ -28,7 +36,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <nav class="nav">
+  <Transition>
+    <nav
+      v-if="open" 
+      class="nav" 
+    >
     <ul class="nav__list">
       <li class="nav__item">
         <app-link>
@@ -82,7 +94,8 @@ export default defineComponent({
         </app-link>
       </li>
     </ul>
-</nav>
+  </nav>
+  </Transition>
 </template>
 
 <style scoped>
@@ -98,5 +111,44 @@ export default defineComponent({
 }
 .nav__item {
   position: relative;
+}
+
+@media (max-width: 991px) {
+  .nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    max-width: 400px;
+    width: 80%;
+    height: 100vh;
+    z-index: 9;
+    box-shadow: 4px 0 9px -7px rgba(0,0,0, 0.8);
+    background-color: var(--color-white);
+    /* transform: translateX(-150vw); */
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .nav__list {
+    margin-top: 30px;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding: 0 20px;
+  }
+  
+  .nav__item {
+    width: 100%;
+    position: static;
+  }
+  .v-enter-active,
+.v-leave-active {
+  transition: opacity 0.9s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 }
 </style>

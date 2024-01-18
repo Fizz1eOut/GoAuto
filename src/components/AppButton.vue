@@ -4,14 +4,6 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'AppButton',
 
-  data() {
-    return {
-
-    }
-  },
-  methods: {
-
-  }
 });
 </script>
 

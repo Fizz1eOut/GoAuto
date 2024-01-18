@@ -3,15 +3,6 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'AppIconCart',
-
-  data() {
-    return {
-
-    }
-  },
-  methods: {
-
-  }
 });
 </script>
 

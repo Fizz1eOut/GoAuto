@@ -9,5 +9,10 @@
 </template>
 
 <style scoped>
-
+.logo {
+  position: relative;
+  z-index: 10;
+  max-height: 12px;
+  max-width: 100%;
+}
 </style>
