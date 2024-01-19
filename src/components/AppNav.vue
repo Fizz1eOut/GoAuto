@@ -96,6 +96,9 @@ export default defineComponent({
     </ul>
   </nav>
   </Transition>
+  <Transition>
+    <div v-if="open" class="overlay"></div>
+  </Transition>
 </template>
 
 <style scoped>
@@ -114,6 +117,16 @@ export default defineComponent({
 }
 
 @media (max-width: 991px) {
+  .overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, 0.5);
+    z-index: 8;
+  }
+
   .nav {
     position: fixed;
     left: 0;

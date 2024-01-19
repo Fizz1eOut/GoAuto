@@ -37,7 +37,7 @@ export default defineComponent({
     <div class="header__container container">
       <div class="header__body">
         <div class="header__item">
-          <app-burger @change="open = !open"/>
+          <app-burger @change="open = $event"/>
           <app-logo />
         </div>
         
