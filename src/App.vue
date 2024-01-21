@@ -2,18 +2,11 @@
 import { defineComponent } from 'vue';
 import AppHeader from './components/AppHeader.vue';
 
+
 export default defineComponent({
   components: {
     AppHeader,
   },
-  data() {
-    return {
-
-    }
-  },
-  methods: {
-
-  }
 });
 </script>
 
@@ -23,7 +16,7 @@ export default defineComponent({
   />
 
   <main>
-
+    <router-view />
   </main>
 
   <footer>

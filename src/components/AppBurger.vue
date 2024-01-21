@@ -35,14 +35,14 @@ export default defineComponent({
 
 <style scoped>
   .burger {
-  width: 32px;
-  height: 23px;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  position: relative;
-  z-index: 11;
-  display: none;
+    width: 32px;
+    height: 23px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    z-index: 11;
+    display: none;
 }
 @media (max-width: 991px) {
   .burger {

@@ -2,9 +2,10 @@
 import { defineComponent } from 'vue';
 import AppLogo from './AppLogo.vue'
 import AppNav from './AppNav.vue'
-import linkNumber from './linkNumber.vue'
+import navMobile from './NavMobile.vue';
+import linkNumber from './linkNumber.vue';
 import BackCall from './BackCall.vue'
-import AppIconCart from './icons/AppIconCart.vue';
+import TheCart from './carts/TheCart.vue';
 import AppBurger from './AppBurger.vue';
 
 export default defineComponent({
@@ -13,9 +14,10 @@ export default defineComponent({
   components: {
     AppLogo,
     AppNav,
+    navMobile,
     linkNumber,
     BackCall,
-    AppIconCart,
+    TheCart,
     AppBurger,
   },
 
@@ -41,14 +43,15 @@ export default defineComponent({
           <app-logo />
         </div>
         
-        <app-nav :open="open"/>
+        <app-nav />
+        <nav-mobile :open="open"/>
 
       <div class="header__contacts">
         <div class="header__row">
           <link-number />
           <back-call />
         </div>
-        <app-icon-cart />
+        <the-cart />
       </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ export default defineComponent({
 <template>
   <div>
     <a href="tel:0980808308" class="link__number">(098) 080-83-08</a>
+    <slot></slot>
   </div>
 </template>
 
