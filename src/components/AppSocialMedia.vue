@@ -3,7 +3,8 @@ import { defineComponent } from 'vue';
 import AppSocialMediaItem from './AppSocialMediaItem.vue';
 import IconInstagram from './icons/IconInstagram.vue';
 import IconViber from './icons/IconViber.vue';
-import IconTelegram from './icons/IconTelegram.vue'
+import IconTelegram from './icons/IconTelegram.vue';
+import AppButton from './AppButton.vue';
 
 export default defineComponent({
   name: 'AppSocialMedia',
@@ -13,6 +14,7 @@ export default defineComponent({
     IconInstagram,
     IconViber,
     IconTelegram,
+    AppButton,
   },
 
 });
@@ -25,15 +27,21 @@ export default defineComponent({
     </div>
     <ul class="social-media__list">
       <app-social-media-item>
-        <icon-instagram />
+        <app-button small>
+          <icon-instagram />
+        </app-button>
       </app-social-media-item>
 
       <app-social-media-item>
-        <icon-telegram />
+        <app-button small>
+          <icon-telegram />
+        </app-button>
       </app-social-media-item>
 
       <app-social-media-item>
-        <icon-viber />
+        <app-button small>
+          <icon-viber />
+        </app-button>
       </app-social-media-item>
     </ul>
   </div>

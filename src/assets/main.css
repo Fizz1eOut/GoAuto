@@ -55,6 +55,7 @@ body {
   --color-green: #1C8813;
   --color-black: #111;
   --color-grey: #717171;
+  --color-lightblue: #F5F7FA;
 }
 .line {
   display: inline-block;

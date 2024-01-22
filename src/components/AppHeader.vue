@@ -5,8 +5,9 @@ import AppNav from './AppNav.vue'
 import navMobile from './NavMobile.vue';
 import linkNumber from './linkNumber.vue';
 import BackCall from './BackCall.vue'
-import TheCart from './carts/TheCart.vue';
 import AppBurger from './AppBurger.vue';
+import AppButton from './AppButton.vue';
+import IconCart from './icons/IconCart.vue';
 
 export default defineComponent({
   name: 'AppHeader',
@@ -17,8 +18,9 @@ export default defineComponent({
     navMobile,
     linkNumber,
     BackCall,
-    TheCart,
+    AppButton,
     AppBurger,
+    IconCart,
   },
 
   data() {
@@ -51,7 +53,9 @@ export default defineComponent({
           <link-number />
           <back-call />
         </div>
-        <the-cart />
+        <app-button outline>
+          <icon-cart />
+        </app-button>
       </div>
       </div>
     </div>
