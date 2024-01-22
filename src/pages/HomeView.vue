@@ -1,14 +1,18 @@
 <script>
 import { defineComponent } from 'vue';
-import AppButton from '@/components/AppButton.vue'
-import IconCart from '@/components/icons/IconCart.vue';
+// import AppButton from '@/components/AppButton.vue'
+// import IconCart from '@/components/icons/IconCart.vue';
+import TheProductSelection from '../components/сhoose/TheProductSelection.vue'
+import TheOurAdvantages from '../components/OurAdvantages/TheOurAdvantages.vue'
 
 export default defineComponent({
   name: 'HomeView',
 
   components: {
-    AppButton,
-    IconCart,
+    // AppButton,
+    // IconCart,
+    TheProductSelection,
+    TheOurAdvantages,
   },
 
   data() {
@@ -24,7 +28,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <app-button>Кнопка <icon-cart /></app-button>
+  <the-product-selection></the-product-selection>
+  <the-our-advantages></the-our-advantages>
 </template>
 
 <style scoped>
