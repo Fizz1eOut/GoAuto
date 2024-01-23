@@ -54,7 +54,7 @@ export default defineComponent({
           <back-call />
         </div>
         <app-button outline>
-          <icon-cart />
+          <icon-cart class="icon-cart"/>
         </app-button>
       </div>
       </div>
@@ -83,6 +83,12 @@ export default defineComponent({
   align-items: center;
   gap: 14px;
 }
+.icon-cart {
+  width: 17px;
+  height: 17px;
+  fill: var(--color-black);
+}
+
 @media (max-width: 991px) {
   .header {
     background-color: #F5F7FA;

@@ -1,18 +1,16 @@
 <script>
 import { defineComponent } from 'vue';
-// import AppButton from '@/components/AppButton.vue'
-// import IconCart from '@/components/icons/IconCart.vue';
-import TheProductSelection from '../components/сhoose/TheProductSelection.vue'
-import TheOurAdvantages from '../components/OurAdvantages/TheOurAdvantages.vue'
+import TheProductSelection from '../components/сhoose/TheProductSelection.vue';
+import TheOurAdvantages from '../components/OurAdvantages/TheOurAdvantages.vue';
+import AppSlider from '@/components/AppSlider.vue';
 
 export default defineComponent({
   name: 'HomeView',
 
   components: {
-    // AppButton,
-    // IconCart,
     TheProductSelection,
     TheOurAdvantages,
+    AppSlider,
   },
 
   data() {
@@ -30,6 +28,7 @@ export default defineComponent({
 <template>
   <the-product-selection></the-product-selection>
   <the-our-advantages></the-our-advantages>
+  <app-slider></app-slider>
 </template>
 
 <style scoped>
