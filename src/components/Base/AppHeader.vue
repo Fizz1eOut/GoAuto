@@ -4,7 +4,7 @@ import AppLogo from '@/components/Base/AppLogo.vue'
 import AppNav from '@/components/Base/AppNav.vue'
 import navMobile from '@/components/Content/NavMobile.vue';
 import linkNumber from '@/components/Content/linkNumber.vue';
-import BackCall from '@/components/Content/BackCall.vue'
+import HeaderActionButton from '@/components/Content/HeaderActionButton.vue'
 import AppBurger from '@/components/Base/AppBurger.vue';
 import AppButton from '@/components/Base/AppButton.vue';
 import IconCart from '@/components/icons/IconCart.vue';
@@ -17,11 +17,11 @@ export default defineComponent({
     AppNav,
     navMobile,
     linkNumber,
-    BackCall,
+    HeaderActionButton,
     AppButton,
     AppBurger,
     IconCart,
-  },
+},
 
   data() {
     return {
@@ -51,7 +51,7 @@ export default defineComponent({
       <div class="header__contacts">
         <div class="header__row">
           <link-number />
-          <back-call />
+          <header-action-button />
         </div>
         <app-button outline>
           <icon-cart class="icon-cart"/>
