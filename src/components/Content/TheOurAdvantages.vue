@@ -1,11 +1,11 @@
 <script>
 import { defineComponent } from 'vue';
-import AppTitle from '../AppTitle.vue';
+import AppTitle from '@/components/Base/AppTitle.vue';
 import IconCheck from '../icons/IconCheck.vue';
 import IconLock from '../icons/IconLock.vue';
-import IconSpeechBubble from '../icons/IconSpeechBubble.vue';
-import OurAdvantagesLine from './OurAdvantagesLine.vue';
-import AppFeature from '../AppFeature.vue';
+import IconSpeechBubble from '@/components/icons/IconSpeechBubble.vue';
+import AppDivider from '@/components/Base/AppDivider.vue';
+import AppFeature from '@/components/Base/AppFeature.vue';
 
 export default defineComponent({
   name: 'TheOurAdvantages',
@@ -15,7 +15,7 @@ export default defineComponent({
     IconCheck,
     IconLock,
     IconSpeechBubble,
-    OurAdvantagesLine,
+    AppDivider,
     AppFeature,
   }
 });
@@ -43,7 +43,7 @@ export default defineComponent({
           </template>
         </app-feature>
 
-        <our-advantages-line />
+        <app-divider/>
 
         <app-feature>
           <template #icon>
@@ -59,7 +59,7 @@ export default defineComponent({
           </template>
         </app-feature>
         
-        <our-advantages-line />
+        <app-divider />
 
         <app-feature>
           <template #icon>

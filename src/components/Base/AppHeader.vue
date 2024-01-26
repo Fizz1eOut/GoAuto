@@ -1,13 +1,13 @@
 <script>
 import { defineComponent } from 'vue';
-import AppLogo from './AppLogo.vue'
-import AppNav from './AppNav.vue'
-import navMobile from './NavMobile.vue';
-import linkNumber from './linkNumber.vue';
-import BackCall from './BackCall.vue'
-import AppBurger from './AppBurger.vue';
-import AppButton from './AppButton.vue';
-import IconCart from './icons/IconCart.vue';
+import AppLogo from '@/components/Base/AppLogo.vue'
+import AppNav from '@/components/Base/AppNav.vue'
+import navMobile from '@/components/Content/NavMobile.vue';
+import linkNumber from '@/components/Content/linkNumber.vue';
+import BackCall from '@/components/Content/BackCall.vue'
+import AppBurger from '@/components/Base/AppBurger.vue';
+import AppButton from '@/components/Base/AppButton.vue';
+import IconCart from '@/components/icons/IconCart.vue';
 
 export default defineComponent({
   name: 'AppHeader',

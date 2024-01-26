@@ -1,10 +1,10 @@
 <script>
 import { defineComponent } from 'vue';
-import AppSocialMediaItem from './AppSocialMediaItem.vue';
-import IconInstagram from './icons/IconInstagram.vue';
-import IconViber from './icons/IconViber.vue';
-import IconTelegram from './icons/IconTelegram.vue';
-import AppButton from './AppButton.vue';
+import AppSocialMediaItem from '@/components/Base/AppSocialMediaItem.vue';
+import IconInstagram from '../icons/IconInstagram.vue';
+import IconViber from '../icons/IconViber.vue';
+import IconTelegram from '../icons/IconTelegram.vue';
+import AppButton from '@/components/Base/AppButton.vue';
 
 export default defineComponent({
   name: 'AppSocialMedia',

@@ -1,9 +1,9 @@
 <script>
 import { defineComponent } from 'vue';
-import AppLink from './AppLink.vue';
-import AppDropdown from './AppDropdown.vue';
-import IconArrow from './icons/IconArrow.vue';
-import AppDropdownItem from './AppDropdownItem.vue';
+import AppLink from '@/components/Base/AppLink.vue';
+import AppDropdown from '@/components/Base/AppDropdown.vue';
+import IconArrow from '../icons/IconArrow.vue';
+import AppDropdownItem from '@/components/Base/AppDropdownItem.vue';
 
 export default defineComponent({
   name: 'AppNav',

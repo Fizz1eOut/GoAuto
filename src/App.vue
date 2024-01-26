@@ -1,6 +1,6 @@
 <script>
 import { defineComponent } from 'vue';
-import AppHeader from './components/AppHeader.vue';
+import AppHeader from '@/components/Base/AppHeader.vue';
 
 
 export default defineComponent({

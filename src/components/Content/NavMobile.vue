@@ -1,12 +1,12 @@
 <script>
 import { defineComponent } from 'vue';
-import AppLink from './AppLink.vue';
-import linkNumber from './linkNumber.vue';
-import AppDropdown from './AppDropdown.vue';
-import IconArrow from './icons/IconArrow.vue';
-import AppDropdownItem from './AppDropdownItem.vue';
-import AppSchedule from './AppSchedule.vue';
-import AppSocialMedia from './AppSocialMedia.vue';
+import AppLink from '@/components/Base/AppLink.vue';
+import linkNumber from '@/components/Content/linkNumber.vue';
+import AppDropdown from '@/components/Base/AppDropdown.vue';
+import IconArrow from '@/components/icons/IconArrow.vue';
+import AppDropdownItem from '@/components/Base/AppDropdownItem.vue';
+import AppSchedule from '@/components/Base/AppSchedule.vue';
+import AppSocialMedia from '@/components/Base/AppSocialMedia.vue';
 
 export default defineComponent({
   name: 'NavMobile',
