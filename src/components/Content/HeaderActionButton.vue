@@ -1,18 +1,19 @@
 <script>
 import { defineComponent } from 'vue';
 import AppModal from '@/components/Base/AppModal.vue';
+import TheBackCall from '@/components/Content/TheBackCall.vue';
 
 export default defineComponent({
   name: 'HeaderActionButton',
 
   components: {
     AppModal,
+    TheBackCall,
   },
 
   data() {
     return {
      active: false,
-     isClose: false
     }
   },
 });
@@ -23,7 +24,9 @@ export default defineComponent({
     Замовити консультацію
   </button>
 
-  <app-modal v-if="active" :modal="active" @close="active = $event"/>
+  <app-modal v-if="active" :modal="active">
+    <the-back-call />
+  </app-modal>
 
 </template>
 

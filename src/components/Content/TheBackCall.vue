@@ -20,8 +20,14 @@ export default defineComponent({
 
   data() {
     return {
-     active: false, 
+      
     }
+  },
+  
+  methods: {
+    closeModal() {
+      this.$emit("close");
+    },
   },
 });
 </script>
@@ -29,7 +35,7 @@ export default defineComponent({
 <template>
   <div class="content">
       <div class="content__close">
-        <icon-cross class="icon"/>
+        <icon-cross class="icon" @click="closeModal"/>
       </div>
 
       <div class="content__body">

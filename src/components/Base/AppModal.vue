@@ -1,11 +1,8 @@
 <script>
 import { defineComponent } from 'vue';
-import TheBackCall from '@/components/Content/TheBackCall.vue';
 
 export default defineComponent({
   name: 'AppModal',
-
-  emits: ['close'],
 
   props: {
     modal: {
@@ -15,9 +12,6 @@ export default defineComponent({
     }
   },
 
-  components: {
-    TheBackCall,
-  },
   
   data() {
     return {
@@ -29,8 +23,8 @@ export default defineComponent({
 
 <template>
     <div v-if="modal" class="modal">
-      <div class="overlay" @click="$emit('close', active = !active)">
-        <the-back-call />
+      <div class="overlay">
+        <slot></slot>
       </div>
   </div>
 </template>
