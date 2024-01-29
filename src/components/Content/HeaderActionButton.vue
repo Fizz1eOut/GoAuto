@@ -1,14 +1,16 @@
 <script>
 import { defineComponent } from 'vue';
 import AppModal from '@/components/Base/AppModal.vue';
-import TheBackCall from '@/components/Content/TheBackCall.vue';
+import ModalBody from '@/components/Content/ModalBody.vue';
+import TheCallback from '@/components/Content/TheCallback.vue'
 
 export default defineComponent({
   name: 'HeaderActionButton',
 
   components: {
     AppModal,
-    TheBackCall,
+    ModalBody,
+    TheCallback,
   },
 
   data() {
@@ -20,14 +22,16 @@ export default defineComponent({
 </script>
 
 <template>
-  <button @click="active = !active" class="button">
+  <button @click="active = true" class="button">
     Замовити консультацію
   </button>
 
-  <app-modal v-if="active" :modal="active">
-    <the-back-call />
-  </app-modal>
 
+    <app-modal v-model="active">
+      <modal-body>
+        <the-callback />
+      </modal-body>
+    </app-modal>
 </template>
 
 <style scoped>
@@ -44,21 +48,5 @@ export default defineComponent({
 }
 .button:hover {
   text-decoration-line: none;
-}
-
-.modal-overlay {
-  position: fixed;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 10;
-	background-color: rgba(0, 0, 0, 0.7);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	width: 100%;
-	transition: all 0.3s ease-in-out;
 }
 </style>  
