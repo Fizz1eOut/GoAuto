@@ -42,7 +42,9 @@ export default defineComponent({
       <div class="header__body">
         <div class="header__item">
           <app-burger @change="open = $event"/>
-          <app-logo />
+          <router-link to="/">
+            <app-logo />
+          </router-link>
         </div>
         
         <app-nav />
@@ -53,9 +55,10 @@ export default defineComponent({
           <link-number />
           <header-action-button />
         </div>
-        <app-button outline>
+        <router-link to="/CartView"><app-button outline>
           <icon-cart class="icon-cart"/>
         </app-button>
+      </router-link>
       </div>
       </div>
     </div>
