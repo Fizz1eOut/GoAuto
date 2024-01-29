@@ -26,8 +26,12 @@ export default defineComponent({
         <h2 class="content__title">Залиште заявку, ми зв'яжемося з Вами <span>протягом 30 хвилин.</span></h2>
 
         <form action="#" class="content__form form-content">
-          <AppInput :placeholder="placeholder1"/>
-          <AppInput :placeholder="placeholder2"/>
+          <div class="content__item">
+            <AppInput :placeholder="placeholder1"/>
+          </div>
+          <div class="content__item">
+            <AppInput :placeholder="placeholder2"/>
+          </div>
           <div class="content__bottom">
             <app-button>Залишити заявку</app-button>
             <div class="form-content__text">Натискаючи на кнопку, Ви приймаєте положення та згоду на обробку персональних даних.</div>
@@ -63,5 +67,23 @@ export default defineComponent({
   font-style: normal;
   font-weight: 400;
   line-height: 160%;
+}
+.content__item {
+  width: 100%;
+  padding: 0 20px;
+}
+.content__item:not(:last-child) {
+  margin-bottom: 20px;
+}
+@media (max-width: 499px) {
+  .content__item {
+    padding: 0;
+  }
+  .content__title {
+    font-size: 20px;
+  }
+  .content__title span {
+    font-size: 22px;
+  }
 }
 </style>

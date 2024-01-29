@@ -58,7 +58,7 @@ export default defineComponent({
     top: 0;
     right: 0;
     bottom: 0;
-    /* z-index: 10; */
+    z-index: 11;
     background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
@@ -92,5 +92,10 @@ export default defineComponent({
     font-style: normal;
     font-weight: 600;
     line-height: 140%;
+  }
+  @media (max-width: 499px) {
+    .content {
+      padding: 20px 20px 40px;
+    }
   }
 </style>

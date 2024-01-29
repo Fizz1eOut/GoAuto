@@ -14,20 +14,12 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="item">
-      <input type="text" class="input" :placeholder="placeholder">
-      <label for="#" class="label"></label>
-    </div>
+  <input type="text" class="input" :placeholder="placeholder">
+  <label for="#" class="label"></label>
 </template>
 
 <style scoped>
-.item {
-  width: 100%;
-  padding: 0 20px;
-}
-.item:not(:last-child) {
-  margin-bottom: 20px;
-}
+
 .input {
   border-radius: 10px;
   border: 1px solid #ABBED1;
