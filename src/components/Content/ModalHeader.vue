@@ -1,16 +1,20 @@
 <script>
 import { defineComponent } from 'vue';
-
+import IconCross from '@/components/icons/IconCross.vue';
 
 export default defineComponent({
   name: 'ModalHeader',
 
+  components: {
+    IconCross,
+  },
+  emits: ['close']
 });
 </script>
 
 <template>
-  <button class="close">
-    <slot></slot>
+  <button class="close" @click="$emit('close')">
+    <icon-cross class="icon"/>
   </button>
 </template>
 
@@ -21,4 +25,10 @@ export default defineComponent({
   width: 100%;
   background-color: transparent;
 }
+.icon {
+    width: 18px;
+    height: 18px;
+    fill: var(--color-black);
+    cursor: pointer;
+  }
 </style>
