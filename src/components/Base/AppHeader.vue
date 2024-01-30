@@ -28,11 +28,6 @@ export default defineComponent({
      open: false, 
     }
   },
-
-
-  methods: {
-    
-  }
 });
 </script>
 
@@ -55,7 +50,7 @@ export default defineComponent({
           <link-number />
           <header-action-button />
         </div>
-        <router-link to="/CartView"><app-button outline>
+        <router-link to="/cart"><app-button outline>
           <icon-cart class="icon-cart"/>
         </app-button>
       </router-link>

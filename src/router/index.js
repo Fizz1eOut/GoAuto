@@ -6,6 +6,6 @@ export const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', component: HomeView, name: 'HomeView'},
-    { path: '/CartView', component: CartView, name: 'CartView'},
+    { path: '/cart', component: CartView, name: 'CartView'},
   ]
 });
