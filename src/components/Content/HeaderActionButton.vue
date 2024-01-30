@@ -1,16 +1,12 @@
 <script>
 import { defineComponent } from 'vue';
-import AppModal from '@/components/Base/AppModal.vue';
-import ModalBody from '@/components/Content/ModalBody.vue';
-import TheCallback from '@/components/Content/TheCallback.vue'
+import CallbackModal from '@/components/Content/CallbackModal.vue';
 
 export default defineComponent({
   name: 'HeaderActionButton',
 
   components: {
-    AppModal,
-    ModalBody,
-    TheCallback,
+    CallbackModal,
   },
 
   data() {
@@ -26,12 +22,7 @@ export default defineComponent({
     Замовити консультацію
   </button>
 
-
-    <app-modal v-model="active">
-      <modal-body>
-        <the-callback />
-      </modal-body>
-    </app-modal>
+  <callback-modal v-model="active"></callback-modal>
 </template>
 
 <style scoped>

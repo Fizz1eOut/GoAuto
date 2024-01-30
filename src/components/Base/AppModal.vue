@@ -1,7 +1,7 @@
 <script>
 import { defineComponent } from 'vue';
 import ModalHeader from '@/components/Content/ModalHeader.vue';
-import IconCross from '@/components/icons/IconCross.vue';
+import ModalBody from '@/components/Content/ModalBody.vue';
 
 export default defineComponent({
   name: 'AppModal',
@@ -10,7 +10,7 @@ export default defineComponent({
 
   components: {
     ModalHeader,
-    IconCross,
+    ModalBody,
   },
 
   props: {
@@ -21,15 +21,9 @@ export default defineComponent({
     }
   },
 
-  
-  data() {
-    return {
-
-    }
-  },
   methods: {
     close() {
-      
+      this.$emit('update:modelValue', false);
     },
   }
 });
@@ -38,13 +32,13 @@ export default defineComponent({
 <template>
     <Teleport to="body">
       <div v-if="modelValue"  class="modal">
-        <div class="overlay" @click.self="$emit('update:modelValue', false)">
+        <div class="overlay" @click.self="close">
           <div class="content">
-            <modal-header>
-              <icon-cross class="icon" @click="$emit('update:modelValue', false)"/>
-            </modal-header>
+            <modal-header @click="close"/>
 
-            <slot></slot>
+            <modal-body>
+              <slot></slot>
+            </modal-body>
           </div>
         </div>
       </div>
@@ -66,12 +60,6 @@ export default defineComponent({
     height: 100vh;
     width: 100%;
     transition: all 0.3s ease-in-out;
-  }
-  .icon {
-    width: 18px;
-    height: 18px;
-    fill: var(--color-black);
-    cursor: pointer;
   }
   .content {
     padding: 20px 40px 60px;

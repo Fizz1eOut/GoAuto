@@ -1,11 +1,10 @@
-
 <script>
 import { defineComponent } from 'vue';
 import AppButton from '@/components/Base/AppButton.vue';
 import AppInput from '@/components/Inputs/AppInput.vue'
 
 export default defineComponent({
-  name: 'TheCallback',
+  name: 'ContentModal',
 
   components: {
     AppButton,
@@ -23,20 +22,20 @@ export default defineComponent({
 </script>
 
 <template>
-        <h2 class="content__title">Залиште заявку, ми зв'яжемося з Вами <span>протягом 30 хвилин.</span></h2>
+  <h2 class="content__title">Залиште заявку, ми зв'яжемося з Вами <span>протягом 30 хвилин.</span></h2>
 
-        <form action="#" class="content__form form-content">
-          <div class="content__item">
-            <AppInput :placeholder="placeholder1"/>
-          </div>
-          <div class="content__item">
-            <AppInput :placeholder="placeholder2"/>
-          </div>
-          <div class="content__bottom">
-            <app-button>Залишити заявку</app-button>
-            <div class="form-content__text">Натискаючи на кнопку, Ви приймаєте положення та згоду на обробку персональних даних.</div>
-          </div>
-        </form>
+  <form action="#" class="content__form form-content">
+    <div class="content__item">
+      <AppInput :placeholder="placeholder1"/>
+    </div>
+    <div class="content__item">
+      <AppInput :placeholder="placeholder2"/>
+    </div>
+    <div class="content__bottom">
+      <app-button>Залишити заявку</app-button>
+      <div class="form-content__text">Натискаючи на кнопку, Ви приймаєте положення та згоду на обробку персональних даних.</div>
+    </div>
+  </form>
 </template>
 
 <style scoped>
