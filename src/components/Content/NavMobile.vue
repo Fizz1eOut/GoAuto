@@ -77,20 +77,19 @@ export default defineComponent({
           @click="toggle"
         >
           Клієнтам 
-          <icon-arrow 
-            :dropdownActive="dropdownActive"
-          />
-         <app-dropdown 
-          :dropdownActive="dropdownActive"
-         >
-          <app-dropdown-item>
-            Шиномонтаж
-          </app-dropdown-item>
+          <icon-arrow :class="{ 'active': dropdownActive }"/>
 
-          <app-dropdown-item>
-            Фарбування дисків
-          </app-dropdown-item>
-         </app-dropdown>
+          <app-dropdown 
+            :dropdownActive="dropdownActive"
+          >
+            <app-dropdown-item>
+              Шиномонтаж
+            </app-dropdown-item>
+
+            <app-dropdown-item>
+              Фарбування дисків
+            </app-dropdown-item>
+          </app-dropdown>
         </app-link>
       </li>
 
@@ -111,6 +110,13 @@ export default defineComponent({
 </template>
 
 <style scoped>
+.arrow {
+  margin-bottom: 2px;
+  transition: transform 0.3s ease-in-out, fill 0.3s ease-in-out
+}
+.active {
+  transform: rotate(180deg);
+}
 .nav-modile {
   max-width: 600px;
   width: 100%;

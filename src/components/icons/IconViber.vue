@@ -5,17 +5,6 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'IconViber',
 
-  components: {
-
-  },
-
-  data() {
-
-  },
-
-  methods: {
-    
-  }
 });
 </script>
 

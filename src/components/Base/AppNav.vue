@@ -60,7 +60,7 @@ export default defineComponent({
         >
           Клієнтам 
           <icon-arrow 
-            :dropdownActive="dropdownActive"
+            :class="{ 'active': dropdownActive }"
           />
          <app-dropdown 
           :dropdownActive="dropdownActive"
@@ -86,6 +86,13 @@ export default defineComponent({
 </template>
 
 <style scoped>
+.arrow {
+  margin-bottom: 2px;
+  transition: transform 0.3s ease-in-out, fill 0.3s ease-in-out
+}
+.active {
+  transform: rotate(180deg);
+}
 .nav {
   max-width: 580px;
   width: 100%;

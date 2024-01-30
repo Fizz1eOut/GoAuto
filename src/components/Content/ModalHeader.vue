@@ -26,9 +26,9 @@ export default defineComponent({
   background-color: transparent;
 }
 .icon {
-    width: 18px;
-    height: 18px;
-    fill: var(--color-black);
-    cursor: pointer;
+  width: 18px;
+  height: 18px;
+  fill: var(--color-black);
+  cursor: pointer;
   }
 </style>

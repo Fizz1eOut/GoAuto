@@ -28,13 +28,13 @@ export default defineComponent({
   }
 });
 </script>
-
+  <a href=""></a>
 <template>
     <Teleport to="body">
-      <div v-if="modelValue"  class="modal">
+      <div v-if="modelValue" class="modal">
         <div class="overlay" @click.self="close">
           <div class="content">
-            <modal-header @click="close"/>
+            <modal-header @close="close"/>
 
             <modal-body>
               <slot></slot>

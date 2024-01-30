@@ -45,16 +45,17 @@ export default defineComponent({
         <app-nav />
         <nav-mobile :open="open"/>
 
-      <div class="header__contacts">
-        <div class="header__row">
-          <link-number />
-          <header-action-button />
+        <div class="header__contacts">
+          <div class="header__row">
+            <link-number />
+            <header-action-button />
+          </div>
+          <router-link to="/cart">
+            <app-button outline>
+              <icon-cart class="icon-cart"/>
+            </app-button>
+          </router-link>
         </div>
-        <router-link to="/cart"><app-button outline>
-          <icon-cart class="icon-cart"/>
-        </app-button>
-      </router-link>
-      </div>
       </div>
     </div>
   </div>

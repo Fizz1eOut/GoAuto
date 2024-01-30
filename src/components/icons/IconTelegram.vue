@@ -4,18 +4,6 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'IconTelegram',
-
-  components: {
-
-  },
-
-  data() {
-
-  },
-
-  methods: {
-    
-  }
 });
 </script>
 
