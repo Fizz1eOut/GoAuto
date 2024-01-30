@@ -8,15 +8,15 @@ export default defineComponent({
 
   },
 
-  data() {
-    return {
+  // data() {
+  //   return {
       
-    }
-  },
+  //   }
+  // },
 
-  methods: {
+  // methods: {
     
-  }
+  // }
 });
 </script>
 

@@ -16,10 +16,6 @@ export default defineComponent({
       document.body.style.overflow = value ? 'hidden' : '';
     }
   },
-
-  methods: {
-
-  }
 });
 </script>
 
