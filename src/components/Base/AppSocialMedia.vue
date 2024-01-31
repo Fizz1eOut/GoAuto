@@ -28,19 +28,25 @@ export default defineComponent({
     <ul class="social-media__list">
       <app-social-media-item>
         <app-button small>
-          <icon-instagram />
+          <a href="https://www.instagram.com/accounts/login/">
+            <icon-instagram />
+          </a>
         </app-button>
       </app-social-media-item>
 
       <app-social-media-item>
         <app-button small>
-          <icon-telegram />
+          <a href="https://web.telegram.org/k/">
+            <icon-telegram />
+          </a>
         </app-button>
       </app-social-media-item>
 
       <app-social-media-item>
         <app-button small>
-          <icon-viber />
+          <a href="https://account.viber.com/ru/login">
+            <icon-viber />
+          </a>
         </app-button>
       </app-social-media-item>
     </ul>
