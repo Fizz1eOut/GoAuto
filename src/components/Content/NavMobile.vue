@@ -1,7 +1,7 @@
 <script>
 import { defineComponent } from 'vue';
 import AppLink from '@/components/Base/AppLink.vue';
-import linkNumber from '@/components/Content/linkNumber.vue';
+import AppContact from '@/components/Base/AppContact.vue';
 import AppDropdown from '@/components/Base/AppDropdown.vue';
 import IconArrow from '@/components/icons/IconArrow.vue';
 import AppDropdownItem from '@/components/Base/AppDropdownItem.vue';
@@ -24,7 +24,7 @@ export default defineComponent({
     AppDropdown,
     IconArrow,
     AppDropdownItem,
-    linkNumber,
+    AppContact,
     AppSchedule,
     AppSocialMedia,
   },
@@ -99,9 +99,9 @@ export default defineComponent({
         </app-link>
       </li>
 
-      <link-number>
+      <app-contact>
         <app-schedule />
-      </link-number>
+      </app-contact>
 
       <app-social-media />
     </ul>
