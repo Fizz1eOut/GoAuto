@@ -8,6 +8,7 @@ export default defineComponent({
     placeholder: {
       type: String,
       required: true,
+      default: '',
     }
   },
 });
