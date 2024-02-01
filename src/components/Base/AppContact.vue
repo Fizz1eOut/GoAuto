@@ -12,17 +12,18 @@ export default defineComponent({
   },
 
   computed: {
+    
     phoneNumber() {
       return this.format === 'full' ? '+38 (098) 080-83-08' : '(098) 080-83-08';
     },
 
     phoneNumberUrl() {
-      return this.format === 'full' ? 'tel:+380980808308' : 'tel:0980808308';
+      const phone = this.phoneNumber.replaceAll(/[^+\d]/g, '');
+      return `tel:${phone};`
     },
   },
 });
 </script>
-
 <template>
   <div>
     <a :href="phoneNumberUrl" class="number">{{ phoneNumber }}</a>
