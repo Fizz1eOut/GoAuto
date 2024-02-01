@@ -3,7 +3,7 @@ import { defineComponent } from 'vue';
 import AppLogo from '@/components/Base/AppLogo.vue'
 import AppNav from '@/components/Base/AppNav.vue'
 import navMobile from '@/components/Content/NavMobile.vue';
-import linkNumber from '@/components/Content/linkNumber.vue';
+import AppContact from '@/components/Base/AppContact.vue';
 import HeaderActionButton from '@/components/Content/HeaderActionButton.vue'
 import AppBurger from '@/components/Base/AppBurger.vue';
 import AppButton from '@/components/Base/AppButton.vue';
@@ -16,7 +16,7 @@ export default defineComponent({
     AppLogo,
     AppNav,
     navMobile,
-    linkNumber,
+    AppContact,
     HeaderActionButton,
     AppButton,
     AppBurger,
@@ -47,7 +47,7 @@ export default defineComponent({
 
         <div class="header__contacts">
           <div class="header__row">
-            <link-number />
+            <app-contact />
             <header-action-button />
           </div>
           <router-link to="/cart">

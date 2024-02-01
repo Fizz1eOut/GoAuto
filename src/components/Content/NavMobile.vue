@@ -99,9 +99,8 @@ export default defineComponent({
         </app-link>
       </li>
 
-      <app-contact>
-        <app-schedule />
-      </app-contact>
+      <app-contact format="full"/>
+      <app-schedule />
 
       <app-social-media />
     </ul>
