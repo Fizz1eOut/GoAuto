@@ -7,7 +7,7 @@ export default defineComponent({
   props: {
     size: {
       type: String,
-      required: true,
+      default: 'xs',
       validator: (value) => ['xs', 'sm', 'md', 'lg', 'xl'].includes(value)
     }
   },
@@ -20,13 +20,12 @@ export default defineComponent({
 </script>
 
 <template>
-<div :class="container">
-    
+  <div :class="container" class="container">
+    <slot />
   </div>
 </template>
 
 <style scoped>
-
   .container {
     max-width: 1280px;
     margin: 0 auto;
@@ -34,43 +33,24 @@ export default defineComponent({
   }
 
   .size-xl {
-    padding: 0 40px 0 95px;
+    padding: 50px;
   }
-  @media (max-width: 991px) {
-    .size-xl {
-      padding: 0 10px 0 50px;
-    }
-  }
-  @media (max-width: 499px) {
-    .size-xl {
-      padding: 30px 20px 0px 30px;
-    }
-  } 
 
   .size-lg {
-    padding: 58px 50px;
+    padding: 40px;
   }
-  @media (max-width: 768px) {
-    .size-lg {
-      padding: 50px 50px;
-    }
-  }
-  @media (max-width: 499px) {
-    .size-lg {
-      padding: 30px 46px;
-    }
-  } 
+ 
 
   .size-md {
-    padding: 30px 30px;
+    padding: 30px;
   }
 
   .size-sm {
     padding: 20px;
   }
 
-  /* .size-xs {
-
+  .size-xs {
+    padding: 16px;
   }
   @media (max-width: 768px) {
 
@@ -78,6 +58,6 @@ export default defineComponent({
 
   @media (max-width: 499px) {
 
-  }  */
+  } 
 
 </style>
