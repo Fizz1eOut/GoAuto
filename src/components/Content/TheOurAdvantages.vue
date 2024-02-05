@@ -100,9 +100,17 @@ export default defineComponent({
     margin-top: 40px;
   }
 }
+@media (max-width: 991px) {
+  .advantages {
+    margin-top: 100px;
+  }
+}
 @media (max-width: 768px) {
   .feature {
-  max-width: 100%;
-}
+    max-width: 100%;
+  }
+  .advantages {
+    margin-top: 60px;
+  }
 }
 </style>

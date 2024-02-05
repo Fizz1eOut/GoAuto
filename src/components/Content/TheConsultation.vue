@@ -77,6 +77,42 @@ export default defineComponent({
   max-width: 100%;
 }
 @media (max-width: 991px) {
-  
+  .consultation__body {
+    padding: 40px;
+  }
+  .consultation {
+    margin-top: 100px;
+  }
+}
+@media (max-width: 768px) {
+  .consultation__body {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 30px;
+  }
+  .consultation__item {
+    flex: 0 1 auto;
+  }
+  .consultation__text {
+    max-width: 500px;
+   }
+   .consultation {
+    margin-top: 70px;
+  }
+}
+@media (max-width: 499px) {
+  .consultation__body {
+    padding: 0px;
+  }
+  .consultation__item:first-child {
+    padding: 30px 20px 0px;
+  }
+  .consultation__text {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 160%;
+  }
 }
 </style>
