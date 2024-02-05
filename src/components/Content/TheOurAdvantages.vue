@@ -23,58 +23,56 @@ export default defineComponent({
 
 <template>
   <div class="advantages">
-    <div class="advantages__container container">
-      <app-title>
-        Наші переваги
-      </app-title>
+    <app-title>
+      Наші переваги
+    </app-title>
 
-      <div class="advantages__items">
-        <app-feature>
-          <template #icon>
-            <icon-check />
-          </template>
+    <div class="advantages__items">
+      <app-feature>
+        <template #icon>
+          <icon-check />
+        </template>
 
-          <template #title>
-            Гарантія якості
-          </template>
+        <template #title>
+          Гарантія якості
+        </template>
 
-          <template #text>
-            Ми продаємо тільки високоякісні шини та диски, що відповідають усім необхідним стандартам і вимогам.
-          </template>
-        </app-feature>
+        <template #text>
+          Ми продаємо тільки високоякісні шини та диски, що відповідають усім необхідним стандартам і вимогам.
+        </template>
+      </app-feature>
 
-        <app-divider/>
+      <app-divider />
 
-        <app-feature>
-          <template #icon>
-            <icon-lock />
-          </template>
+      <app-feature>
+        <template #icon>
+          <icon-lock />
+        </template>
 
-          <template #title>
-            Свій склад
-          </template>
+        <template #title>
+          Свій склад
+        </template>
 
-          <template #text>
-            Ми маємо свій власний склад в Києві, де ви можете подивитись та одразу забрати свій товар.
-          </template>
-        </app-feature>
-        
-        <app-divider />
+        <template #text>
+          Ми маємо свій власний склад в Києві, де ви можете подивитись та одразу забрати свій товар.
+        </template>
+      </app-feature>
+      
+      <app-divider />
 
-        <app-feature>
-          <template #icon>
-            <icon-speech-bubble />
-          </template>
+      <app-feature>
+        <template #icon>
+          <icon-speech-bubble />
+        </template>
 
-          <template #title>
-            4.9/5 оцінка клієнтів
-          </template>
+        <template #title>
+          4.9/5 оцінка клієнтів
+        </template>
 
-          <template #text>
-            Саме таку оцінку, поставили нам наші клієнти за якість продукції та обслуговування.
-          </template>
-        </app-feature>
-      </div>
+        <template #text>
+          Саме таку оцінку, поставили нам наші клієнти за якість продукції та обслуговування.
+        </template>
+      </app-feature>
     </div>
   </div>
 </template>

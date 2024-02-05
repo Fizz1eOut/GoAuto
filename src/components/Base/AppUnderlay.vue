@@ -8,9 +8,14 @@ export default defineComponent({
 </script>
 
 <template>
-  hello world
+  <div class="underlay">
+    <slot />
+  </div>
 </template>
 
 <style scoped>
-
+  .underlay {
+    border-radius: 10px;
+    background-color: #F5F7FA;
+  }
 </style>

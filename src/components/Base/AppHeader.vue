@@ -8,6 +8,8 @@ import HeaderActionButton from '@/components/Content/HeaderActionButton.vue'
 import AppBurger from '@/components/Base/AppBurger.vue';
 import AppButton from '@/components/Base/AppButton.vue';
 import IconCart from '@/components/icons/IconCart.vue';
+import AppUnderlay from '@/components/Base/AppUnderlay.vue';
+import AppContainer from '@/components/Base/AppContainer.vue'
 
 export default defineComponent({
   name: 'AppHeader',
@@ -21,6 +23,8 @@ export default defineComponent({
     AppButton,
     AppBurger,
     IconCart,
+    AppUnderlay,
+    AppContainer,
 },
 
   data() {
@@ -33,31 +37,35 @@ export default defineComponent({
 
 <template>
   <div class="header">
-    <div class="header__container container">
-      <div class="header__body">
-        <div class="header__item">
-          <app-burger @change="open = $event"/>
-          <router-link to="/">
-            <app-logo />
-          </router-link>
-        </div>
-        
-        <app-nav />
-        <nav-mobile :open="open"/>
+    <app-container>
+      <app-underlay>
+        <app-container size="sm">
+          <div class="header__body">
+            <div class="header__item">
+              <app-burger @change="open = $event"/>
+              <router-link to="/">
+                <app-logo />
+              </router-link>
+            </div>
+          
+            <app-nav />
+            <nav-mobile :open="open"/>
 
-        <div class="header__contacts">
-          <div class="header__row">
-            <app-contact />
-            <header-action-button />
+            <div class="header__contacts">
+              <div class="header__row">
+                <app-contact />
+                <header-action-button />
+              </div>
+              <router-link to="/cart">
+                <app-button outline>
+                  <icon-cart class="icon-cart"/>
+                </app-button>
+              </router-link>
+            </div>
           </div>
-          <router-link to="/cart">
-            <app-button outline>
-              <icon-cart class="icon-cart"/>
-            </app-button>
-          </router-link>
-        </div>
-      </div>
-    </div>
+        </app-container>
+    </app-underlay>
+    </app-container>
   </div>
 </template>
 
@@ -68,9 +76,6 @@ export default defineComponent({
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #F5F7FA;
 }
 .header__item {
   display: flex;
@@ -88,14 +93,6 @@ export default defineComponent({
   fill: var(--color-black);
 }
 
-@media (max-width: 991px) {
-  .header {
-    background-color: #F5F7FA;
-  }
-  .header__body {
-    padding: 20px 0;
-  }
-}
 @media (max-width: 499px) {
   .header__row {
     display: none;

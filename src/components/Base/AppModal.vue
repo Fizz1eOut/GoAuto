@@ -1,7 +1,8 @@
 <script>
 import { defineComponent } from 'vue';
 import ModalHeader from '@/components/Content/ModalHeader.vue';
-import ModalBody from '@/components/Content/ModalBody.vue';
+import AppContainer from '@/components/Base/AppContainer.vue';
+
 
 export default defineComponent({
   name: 'AppModal',
@@ -10,7 +11,7 @@ export default defineComponent({
 
   components: {
     ModalHeader,
-    ModalBody,
+    AppContainer,
   },
 
   props: {
@@ -28,24 +29,31 @@ export default defineComponent({
   }
 });
 </script>
-  <a href=""></a>
 <template>
-    <Teleport to="body">
+  <Teleport to="body">
+    <Transition>
       <div v-if="modelValue" class="modal">
         <div class="overlay" @click.self="close">
-          <div class="content">
-            <modal-header @close="close"/>
 
-            <modal-body>
-              <slot></slot>
-            </modal-body>
+          <div class="content">
+            <app-container size="sm">
+              <modal-header @close="close"/>
+
+              <div class="content__body">
+                <slot></slot>
+              </div>
+            </app-container>
           </div>
         </div>
       </div>
-    </Teleport>
+    </Transition>
+  </Teleport>
 </template>
 
 <style scoped>
+  .content__body {
+    padding: 20px 0;
+  }
   .overlay {
     position: fixed;
     left: 0;
@@ -59,13 +67,10 @@ export default defineComponent({
     justify-content: center;
     height: 100vh;
     width: 100%;
-    transition: all 0.3s ease-in-out;
   }
   .content {
-    padding: 20px 40px 60px;
     border-radius: 10px;
     background: #EEF5FC;
-    box-shadow: 2px 4px 30px 0px rgba(17, 17, 17, 0.15);
     max-width: 470px;
   }
   .title {
@@ -85,5 +90,14 @@ export default defineComponent({
     .content {
       padding: 20px 20px 40px;
     }
+  }
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
   }
 </style>

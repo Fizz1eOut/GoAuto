@@ -22,22 +22,20 @@ export default defineComponent({
 
 <template>
   <div class="consultation">
-    <div class="consultation__container container">
-      <div class="consultation__body">
-        <div class="consultation__item">
-          <app-title>Консультація</app-title>
-          <p class="consultation__text">
-            Якщо у Вас виникли питання, чи потрібна консультація, залиште заявку і ми звʼяжемося з Вами найближчим часом.
-          </p>
-          <div class="consultation__button">
-            <app-button @click="active = true">Залишити заявку</app-button>
-          </div>
+    <div class="consultation__body">
+      <div class="consultation__item">
+        <app-title>Консультація</app-title>
+        <p class="consultation__text">
+          Якщо у Вас виникли питання, чи потрібна консультація, залиште заявку і ми звʼяжемося з Вами найближчим часом.
+        </p>
+        <div class="consultation__button">
+          <app-button @click="active = true">Залишити заявку</app-button>
         </div>
+      </div>
 
-        <div class="consultation__item">
-          <div class="consultation__image">
-            <img src="./../../assets/images/consultation-image.png" alt="Image">
-          </div>
+      <div class="consultation__item">
+        <div class="consultation__image">
+          <img src="@/assets/images/consultation-image.png" alt="Image">
         </div>
       </div>
     </div>
@@ -75,7 +73,10 @@ export default defineComponent({
 .consultation__button {
   max-width: 250px;
 }
-.consultation__image {
-
+.consultation__image img {
+  max-width: 100%;
+}
+@media (max-width: 991px) {
+  
 }
 </style>

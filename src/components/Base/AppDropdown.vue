@@ -1,28 +1,32 @@
 <script>
+import AppContainer from '@/components/Base/AppContainer.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'AppDropdown',
-  
-  props: {
-    dropdownActive: {
-      type: Boolean,
-      required: false,
-      default: false
+    name: 'AppDropdown',
+
+    components: { 
+      AppContainer,
     },
-  },
+
+    props: {
+      dropdownActive: {
+          type: Boolean,
+          required: false,
+          default: false
+      },
+    },
 });
 </script>
 
 <template>
   <Transition>
-    <div 
-      v-if="dropdownActive"
-      class="dropdown"
-    >
-      <ul class="dropdown-list">
-        <slot></slot>
-      </ul>
+    <div v-if="dropdownActive" class="dropdown">
+      <app-container>
+        <ul class="dropdown-list">
+          <slot />
+        </ul>
+      </app-container>
     </div>
   </Transition>
 </template>
@@ -46,12 +50,7 @@ export default defineComponent({
   box-shadow: 0px 0px 10px 1px rgba(95, 95, 95, 0.25);
   border-radius: 8px;
   background: #F5F7FA;
-  padding: 16px;
   width: 158px;
 }
 
-.dropdown-list {
-
-
-}
 </style>

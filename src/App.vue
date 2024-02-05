@@ -1,11 +1,13 @@
 <script>
 import { defineComponent } from 'vue';
 import AppHeader from '@/components/Base/AppHeader.vue';
+import AppContainer from '@/components/Base/AppContainer.vue';
 
 
 export default defineComponent({
   components: {
     AppHeader,
+    AppContainer,
   },
 });
 </script>
@@ -16,7 +18,10 @@ export default defineComponent({
   />
 
   <main>
-    <router-view />
+    <app-container>
+      <router-view />
+    </app-container>
+
   </main>
 
   <footer>
