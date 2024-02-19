@@ -13,7 +13,7 @@ export default defineComponent({
     IconBridgestone,
     IconGoodyear,
     AppTitle
-},
+  },
 });
 </script>
 
