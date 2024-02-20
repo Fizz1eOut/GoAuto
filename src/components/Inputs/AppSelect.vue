@@ -16,76 +16,72 @@ export default defineComponent({
 
 <template>
   <div class="select">
-    <select id="standard-select">
-      <option value="Option 1">Option 1</option>
-      <option value="Option 2">Option 2</option>
-      <option value="Option 3">Option 3</option>
-      <option value="Option 4">Option 4</option>
-      <option value="Option 5">Option 5</option>
-      <option value="Option length">
-        Option that has too long of a value to fit
-      </option>
+    <select name="select">
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="2">Option 4</option>
+      <option value="2">Option 5</option>
+      <option value="2">OptionOptionOptionOptionOptionOptionOptionOption</option>
     </select>
-    <span class="focus"></span>
   </div>
 </template>
 
 <style scoped>
-
-  select {
-    appearance: none;
-    background-color: transparent;
-    border: none;
-    padding: 0 1em 0 0;
-    margin: 0;
+  .select {
     width: 100%;
-    font-family: inherit;
-    font-size: inherit;
-    cursor: inherit;
-    line-height: inherit;
-    outline: none;
+    background-color: var(--color-white);
+    position: relative;
   }
-  select::-ms-expand {
+  .select:after {
+    content: "";
+    border-style: solid;
+    border-width: 8px 8px 0 8px;
+    border-color: var(--color-grey) transparent transparent transparent;
+    border-radius: 10px;
+    pointer-events: none;
+    position: absolute;
+    top: 47%;
+    right: 15px;
+    z-index: 1;
+    margin-top: -2px;
+  }
+
+  .select select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    height: 100%;
+    padding: 17px 28px 17px 15px;
+    background: none;
+    border-radius: 10px;
+    border: 2px solid #ABBED1;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    font-family: 'Manrope', sans-serif;
+    color: var(--color-grey);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .select select::-ms-expand {
     display: none;
   }
-  .select {
-    position: relative;
-    width: 100%;
-    min-width: 15ch;
-    max-width: 30ch;
-    border: 1px solid #ABBED1;
-    border-radius: 10px;
-    padding: 17px 15px;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 100%;
-    cursor: pointer;
-    background-color: #fff;
-    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
 
-    display: grid;
-    align-items: center;
-    grid-template-areas: "select";
+  .select select:focus {
+    outline: 0;
+    border-color: var(--color-blue-hover);
   }
-  select,.select:after {
-    grid-area: select;
+
+  .select select:hover {
+    cursor: pointer;
   }
-  .select::after {
-    content: "";
-    width: 20px;
-    height: 10px;
-    background-color: #717171;
-    border-radius: 10px;
-    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-    justify-self: end;
+
+  .select select option:checked {
+    color: var(--color-grey);
   }
-  select:focus + .focus {
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    right: -1px;
-    bottom: -1px;
-    border: 2px solid var(--select-focus);
-    border-radius: inherit;
+  option {
+    color: var(--color-black);
   }
 </style>
