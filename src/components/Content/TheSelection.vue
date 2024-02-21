@@ -1,4 +1,6 @@
 <script>
+import optionsData from '@/assets/api/options.json';
+import productsData from '@/assets/api/products.json';
 import AppSelect from '@/components/Inputs/AppSelect.vue';
 import { defineComponent } from 'vue';
 
@@ -10,24 +12,28 @@ export default defineComponent({
     },
 
     data() {
-    return {
-      selectedWidth: null,
-      selectedBoltPattern: null,
-    };
+      return {
+        selectedWidth: null,
+        selectedBoltPattern: null,
+        options: optionsData,
+        products: productsData
+      };
     },
     
     computed: {
       tireWidthOptions() {
-        return [
-          { value: '195' },
-          { value: '205' },        
-        ];
+        const widthOptions = this.options.find(option => option.title === 'Ширина');
+        if (widthOptions) {
+          return this.findProductOptions(widthOptions.id);
+        }
+        return [];
       },
       boltPatternOptions() {
-        return [
-          {  value: '5x114.3' },
-          {  value: '5x120' },
-        ];
+        const boltPatternOptions = this.options.find(option => option.title === 'Разболтовка');
+        if (boltPatternOptions) {
+          return this.findProductOptions(boltPatternOptions.id);
+        }
+        return [];
       },
       disableTireOptions() {
         return false;
@@ -36,6 +42,19 @@ export default defineComponent({
         return false;
       },
     },
+
+    methods: {
+      findProductOptions(optionId) {
+        const productOptions = this.products.reduce((acc, product) => {
+          const option = product.options.find(opt => opt.id === optionId);
+          if (option) {
+            acc.push({ value: option.value });
+          }
+          return acc;
+        }, []);
+        return productOptions;
+      }
+    }
 });
 </script>
 
