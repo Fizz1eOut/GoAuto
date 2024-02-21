@@ -5,23 +5,55 @@ export default defineComponent({
   name: 'AppSelect',
 
   props: {
+    value: {
+      type: [String, Number],
+      default: null
+    },
+    options: {
+      type: Array,
+      default: () => []
+    },
+    idKey: {
+      type: String,
+      default: 'id'
+    },
+    valueKey: {
+      type: String,
+      default: 'value'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     placeholder: {
       type: String,
-      required: true,
-      default: '',
+      default: ''
     }
   },
+  computed: {
+    selectedOption: {
+      get() {
+        return this.value;
+      },
+      set(newValue) {
+        this.$emit('input', newValue);
+      }
+    }
+  }
 });
 </script>
 
 <template>
   <div class="select">
-    <select name="select">
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="2">Option 4</option>
-      <option value="2">Option 5</option>
-      <option value="2">OptionOptionOptionOptionOptionOptionOptionOption</option>
+    <select v-model="selectedOption" :disabled="disabled">
+      <option :value="null" disabled>{{ placeholder }}</option>
+      <option 
+        v-for="option in options" 
+        :key="option[valueKey]" 
+        :value="option[valueKey]"
+      >
+        {{ option[valueKey] }}
+      </option>
     </select>
   </div>
 </template>
