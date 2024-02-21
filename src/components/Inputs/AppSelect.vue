@@ -29,7 +29,6 @@ export default defineComponent({
 <style scoped>
   .select {
     width: 100%;
-    background-color: var(--color-white);
     position: relative;
   }
   .select:after {
@@ -52,7 +51,7 @@ export default defineComponent({
     width: 100%;
     height: 100%;
     padding: 17px 28px 17px 15px;
-    background: none;
+    background-color: var(--color-white);
     border-radius: 10px;
     border: 2px solid #ABBED1;
     font-weight: 400;
@@ -83,5 +82,6 @@ export default defineComponent({
   }
   option {
     color: var(--color-black);
+    font-weight: 500;
   }
 </style>
