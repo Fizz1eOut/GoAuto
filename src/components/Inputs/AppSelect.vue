@@ -5,19 +5,19 @@ export default defineComponent({
   name: 'AppSelect',
 
   props: {
-    value: {
+    modelValue: {
       type: [String, Number],
       default: null
     },
     options: {
       type: Array,
-      default: () => []
+      required: true,
     },
-    idKey: {
+    valueKey: {
       type: String,
       default: 'id'
     },
-    valueKey: {
+    labelKey: {
       type: String,
       default: 'value'
     },
@@ -27,16 +27,20 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
+      required: true,
       default: ''
     }
   },
+
+  emits: ['update:modelValue'],
+
   computed: {
     selectedOption: {
       get() {
-        return this.value;
+        return this.modelValue;
       },
       set(newValue) {
-        this.$emit('input', newValue);
+        this.$emit('update:modelValue', newValue);
       }
     }
   }
@@ -49,10 +53,10 @@ export default defineComponent({
       <option :value="null" disabled>{{ placeholder }}</option>
       <option 
         v-for="option in options" 
-        :key="option[valueKey]" 
-        :value="option[valueKey]"
+        :key="option[labelKey]" 
+        :value="option[labelKey]"
       >
-        {{ option[valueKey] }}
+        {{ option[labelKey] }}
       </option>
     </select>
   </div>
