@@ -1,6 +1,6 @@
 <script>
-import optionsData from '@/api/options.json';
-import productsData from '@/api/products.json';
+import optionsData from '@/assets/api/options.json';
+import productsData from '@/assets/api/products.json';
 import AppContainer from '@/components/Base/AppContainer.vue';
 import AppUnderlay from '@/components/Base/AppUnderlay.vue';
 import AppSelect from '@/components/Inputs/AppSelect.vue';
@@ -156,20 +156,5 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.tires {
-  text-align: center;
-}
-.tires__items {
-  margin-top: 40px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
-}
-.tires__item {
-  flex: 0 1 50%;
-}
-.tires__item> *:not(:last-child) {
-  margin-bottom: 20px;
-}
+  
 </style>
