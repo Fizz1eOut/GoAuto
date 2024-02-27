@@ -1,6 +1,6 @@
 <script>
-import optionsData from '@/assets/api/options.json';
-import productsData from '@/assets/api/products.json';
+import optionsData from '@/api/options.json';
+import productsData from '@/api/products.json';
 import AppContainer from '@/components/Base/AppContainer.vue';
 import AppUnderlay from '@/components/Base/AppUnderlay.vue';
 import AppSelect from '@/components/Inputs/AppSelect.vue';
@@ -21,51 +21,51 @@ export default defineComponent({
 
   data() {
     return {
-      selectedWidthTires: null,
-      selectedProfileTires: null,
-      selectedDiameterTires: null,
-      selectedSeasonTires: null,
-      selectedBrandTires: null,
+      rebalancing: null,
+      et: null,
+      diameter: null,
+      width: null,
+      brand: null,
     };
   },
   
   computed: {
-    tireWidthOptions() {
-      const widthOptions = optionsData.find(option => option.title === 'Ширина');
-      if (widthOptions) {
-        return this.findProductOptions(widthOptions.id);
+    rebalancingOptions() {
+      const rebalancingOption = optionsData.find(option => option.title === 'Разболтовка');
+      if (rebalancingOption) {
+        return this.findProductOptions(rebalancingOption.id);
       }
       return [];
     },
 
-    profileTiresOptions() {
-      const profileTiresOptions = optionsData.find(option => option.title === 'Профіль');
-      if (profileTiresOptions) {
-        return this.findProductOptions(profileTiresOptions.id);
+    etOptions() {
+      const etOption = optionsData.find(option => option.title === 'ET');
+      if (etOption) {
+        return this.findProductOptions(etOption.id);
       }
       return [];
     },
     
-    diameterTiresOptions() {
-      const diameterOptions = optionsData.find(option => option.title === 'Діаметр');
-      if (diameterOptions) {
-        return this.findProductOptions(diameterOptions.id);
+    diameterOptions() {
+      const diameterOption = optionsData.find(option => option.title === 'Діаметр');
+      if (diameterOption) {
+        return this.findProductOptions(diameterOption.id);
       }
       return [];
     },
 
-    seasonTiresOptions() {
-      const seasonOptions = optionsData.find(option => option.title === 'Сезон');
-      if (seasonOptions) {
-        return this.findProductOptions(seasonOptions.id);
+    widthOptions() {
+      const widthOption = optionsData.find(option => option.title === 'Ширина диска');
+      if (widthOption) {
+        return this.findProductOptions(widthOption.id);
       }
       return [];
     },
 
-    brandTiresOptions() {
-      const brandOptions = optionsData.find(option => option.title === 'Бренд');
-      if (brandOptions) {
-        return this.findProductOptions(brandOptions.id);
+    brandOptions() {
+      const brandOption = optionsData.find(option => option.title === 'Бренд');
+      if (brandOption) {
+        return this.findProductOptions(brandOption.id);
       }
       return [];
     },
@@ -75,7 +75,10 @@ export default defineComponent({
     findProductOptions(optionId) {
       const productOptions = new Set();
       // console.log(productOptions)
-      productsData.forEach(product => {
+      const filter = productsData.filter(product => product.category === 2);
+      // console.log(productsData)
+      // console.log(filter)
+      filter.forEach(product => {
         const option = product.options.find(opt => opt.id === optionId);
         // console.log(option)
         if (option) {
@@ -98,30 +101,30 @@ export default defineComponent({
     <AppContainer size="md">
       <div class="tires">
         <app-title>
-          Шини
+          Диски
         </app-title>
 
         <div class="tires__items">
           <div class="tires__item">
             <app-select 
-              v-model="selectedWidthTires"
-              :options="tireWidthOptions"
+              v-model="diameter"
+              :options="diameterOptions"
+              placeholder="Діаметр"
+              value-key="id"
+              label-key="value"
+            />
+            
+            <app-select 
+              v-model="width"
+              :options="widthOptions"
               placeholder="Ширина"
               value-key="id"
               label-key="value"
             />
 
             <app-select 
-              v-model="selectedDiameterTires"
-              :options="diameterTiresOptions"
-              placeholder="Діаметр"
-              value-key="id"
-              label-key="value"
-            />
-
-            <app-select 
-              v-model="selectedBrandTires"
-              :options="brandTiresOptions"
+              v-model="brand"
+              :options="brandOptions"
               placeholder="Бренд"
               value-key="id"
               label-key="value"
@@ -134,17 +137,17 @@ export default defineComponent({
 
           <div class="tires__item">
             <app-select 
-              v-model="selectedProfileTires"
-              :options="profileTiresOptions"
-              placeholder="Профіль"
+              v-model="rebalancing"
+              :options="rebalancingOptions"
+              placeholder="Разболтовка"
               value-key="id"
               label-key="value"
             />
 
             <app-select 
-              v-model="selectedSeasonTires"
-              :options="seasonTiresOptions"
-              placeholder="Сезон"
+              v-model="et"
+              :options="etOptions"
+              placeholder="Виліт"
               value-key="id"
               label-key="value"
             />
@@ -156,5 +159,28 @@ export default defineComponent({
 </template>
 
 <style scoped>
-  
+  .tires {
+  text-align: center;
+  }
+  .tires__items {
+    margin-top: 40px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .tires__item {
+    width: 100%;
+  }
+  .tires__item> *:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  @media (max-width: 480px) {
+  .tires__items {
+    flex-direction: column;
+  }
+  .tires__item:first-child {
+    order: 1;
+  }
+} 
 </style>
