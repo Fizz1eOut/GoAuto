@@ -75,7 +75,10 @@ export default defineComponent({
     findProductOptions(optionId) {
       const productOptions = new Set();
       // console.log(productOptions)
-      productsData.forEach(product => {
+      const filter = productsData.filter(product => product.category === 1);
+      // console.log(productsData)
+      // console.log(filter)
+      filter.forEach(product => {
         const option = product.options.find(opt => opt.id === optionId);
         // console.log(option)
         if (option) {
@@ -167,9 +170,17 @@ export default defineComponent({
   gap: 10px;
 }
 .tires__item {
-  flex: 0 1 50%;
+  width: 100%;
 }
 .tires__item> *:not(:last-child) {
   margin-bottom: 20px;
 }
+@media (max-width: 480px) {
+  .tires__items {
+    flex-direction: column;
+  }
+  .tires__item:first-child {
+    order: 1;
+  }
+} 
 </style>
