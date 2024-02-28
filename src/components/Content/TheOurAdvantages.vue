@@ -42,7 +42,7 @@ export default defineComponent({
         </template>
       </app-feature>
 
-      <app-divider />
+      <app-divider class="divider" />
 
       <app-feature>
         <template #icon>
@@ -111,6 +111,24 @@ export default defineComponent({
   }
   .advantages {
     margin-top: 60px;
+  }
+}
+
+.divider {
+  width: 1px;
+  height: 171px;
+  background-color: #ABBED1;
+}
+@media (max-width: 1024px) {
+  .divider {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .divider {
+    display: block;
+    width: 100%;
+    height: 1px;
   }
 }
 </style>

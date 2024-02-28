@@ -13,20 +13,8 @@ export default defineComponent({
 
 <style scoped>
 .divider {
-  width: 1px;
-  height: 171px;
+  width: 100%;
+  height: 1px;
   background-color: #ABBED1;
-}
-@media (max-width: 1024px) {
-  .divider {
-    display: none;
-  }
-}
-@media (max-width: 768px) {
-  .divider {
-    display: block;
-    width: 100%;
-    height: 1px;
-  }
 }
 </style>

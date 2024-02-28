@@ -24,13 +24,13 @@ export default defineComponent({
 
       <form action="#" class="content__form form-content">
         <div class="content__item">
-          <app-input placeholder="Імʼя та прізвище"/>
+          <app-input placeholder="Імʼя та прізвище" />
         </div>
         <div class="content__item">
-          <app-input placeholder="Номер телефону"/>
+          <app-input placeholder="Номер телефону" />
         </div>
         <div class="content__bottom">
-            <app-button>Залишити заявку</app-button>
+          <app-button>Залишити заявку</app-button>
           <div class="form-content__text">Натискаючи на кнопку, Ви приймаєте положення та згоду на обробку персональних даних.</div>
         </div>
       </form>
