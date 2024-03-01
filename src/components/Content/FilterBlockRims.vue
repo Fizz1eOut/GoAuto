@@ -86,11 +86,11 @@ export default defineComponent({
         }
       });
 
-       return Array.from(productOptions).map(value => ({ value }));
-      // const optionsArray = Array.from(productOptions).map(value => ({ value }));
-      // optionsArray.unshift({ title: 'Выберите опцию',  value: 0});
+      //  return Array.from(productOptions).map(value => ({ value }));
+      const optionsArray = Array.from(productOptions).map(value => ({ value }));
+      optionsArray.unshift({ id: 0,  value: 'Выберите опцию'});
       // console.log(optionsArray)
-      // return optionsArray
+      return optionsArray
     }
   },
 });

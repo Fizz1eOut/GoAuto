@@ -26,6 +26,7 @@ export default defineComponent({
       selectedDiameterTires: null,
       selectedSeasonTires: null,
       selectedBrandTires: null,
+      placeholder: 'asd'
     };
   },
   
@@ -86,11 +87,11 @@ export default defineComponent({
         }
       });
 
-       return Array.from(productOptions).map(value => ({ value }));
-      // const optionsArray = Array.from(productOptions).map(value => ({ value }));
-      // optionsArray.unshift({ title: 'Выберите опцию',  value: 0});
-      // console.log(optionsArray)
-      // return optionsArray
+      //  return Array.from(productOptions).map(value => ({ value }));
+      const optionsArray = Array.from(productOptions).map(value => ({ value }));
+      optionsArray.unshift({ id: 0,  value: "Выберите "});
+      console.log(optionsArray);
+      return optionsArray;
     }
   },
 });

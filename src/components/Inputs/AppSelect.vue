@@ -25,11 +25,11 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    placeholder: {
-      type: String,
-      required: true,
-      default: ''
-    }
+    // placeholder: {
+    //   type: String,
+    //   required: true,
+    //   default: ''
+    // }
   },
 
   emits: ['update:modelValue'],
@@ -50,7 +50,6 @@ export default defineComponent({
 <template>
   <div class="select">
     <select v-model="selectedOption" :disabled="disabled">
-      <option :value="null" disabled>{{ placeholder }}</option>
       <option 
         v-for="option in options" 
         :key="option[labelKey]" 
