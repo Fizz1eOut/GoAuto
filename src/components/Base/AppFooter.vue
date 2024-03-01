@@ -6,7 +6,7 @@ import AppLink from '@/components/Base/AppLink.vue';
 import AppLogo from '@/components/Base/AppLogo.vue'
 import AppSchedule from '@/components/Base/AppSchedule.vue';
 import AppSocialMedia from '@/components/Base/AppSocialMedia.vue';
-import TheCopyright from '@/components/Content/TheCopyright.vue'
+import FooterCopyright from '@/components/Content/FooterCopyright.vue'
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -20,13 +20,13 @@ export default defineComponent({
     AppSchedule,
     AppSocialMedia,
     AppLink,
-    TheCopyright,
+    FooterCopyright,
 },
 });
 </script>
 
 <template>
-  <div class="footer">
+  <footer class="footer">
     <app-container>
       <app-divider />
 
@@ -109,9 +109,9 @@ export default defineComponent({
           </ul>
         </div>
       </div>
-      <the-copyright />
+      <footer-copyright />
     </app-container>
-  </div>
+  </footer>
 </template>
 
 <style scoped>
