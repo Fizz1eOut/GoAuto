@@ -3,7 +3,8 @@ import { defineComponent } from 'vue';
 import TheOurAdvantages from '@/components/Content/TheOurAdvantages.vue';
 import TheConsultation from '@/components/Content/TheConsultation.vue';
 import ThePartners from '@/components/Content/ThePartners.vue';
-import TheSelection from '@/components/Content/TheSelection.vue';
+import HomeFilterBlock from '@/components/Content/HomeFilterBlock.vue';
+import AppSlider from '@/components/Base/AppSlider.vue'
 
 export default defineComponent({
   name: 'HomeView',
@@ -12,15 +13,17 @@ export default defineComponent({
     TheOurAdvantages,
     TheConsultation,
     ThePartners,
-    TheSelection
+    HomeFilterBlock,
+    AppSlider,
 },
 
 });
 </script>
 
 <template>
-  <the-selection />
+  <home-filter-block />
   <the-our-advantages />
+  <app-slider />
   <the-partners />
   <the-consultation />
 </template>

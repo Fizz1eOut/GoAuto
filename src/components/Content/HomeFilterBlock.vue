@@ -4,7 +4,7 @@ import FilterBlockRims from '@/components/Content/FilterBlockRims.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'TheSelection',
+  name: 'HomeFilterBlock',
 
   components: {
     FilterBlockTires,
