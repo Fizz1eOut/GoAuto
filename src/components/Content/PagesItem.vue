@@ -1,12 +1,11 @@
 <script>
-import AppPages from '@/components/Base/AppPages.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'CartView',
+  name: 'PagesItem',
 
   components: {
-    AppPages,
+
   },
 
   // data() {
@@ -22,7 +21,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <app-pages />
+  <div class="pages__item">
+    <slot />
+  </div>
 </template>
 
 <style scoped>
