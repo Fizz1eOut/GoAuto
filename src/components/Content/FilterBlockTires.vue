@@ -21,12 +21,11 @@ export default defineComponent({
 
   data() {
     return {
-      selectedWidthTires: null,
-      selectedProfileTires: null,
-      selectedDiameterTires: null,
-      selectedSeasonTires: null,
-      selectedBrandTires: null,
-      placeholder: 'asd'
+      selectedWidthTires: 0,
+      selectedProfileTires: 0,
+      selectedDiameterTires: 0,
+      selectedSeasonTires: 0,
+      selectedBrandTires: 0,
     };
   },
   
@@ -34,7 +33,10 @@ export default defineComponent({
     tireWidthOptions() {
       const widthOptions = optionsData.find(option => option.title === 'Ширина');
       if (widthOptions) {
-        return this.findProductOptions(widthOptions.id);
+        const arr = this.findProductOptions(widthOptions.id);
+        // console.log(arr);
+        arr.unshift({ id: 0,  value: "Виберіть ширину"});
+        return arr;
       }
       return [];
     },
@@ -42,7 +44,10 @@ export default defineComponent({
     profileTiresOptions() {
       const profileTiresOptions = optionsData.find(option => option.title === 'Профіль');
       if (profileTiresOptions) {
-        return this.findProductOptions(profileTiresOptions.id);
+        const arr = this.findProductOptions(profileTiresOptions.id);
+        // console.log(arr);
+        arr.unshift({ id: 0,  value: "Виберіть профіль"});
+        return arr;
       }
       return [];
     },
@@ -50,7 +55,10 @@ export default defineComponent({
     diameterTiresOptions() {
       const diameterOptions = optionsData.find(option => option.title === 'Діаметр');
       if (diameterOptions) {
-        return this.findProductOptions(diameterOptions.id);
+        const arr = this.findProductOptions(diameterOptions.id);
+        // console.log(arr);
+        arr.unshift({ id: 0,  value: "Виберіть діаметр"});
+        return arr;
       }
       return [];
     },
@@ -58,7 +66,10 @@ export default defineComponent({
     seasonTiresOptions() {
       const seasonOptions = optionsData.find(option => option.title === 'Сезон');
       if (seasonOptions) {
-        return this.findProductOptions(seasonOptions.id);
+        const arr = this.findProductOptions(seasonOptions.id);
+        // console.log(arr);
+        arr.unshift({ id: 0,  value: "Виберіть сезон"});
+        return arr;
       }
       return [];
     },
@@ -66,7 +77,10 @@ export default defineComponent({
     brandTiresOptions() {
       const brandOptions = optionsData.find(option => option.title === 'Бренд');
       if (brandOptions) {
-        return this.findProductOptions(brandOptions.id);
+        const arr = this.findProductOptions(brandOptions.id);
+        // console.log(arr);
+        arr.unshift({ id: 0,  value: "Виберіть бренд"});
+        return arr;
       }
       return [];
     },
@@ -87,19 +101,15 @@ export default defineComponent({
         }
       });
 
-      //  return Array.from(productOptions).map(value => ({ value }));
-      const optionsArray = Array.from(productOptions).map(value => ({ value }));
-      optionsArray.unshift({ id: 0,  value: "Выберите "});
-      console.log(optionsArray);
-      return optionsArray;
+       return Array.from(productOptions).map((value) => ({ id: value, value }));
     }
   },
 });
 </script>
 
 <template>
-  <AppUnderlay>
-    <AppContainer size="md">
+  <app-underlay>
+    <app-container size="md">
       <div class="tires">
         <app-title>
           Шини
@@ -110,7 +120,6 @@ export default defineComponent({
             <app-select 
               v-model="selectedWidthTires"
               :options="tireWidthOptions"
-              placeholder="Ширина"
               value-key="id"
               label-key="value"
             />
@@ -118,7 +127,6 @@ export default defineComponent({
             <app-select 
               v-model="selectedDiameterTires"
               :options="diameterTiresOptions"
-              placeholder="Діаметр"
               value-key="id"
               label-key="value"
             />
@@ -126,7 +134,6 @@ export default defineComponent({
             <app-select 
               v-model="selectedBrandTires"
               :options="brandTiresOptions"
-              placeholder="Бренд"
               value-key="id"
               label-key="value"
             />
@@ -140,7 +147,6 @@ export default defineComponent({
             <app-select 
               v-model="selectedProfileTires"
               :options="profileTiresOptions"
-              placeholder="Профіль"
               value-key="id"
               label-key="value"
             />
@@ -148,15 +154,14 @@ export default defineComponent({
             <app-select 
               v-model="selectedSeasonTires"
               :options="seasonTiresOptions"
-              placeholder="Сезон"
               value-key="id"
               label-key="value"
             />
           </div>
         </div>
       </div>
-    </AppContainer>
-  </AppUnderlay>
+    </app-container>
+  </app-underlay>
 </template>
 
 <style scoped>

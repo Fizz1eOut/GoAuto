@@ -21,11 +21,11 @@ export default defineComponent({
 
   data() {
     return {
-      rebalancing: null,
-      et: null,
-      diameter: null,
-      width: null,
-      brand: null,
+      rebalancing: 0,
+      et: 0,
+      diameter: 0,
+      width: 0,
+      brand: 0,
     };
   },
   
@@ -33,7 +33,10 @@ export default defineComponent({
     rebalancingOptions() {
       const rebalancingOption = optionsData.find(option => option.title === 'Разболтовка');
       if (rebalancingOption) {
-        return this.findProductOptions(rebalancingOption.id);
+        const arr = this.findProductOptions(rebalancingOption.id);
+        // console.log(arr);
+        arr.unshift({ id: 0,  value: "Виберіть разболтовку"});
+        return arr;
       }
       return [];
     },
@@ -41,7 +44,10 @@ export default defineComponent({
     etOptions() {
       const etOption = optionsData.find(option => option.title === 'ET');
       if (etOption) {
-        return this.findProductOptions(etOption.id);
+        const arr = this.findProductOptions(etOption.id);
+        // console.log(arr);
+        arr.unshift({ id: 0,  value: "Виберіть виліт"});
+        return arr;
       }
       return [];
     },
@@ -49,7 +55,10 @@ export default defineComponent({
     diameterOptions() {
       const diameterOption = optionsData.find(option => option.title === 'Діаметр');
       if (diameterOption) {
-        return this.findProductOptions(diameterOption.id);
+        const arr = this.findProductOptions(diameterOption.id);
+        // console.log(arr);
+        arr.unshift({ id: 0,  value: "Виберіть діаметр"});
+        return arr;
       }
       return [];
     },
@@ -57,7 +66,10 @@ export default defineComponent({
     widthOptions() {
       const widthOption = optionsData.find(option => option.title === 'Ширина диска');
       if (widthOption) {
-        return this.findProductOptions(widthOption.id);
+        const arr = this.findProductOptions(widthOption.id);
+        // console.log(arr);
+        arr.unshift({ id: 0,  value: "Виберіть ширину"});
+        return arr;
       }
       return [];
     },
@@ -65,7 +77,10 @@ export default defineComponent({
     brandOptions() {
       const brandOption = optionsData.find(option => option.title === 'Бренд');
       if (brandOption) {
-        return this.findProductOptions(brandOption.id);
+        const arr = this.findProductOptions(brandOption.id);
+        // console.log(arr);
+        arr.unshift({ id: 0,  value: "Виберіть бренд"});
+        return arr;
       }
       return [];
     },
@@ -86,11 +101,7 @@ export default defineComponent({
         }
       });
 
-      //  return Array.from(productOptions).map(value => ({ value }));
-      const optionsArray = Array.from(productOptions).map(value => ({ value }));
-      optionsArray.unshift({ id: 0,  value: 'Выберите опцию'});
-      // console.log(optionsArray)
-      return optionsArray
+       return Array.from(productOptions).map((value) => ({ id: value, value }));
     }
   },
 });
@@ -107,17 +118,15 @@ export default defineComponent({
         <div class="tires__items">
           <div class="tires__item">
             <app-select 
-              v-model="diameter"
-              :options="diameterOptions"
-              placeholder="Діаметр"
+              v-model="width"
+              :options="widthOptions"
               value-key="id"
               label-key="value"
             />
-            
+
             <app-select 
-              v-model="width"
-              :options="widthOptions"
-              placeholder="Ширина"
+              v-model="diameter"
+              :options="diameterOptions"
               value-key="id"
               label-key="value"
             />
@@ -125,7 +134,6 @@ export default defineComponent({
             <app-select 
               v-model="brand"
               :options="brandOptions"
-              placeholder="Бренд"
               value-key="id"
               label-key="value"
             />
@@ -139,7 +147,6 @@ export default defineComponent({
             <app-select 
               v-model="rebalancing"
               :options="rebalancingOptions"
-              placeholder="Разболтовка"
               value-key="id"
               label-key="value"
             />
@@ -147,7 +154,6 @@ export default defineComponent({
             <app-select 
               v-model="et"
               :options="etOptions"
-              placeholder="Виліт"
               value-key="id"
               label-key="value"
             />

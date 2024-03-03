@@ -52,8 +52,8 @@ export default defineComponent({
     <select v-model="selectedOption" :disabled="disabled">
       <option 
         v-for="option in options" 
-        :key="option[labelKey]" 
-        :value="option[labelKey]"
+        :key="option[valueKey]" 
+        :value="option[valueKey]"
       >
         {{ option[labelKey] }}
       </option>
