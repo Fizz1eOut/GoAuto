@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "featured": false,
     "title": "Michelin X-Ice Snow",
     "price": 6237,
     "imageUrl": "https://www.oponeo.pl/Temp/michelin-pilot-alpin-5-suv-18806-234724-f-f-l600-sk3.webp",
@@ -20,6 +21,7 @@
   },
   {
     "id": 2,
+    "featured": true,
     "title": "Michelin Summer Tire",
     "price": 5000,
     "imageUrl": "https://www.oponeo.pl/Temp/michelin-e-primacy-22276-f-f-l600-sk3.webp",
@@ -39,6 +41,7 @@
   },
   {
     "id": 3,
+    "featured": false,
     "title": "Michelin All-Season Tires",
     "price": 4700,
     "imageUrl": "https://www.oponeo.pl/Temp/michelin-crossclimate-2-22674-f-f-l600-sk3.webp",
@@ -58,6 +61,7 @@
   },
   {
     "id": 4,
+    "featured": true,
     "title": "Goodyear Winter Performance",
     "price": 6200,
     "imageUrl": "https://www.oponeo.pl/Temp/goodyear-ultragrip-performance-3-25624-f-f-l600-sk3.webp",
@@ -77,6 +81,7 @@
   },
   {
     "id": 5,
+    "featured": false,
     "title": "Goodyear All-Season Tires",
     "price": 5640,
     "imageUrl": "https://www.oponeo.pl/Temp/goodyear-vector-4seasons-gen-3-21488-f-f-l600-sk3.webp",
@@ -96,6 +101,7 @@
   },
   {
     "id": 6,
+    "featured": true,
     "title": "Goodyear Eagle Sport",
     "price": 7300,
     "imageUrl": "https://www.oponeo.pl/Temp/goodyear-eagle-f1-asymmetric-3-15598-f-f-l600-sk3.webp",
@@ -115,6 +121,7 @@
   },
   {
     "id": 7,
+    "featured": false,
     "title": "Bridgestone Dueler",
     "price": 4550,
     "imageUrl": "https://www.oponeo.pl/Temp/bridgestone-turanza-6-25100-f-f-l600-sk3.webp",
@@ -134,6 +141,7 @@
   },
   {
     "id": 8,
+    "featured": true,
     "title": "Bridgestone Ecopia",
     "price": 4900,
     "imageUrl": "https://www.oponeo.pl/Temp/bridgestone-turanza-all-season-6-25101-f-f-l600-sk3.webp",
@@ -153,6 +161,7 @@
   },
   {
     "id": 9,
+    "featured": false,
     "title": "Pirelli P Zero",
     "price": 6100,
     "imageUrl": "https://www.oponeo.pl/Temp/pirelli-p-zero-1464-f-f-l600-sk3.webp",
@@ -172,6 +181,7 @@
   },
   {
     "id": 10,
+    "featured": false,
     "title": "Pirelli Scorpion Winter",
     "price": 5350,
     "imageUrl": "https://www.oponeo.pl/Temp/pirelli-sottozero-serie-3-10595-f-f-l600-sk3.webp",
@@ -191,6 +201,7 @@
   },
   {
     "id": 11,
+    "featured": false,
     "title": "Pirelli Cinturato",
     "price": 4900,
     "imageUrl": "https://www.oponeo.pl/Temp/pirelli-p-zero-1464-198382-f-f-l600-sk3.webp",
@@ -210,6 +221,7 @@
   },
   {
     "id": 12,
+    "featured": false,
     "title": "Pirelli Winter Sottozero",
     "price": 5670,
     "imageUrl": "https://www.oponeo.pl/Temp/pirelli-p-zero-all-season-18278-f-f-l600-sk3.webp",
@@ -229,6 +241,7 @@
   },
   {
     "id": 13,
+    "featured": false,
     "title": "Enkei Performance Series",
     "price": 7000,
     "imageUrl": "https://static.felgenshop.de/cms-c30-felga-schwarz-kupfer-metallic-zimowa-felga-aluminiowa-felga-800x800.webp",
@@ -246,6 +259,7 @@
   },
   {
     "id": 14,
+    "featured": true,
     "title": "Vossen CV3",
     "price": 7740,
     "imageUrl": "https://www.oponeo.pl/Temp/seventy9-sv-c-bgril-25813-f-f-l600-sk1.webp",
@@ -263,6 +277,7 @@
   },
   {
     "id": 15,
+    "featured": false,
     "title": "ADV.1 ADV05",
     "price": 10200,
     "imageUrl": "https://www.oponeo.pl/Temp/platin-wheels-p-70-black-gloss-24766-f-f-l600-sk1.webp",
@@ -280,6 +295,7 @@
   },
   {
     "id": 16,
+    "featured": true,
     "title": "Rotiform BLQ",
     "price": 8899,
     "imageUrl": "https://www.oponeo.pl/Temp/rotiform-las-r-matt-black-23610-f-f-l600-sk1.webp",
@@ -297,6 +313,7 @@
   },
   {
     "id": 17,
+    "featured": false,
     "title": "BBS RS-GT",
     "price": 9570,
     "imageUrl": "https://www.oponeo.pl/Temp/bbs-super-rs-gold-13919-f-f-l600-sk1.webp",
@@ -314,6 +331,7 @@
   },
   {
     "id": 18,
+    "featured": true,
     "title": "HRE P101",
     "price": 22200,
     "imageUrl": "https://static4.bagaznikikup.pl/pol_pm_Felgi-Aluminiowe-19-5x120-seventy9-SV-AR-57733_1.jpg",
@@ -331,6 +349,7 @@
   },
   {
     "id": 19,
+    "featured": false,
     "title": "Work Emotion T7R",
     "price": 17720,
     "imageUrl": "https://www.oponeo.pl/Temp/oxigin-19-oxspoke-pp-16438-f-f-l600-sk1.webp",
@@ -348,6 +367,7 @@
   },
   {
     "id": 20,
+    "featured": true,
     "title": "Forgestar F14",
     "price": 9530,
     "imageUrl": "https://www.oponeo.pl/Temp/concaver-cvr1-double-tinted-black-22732-f-f-l600-sk1.webp",
@@ -365,6 +385,7 @@
   },
   {
     "id": 21,
+    "featured": false,
     "title": "Volk Racing TE37",
     "price": 8300,
     "imageUrl": "https://www.oponeo.pl/Temp/ronal-r67-jetblack-red-22523-f-f-l600-sk1.webp",
@@ -382,6 +403,7 @@
   },
   {
     "id": 22,
+    "featured": false,
     "title": "OZ Racing Ultraleggera",
     "price": 13590,
     "imageUrl": "https://www.oponeo.pl/Temp/oz-gran-turismo-hlt-21330-f-f-l600-sk1.webp",
@@ -399,6 +421,7 @@
   },
   {
     "id": 23,
+    "featured": false,
     "title": "Rays Gram Lights 57DR",
     "price": 9000,
     "imageUrl": "https://www.oponeo.pl/Temp/japan-racing-jr3-gun-metal-16586-f-f-l600-sk1.webp",
@@ -416,6 +439,7 @@
   },
   {
     "id": 24,
+    "featured": false,
     "title": "Borbet TS",
     "price": 7800,
     "imageUrl": "https://www.oponeo.pl/Temp/borbet-y-black-glossy-19347-f-f-l600-sk1.webp",

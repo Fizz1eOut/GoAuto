@@ -1,7 +1,5 @@
 <script>
-import AppProduct from '@/components/Base/AppProduct.vue'
-import AppTitle from '@/components/Base/AppTitle.vue'
-import { Splide, SplideSlide, SplideTrack} from '@splidejs/vue-splide';
+import { Splide, SplideTrack } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
 import { defineComponent } from 'vue';
 
@@ -10,10 +8,7 @@ export default defineComponent({
 
   components: {
     Splide,
-    SplideSlide,
     SplideTrack,
-    AppTitle,
-    AppProduct,
   },
   
   data() {
@@ -23,6 +18,7 @@ export default defineComponent({
         pagination: true,
         arrows: false,
         paginationKeyboard: true,
+        gap: "10px",
         perPage: 4,
         breakpoints: {
           640: {
@@ -37,104 +33,13 @@ export default defineComponent({
 
 <template>
   <div class="slider">
-    <app-title>
-      Рекомендовані товари
-    </app-title>
-
     <div class="slider__body">
       <Splide 
         :options="slideOptions" 
         :has-track="false" 
       >
         <SplideTrack>
-          <SplideSlide>
-            <app-product 
-              image-url="https://www.oponeo.pl/Temp/michelin-pilot-alpin-5-suv-18806-234724-f-f-l600-sk3.webp"
-              title="Michelin X-Ice Snow"
-              article="MXIS001"
-              stock="В наявності"
-              price="4 900"
-            />
-          </SplideSlide>
-
-          <SplideSlide>
-            <app-product 
-              image-url="https://www.oponeo.pl/Temp/michelin-pilot-alpin-5-suv-18806-234724-f-f-l600-sk3.webp"
-              title="Michelin X-Ice Snow"
-              article="MXIS001"
-              stock="В наявності"
-              price="4 900"
-            />
-          </SplideSlide>
-          <SplideSlide>
-            <app-product 
-              image-url="https://www.oponeo.pl/Temp/michelin-pilot-alpin-5-suv-18806-234724-f-f-l600-sk3.webp"
-              title="Michelin X-Ice Snow"
-              article="MXIS001"
-              stock="В наявності"
-              price="4 900"
-            />
-          </SplideSlide>
-
-          <SplideSlide>
-            <app-product 
-              image-url="https://www.oponeo.pl/Temp/michelin-pilot-alpin-5-suv-18806-234724-f-f-l600-sk3.webp"
-              title="Michelin X-Ice Snow"
-              article="MXIS001"
-              stock="В наявності"
-              price="4 900"
-            />
-          </SplideSlide>
-
-          <SplideSlide>
-            <app-product 
-              image-url="https://www.oponeo.pl/Temp/michelin-pilot-alpin-5-suv-18806-234724-f-f-l600-sk3.webp"
-              title="Michelin X-Ice Snow"
-              article="MXIS001"
-              stock="В наявності"
-              price="4 900"
-            />
-          </SplideSlide>
-
-          <SplideSlide>
-            <app-product 
-              image-url="https://www.oponeo.pl/Temp/michelin-pilot-alpin-5-suv-18806-234724-f-f-l600-sk3.webp"
-              title="Michelin X-Ice Snow"
-              article="MXIS001"
-              stock="В наявності"
-              price="4 900"
-            />
-          </SplideSlide>
-
-          <SplideSlide>
-            <app-product 
-              image-url="https://www.oponeo.pl/Temp/michelin-pilot-alpin-5-suv-18806-234724-f-f-l600-sk3.webp"
-              title="Michelin X-Ice Snow"
-              article="MXIS001"
-              stock="В наявності"
-              price="4 900"
-            />
-          </SplideSlide>
-
-          <SplideSlide>
-            <app-product 
-              image-url="https://www.oponeo.pl/Temp/michelin-pilot-alpin-5-suv-18806-234724-f-f-l600-sk3.webp"
-              title="Michelin X-Ice Snow"
-              article="MXIS001"
-              stock="В наявності"
-              price="4 900"
-            />
-          </SplideSlide>
-
-          <SplideSlide>
-            <app-product 
-              image-url="https://www.oponeo.pl/Temp/michelin-pilot-alpin-5-suv-18806-234724-f-f-l600-sk3.webp"
-              title="Michelin X-Ice Snow"
-              article="MXIS001"
-              stock="В наявності"
-              price="4 900"
-            />
-          </SplideSlide>
+          <slot />
         </SplideTrack>
       </Splide>
     </div>
@@ -143,7 +48,6 @@ export default defineComponent({
 
 <style>
   .slider {
-    margin-top: 120px;
   }
   .slider__body {
     margin-top: 60px;

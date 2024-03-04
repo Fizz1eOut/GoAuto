@@ -16,26 +16,10 @@ export default defineComponent({
   },
   
   props: {
-    imageUrl: {
-      type: String,
+    product: {
+      type: Object,
       required: true
     },
-    title: {
-      type: String,
-      required: true
-    },
-    article: {
-      type: String,
-      required: true
-    },
-    stock: {
-      type: String,
-      required: true
-    },
-    price: {
-      type: String,
-      required: true
-    }
   },
 
   data() {
@@ -46,7 +30,11 @@ export default defineComponent({
   methods: {
     buttonClick() {
       this.added = !this.added;
-    }
+    },
+    optionValue(optionId) {
+      const option = this.product.options.find(opt => opt.id === optionId);
+      return option.value;
+    },
   }
 });
 </script>
@@ -56,16 +44,16 @@ export default defineComponent({
     <app-container size="sm">
       <div class="product">
         <div class="product__img">
-          <img :src="imageUrl" alt="image">
+          <img :src="product.imageUrl" alt="image">
         </div>
 
         <div class="product__content">
-          <div class="product__title">{{ title }}</div>
-          <div class="product__article"> Артикул: {{ article }} </div>
-          <div class="product__stock">{{ stock }}</div>
+          <div class="product__title">{{ product.title }}</div>
+          <div class="product__article">Артикул: {{ optionValue(6) }}</div>
+          <div class="product__stock">{{ product.stock }}</div>
         </div>
         <div class="product__row">
-          <div class="product__price">{{ price }}₴</div>
+          <div class="product__price">{{ product.price }}₴</div>
           <app-button :disabled="added" @click="buttonClick">
             Купити
             <IconCart class="icon" />
@@ -78,6 +66,9 @@ export default defineComponent({
 
 <style>
   .product {
+  }
+  .product__img {
+    text-align: center;
   }
   .product__img img {
     max-width: 266px;

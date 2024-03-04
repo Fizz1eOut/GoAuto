@@ -4,7 +4,7 @@ import TheOurAdvantages from '@/components/Content/TheOurAdvantages.vue';
 import TheConsultation from '@/components/Content/TheConsultation.vue';
 import ThePartners from '@/components/Content/ThePartners.vue';
 import HomeFilterBlock from '@/components/Content/HomeFilterBlock.vue';
-import AppSlider from '@/components/Base/AppSlider.vue'
+import AppFeaturedProduct from '@/components/Base/AppFeaturedProduct.vue'
 
 export default defineComponent({
   name: 'HomeView',
@@ -14,7 +14,7 @@ export default defineComponent({
     TheConsultation,
     ThePartners,
     HomeFilterBlock,
-    AppSlider,
+    AppFeaturedProduct,
 },
 
 });
@@ -23,7 +23,7 @@ export default defineComponent({
 <template>
   <home-filter-block />
   <the-our-advantages />
-  <app-slider />
+  <app-featured-product />
   <the-partners />
   <the-consultation />
 </template>
