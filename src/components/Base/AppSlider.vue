@@ -21,8 +21,14 @@ export default defineComponent({
         gap: "10px",
         perPage: 4,
         breakpoints: {
-          640: {
+          1028: {
+            perPage: 3,
+          },
+          780: {
             perPage: 2,
+          },
+          525: {
+            perPage: 1,
           },
         }
       },
