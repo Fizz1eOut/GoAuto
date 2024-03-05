@@ -36,16 +36,31 @@ export default defineComponent({
 </script>
 
 <template>
-  <app-title>
-    Рекомендовані товари
-  </app-title>
-  <app-slider>
-    <SplideSlide v-for="featuredProduct in featuredProducts" :key="featuredProduct.id">
-      <app-product :product="featuredProduct" />
-    </SplideSlide>
-  </app-slider>
+  <div class="featured-products">
+    <app-title>
+      Рекомендовані товари
+    </app-title>
+    <app-slider>
+      <SplideSlide v-for="featuredProduct in featuredProducts" :key="featuredProduct.id">
+        <app-product :product="featuredProduct" />
+      </SplideSlide>
+    </app-slider>
+  </div>
 </template>
 
 <style>
+  .featured-products {
+    margin-top: 120px;
+  }
+  @media (max-width: 768px) {
+    .featured-products {
+    margin-top: 100px;
+  }
+  }
 
+  @media (max-width: 499px) {
+    .featured-products {
+    margin-top: 70px;
+  }
+  }
 </style>

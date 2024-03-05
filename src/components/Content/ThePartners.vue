@@ -57,20 +57,9 @@ export default defineComponent({
   min-width: 250px;
   width: 100%;
 }
-@media (max-width: 991px) {
-  .partners {
-    margin-top: 100px;
-  }
-}
-
-@media (max-width: 768px) {
-  .partners {
-    margin-top: 70px;
-  }
-}
-@media (max-width: 499px) {
-  .partners__items {
+  @media (max-width: 768px) {
+    .partners__items {
     margin-top: 40px;
   }
-}
+  }
 </style>

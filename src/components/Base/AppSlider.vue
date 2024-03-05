@@ -71,4 +71,9 @@ export default defineComponent({
   .slider__body .splide__pagination .splide__pagination__page.is-active {
     background-color: var(--color-blue);
   }
+  @media (max-width: 768px) {
+      .slider__body {
+      margin-top: 40px;
+    }
+  }
 </style>
