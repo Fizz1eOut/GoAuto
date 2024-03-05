@@ -27,13 +27,17 @@ export default defineComponent({
       added: false,
     }
   },
+
+  computed: {
+    optionValue() {
+      const option = this.product.options.find(opt => opt.id === 6);
+      return option.value;
+    },
+  },
+
   methods: {
     buttonClick() {
       this.added = !this.added;
-    },
-    optionValue(optionId) {
-      const option = this.product.options.find(opt => opt.id === optionId);
-      return option.value;
     },
   }
 });
@@ -49,8 +53,10 @@ export default defineComponent({
 
         <div class="product__content">
           <div class="product__title">{{ product.title }}</div>
-          <div class="product__article">Артикул: {{ optionValue(6) }}</div>
-          <div class="product__stock">{{ product.stock }}</div>
+          <div class="product__article">Артикул: {{ optionValue }}</div>
+          <div v-if="product.stock > 2" class="product__stock">В наявності</div>
+          <div v-else-if="product.stock === 0" class="product__stock--red">Немає в наявності</div>
+          <div v-else-if="product.stock <= 2" class="product__stock--red">Залишилося небагато</div>
         </div>
         <div class="product__row">
           <div class="product__price">{{ product.price }}₴</div>
@@ -97,6 +103,9 @@ export default defineComponent({
     font-size: 14px;
     line-height: 160%;
     color: var(--color-green);
+  }
+  .product__stock--red {
+    color: #ff0000;
   }
   .product__row {
     margin-top: 15px;

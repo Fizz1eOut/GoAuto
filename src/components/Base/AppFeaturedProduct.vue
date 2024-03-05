@@ -24,7 +24,7 @@ export default defineComponent({
   },
   computed: {
     featuredProducts() {
-      return productsData.filter(item => item.featured === true);
+      return productsData.filter(item => item.featured);
     }
   },
 
