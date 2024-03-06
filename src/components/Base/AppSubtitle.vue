@@ -9,27 +9,23 @@ export default defineComponent({
 </script>
 
 <template>
-  <h2 class="title">
+  <h2 class="subtitle">
     <slot></slot>
   </h2>
 </template>
 
 <style scoped>
-.title {
-  font-family: 'Manrope';
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  color: var(--color-black);
+.subtitle {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 120%;
+    color: var(--color-black);
   }  
 @media (max-width: 499.98px) {
-  .title {
-    font-family: 'Manrope';
-    font-size: 24px;
-    font-style: normal;
+  .subtitle {
     font-weight: 600;
-    line-height: normal;
+    font-size: 18px;
+    line-height: 120%;
     color: var(--color-black);
   }  
 }
