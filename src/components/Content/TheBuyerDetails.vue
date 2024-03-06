@@ -1,4 +1,5 @@
 <script>
+import AppSubtitle from '@/components/Base/AppSubtitle.vue';
 import AppInput from '@/components/Inputs/AppInput.vue';
 import { defineComponent } from 'vue';
 
@@ -7,13 +8,16 @@ export default defineComponent({
 
   components: {
     AppInput,
+    AppSubtitle,
   }
 });
 </script>
 
 <template>
   <div class="buyer-details">
-    <h3 class="buyer-details__title">Покупець</h3>
+    <app-subtitle class="buyer-details__subtitle">
+      Покупець
+    </app-subtitle>
 
     <div class="buyer-details__items">
       <div class="buyer-details__item">
@@ -32,12 +36,8 @@ export default defineComponent({
 </template>
 
 <style scoped>
-  .buyer-details__title {
+  .buyer-details__subtitle {
     padding-top: 30px;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 120%;
-    color: var(--color-black);
   }
   .buyer-details__items {
     margin-top: 40px;
