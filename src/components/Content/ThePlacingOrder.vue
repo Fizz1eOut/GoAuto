@@ -3,6 +3,7 @@ import ThePlacing from "@/components/Content/ThePlacing.vue";
 import AppDivider from "@/components/Base/AppDivider.vue";
 import AppTitle from '@/components/Base/AppTitle.vue';
 import { defineComponent } from 'vue';
+import CartOrder from "@/components/Content/CartOrder.vue";
 
 export default defineComponent({
   name: 'ThePlacingOrder',
@@ -11,6 +12,7 @@ export default defineComponent({
     AppTitle,
     AppDivider,
     ThePlacing,
+    CartOrder,
   }
 });
 </script>
@@ -28,7 +30,7 @@ export default defineComponent({
       </div>
       
       <div class="placing-order__order">
-
+        <cart-order />
       </div>
     </div>
   </div>
@@ -41,7 +43,18 @@ export default defineComponent({
   .placing-order__title {
     padding-bottom: 40px;
   }
-  .divider {
+  .placing-order__body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
   }
-  
+  .placing-order__placing {
+    max-width: 55%;
+    width: 100%;
+  }
+  .placing-order__order {
+    width: 100%;
+    max-width: 40%;
+  }
 </style>
