@@ -20,7 +20,6 @@ export default defineComponent({
 
   mounted() {
     const storedValue = localStorage.getItem(this.placeholder);
-    console.log(storedValue);
     if (storedValue) {
       this.inputValue = storedValue;
     }
@@ -44,7 +43,7 @@ export default defineComponent({
     type="text" 
     class="input" 
     :placeholder="placeholder"
-    @input="handleInput"
+    @input="updateLocalStorage"
   >
   <label for="#" class="label"></label>
 </template>
