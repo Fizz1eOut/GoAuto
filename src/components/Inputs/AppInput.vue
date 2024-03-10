@@ -11,11 +11,41 @@ export default defineComponent({
       default: '',
     }
   },
+
+  data() {
+    return {
+      inputValue: '',
+    }
+  },
+
+  mounted() {
+    const storedValue = localStorage.getItem(this.placeholder);
+    console.log(storedValue);
+    if (storedValue) {
+      this.inputValue = storedValue;
+    }
+  },
+
+  methods: {
+    updateLocalStorage() {
+      if (this.inputValue.trim() === '') {
+        localStorage.removeItem(this.placeholder);
+      } else {
+        localStorage.setItem(this.placeholder, this.inputValue);
+      }
+    },
+  },
 });
 </script>
 
 <template>
-  <input type="text" class="input" :placeholder="placeholder">
+  <input 
+    v-model="inputValue"
+    type="text" 
+    class="input" 
+    :placeholder="placeholder"
+    @input="handleInput"
+  >
   <label for="#" class="label"></label>
 </template>
 
