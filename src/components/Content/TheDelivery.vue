@@ -1,5 +1,4 @@
 <script>
-import TheRadioWrapper from '@/components/Content/TheRadioWrapper.vue'
 import AppRadio from '@/components/Inputs/AppRadio.vue';
 import AppSubtitle from '@/components/Base/AppSubtitle.vue';
 import { defineComponent } from 'vue';
@@ -10,12 +9,11 @@ export default defineComponent({
   components: {
     AppSubtitle,
     AppRadio,
-    TheRadioWrapper,
   },
 
   data() {
     return {
-      picked: 'Самовивіз за адресою м. Київ, вулиця Промислова 1',
+      picked: null,
     };
   },
 });
@@ -28,13 +26,17 @@ export default defineComponent({
     </app-subtitle>
 
     <div class="delivery__items">
-      <the-radio-wrapper>
-        <app-radio v-model="picked" label="Самовивіз за адресою м. Київ, вулиця Промислова 1" />
-      </the-radio-wrapper>
+      <div class="delivery__item">
+        <app-radio v-model="picked" :value="1">
+          Самовивіз за адресою м. Київ, вулиця Промислова 1
+        </app-radio>
+      </div>
 
-      <the-radio-wrapper>
-        <app-radio v-model="picked" label="Нова пошта" />
-      </the-radio-wrapper>
+      <div class="delivery__item">
+        <app-radio v-model="picked" :value="2">
+          Нова пошта
+        </app-radio>
+      </div>
     </div>
   </div>
 </template>
@@ -56,5 +58,10 @@ export default defineComponent({
     .delivery__items {
       margin-top: 20px;
     }
+  }
+  .delivery__item {
+    border: 1px solid #abbed1;
+    border-radius: 10px;
+    padding: 20px;
   }
 </style>

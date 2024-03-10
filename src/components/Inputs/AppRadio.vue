@@ -6,12 +6,18 @@ export default defineComponent({
 
   props: {
     modelValue: {
-      type: String,
+      type: [String, Number],
+      required: false,
+      default: null
+    },
+    value: {
+      type: Number,
       required: true,
     },
-    label: {
+    name: {
       type: String,
-      required: true,
+      required: false,
+      default: undefined,
     },
   },
   
@@ -27,29 +33,22 @@ export default defineComponent({
       }
     },
   },
-
-  methods: {
-    getId() {
-      return this.label.toLowerCase();
-    },
-  },
 });
 </script>
 
 <template>
   <div class="radio">
-    <input
-      :id="getId()"
-      v-model="selected"
-      type="radio"
-      class="radio__input"
-      :value="label"
-    >
-    <label 
-      :for="getId()"
-      class="radio__label"
-    >
-      {{ label }}
+    <label class="radio__label">
+      <input
+        v-model="selected"
+        type="radio"
+        class="radio__input"
+        :value="value"
+        :name="name"
+      >
+      <span>
+        <slot />
+      </span>
     </label>
   </div>
 </template>
