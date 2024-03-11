@@ -13,7 +13,7 @@ export default defineComponent({
 
   data() {
     return {
-      picked: null,
+      picked: 1,
     };
   },
 });

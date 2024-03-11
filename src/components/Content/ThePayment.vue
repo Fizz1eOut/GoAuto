@@ -13,7 +13,7 @@ export default defineComponent({
 
   data() {
     return {
-      picked: null,
+      picked: 1,
     };
   },
 });
@@ -27,13 +27,13 @@ export default defineComponent({
 
     <div class="payment__items">
       <div class="delivery__item">
-        <app-radio v-model="picked" :value="3">
+        <app-radio v-model="picked" :value="1">
           Оплата при отриманні
         </app-radio>
       </div>
 
       <div class="delivery__item">
-        <app-radio v-model="picked" :value="4">
+        <app-radio v-model="picked" :value="2">
           Оплата на рахунок ФОП
         </app-radio>
       </div>
