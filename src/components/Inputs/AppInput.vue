@@ -9,47 +9,42 @@ export default defineComponent({
       type: String,
       required: true,
       default: '',
-    }
+    },
+    modelValue: {
+      type: [String, Number],
+      default: '',
+    },
   },
+
+  emits: ['update:modelValue'],
 
   data() {
     return {
-      inputValue: '',
-    }
+      inputValue: this.modelValue,
+    };
   },
 
-  mounted() {
-    const storedValue = localStorage.getItem(this.placeholder);
-    if (storedValue) {
-      this.inputValue = storedValue;
-    }
-  },
-
-  methods: {
-    updateLocalStorage() {
-      if (this.inputValue.trim() === '') {
-        localStorage.removeItem(this.placeholder);
-      } else {
-        localStorage.setItem(this.placeholder, this.inputValue);
-      }
+  watch: {
+    inputValue(newValue) {
+      this.$emit('update:modelValue', newValue);
     },
   },
 });
 </script>
 
 <template>
-  <input 
-    v-model="inputValue"
-    type="text" 
-    class="input" 
-    :placeholder="placeholder"
-    @input="updateLocalStorage"
-  >
-  <label for="#" class="label"></label>
+  <div>
+    <input 
+      v-model="inputValue"
+      type="text" 
+      class="input" 
+      :placeholder="placeholder"
+    >
+    <label for="#" class="label"></label>
+  </div>
 </template>
 
 <style scoped>
-
 .input {
   border-radius: 10px;
   border: 1px solid #ABBED1;
