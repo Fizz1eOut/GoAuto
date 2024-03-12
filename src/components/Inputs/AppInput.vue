@@ -18,15 +18,14 @@ export default defineComponent({
 
   emits: ['update:modelValue'],
 
-  data() {
-    return {
-      inputValue: this.modelValue,
-    };
-  },
-
-  watch: {
-    inputValue(newValue) {
-      this.$emit('update:modelValue', newValue);
+  computed: {
+    inputValue: {
+      get() {
+        return this.modelValue;
+      },
+      set(newValue) {
+        this.$emit('update:modelValue', newValue);
+      }
     },
   },
 });

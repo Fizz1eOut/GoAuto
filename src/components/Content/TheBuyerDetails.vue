@@ -13,35 +13,12 @@ export default defineComponent({
 
   data() {
     return {
-      fullName: localStorage.getItem('fullName') || '',
-      phoneNumber: localStorage.getItem('phoneNumber') || '',
-      email: localStorage.getItem('email') || '',
+      fullName: '',
+      phoneNumber: '',
+      email: '',
     };
   },
 
-  watch: {
-    fullName(newValue) {
-      if (newValue.trim() !== '') {
-        localStorage.setItem('fullName', newValue);
-      } else {
-        localStorage.removeItem('fullName');
-      }
-    },
-    phoneNumber(newValue) {
-      if (newValue.trim() !== '') {
-        localStorage.setItem('phoneNumber', newValue);
-      } else {
-        localStorage.removeItem('phoneNumber');
-      }
-    },
-    email(newValue) {
-      if (newValue.trim() !== '') {
-        localStorage.setItem('email', newValue);
-      } else {
-        localStorage.removeItem('email');
-      }
-    },
-  }
 });
 </script>
 
