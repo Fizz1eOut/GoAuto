@@ -1,17 +1,17 @@
 <script>
-import ThePlacing from "@/components/Content/ThePlacing.vue";
+import TheOrderPayment from "@/components/Content/TheOrderPayment.vue";
 import AppDivider from "@/components/Base/AppDivider.vue";
 import AppTitle from '@/components/Base/AppTitle.vue';
 import { defineComponent } from 'vue';
 import CartOrder from "@/components/Content/CartOrder.vue";
 
 export default defineComponent({
-  name: 'ThePlacingOrder',
+  name: 'TheCheckout',
 
   components: {
     AppTitle,
     AppDivider,
-    ThePlacing,
+    TheOrderPayment,
     CartOrder,
   }
 });
@@ -26,7 +26,7 @@ export default defineComponent({
 
     <div class="placing-order__body">
       <div class="placing-order__placing">
-        <the-placing />
+        <the-order-payment />
       </div>
       
       <div class="placing-order__order">

@@ -1,5 +1,5 @@
 <script>
-import ThePlacingOrder from '@/components/Content/ThePlacingOrder.vue'
+import TheCheckout from '@/components/Content/TheCheckout.vue'
 import AppPages from '@/components/Base/AppPages.vue';
 import { defineComponent } from 'vue';
 
@@ -8,7 +8,7 @@ export default defineComponent({
 
   components: {
     AppPages,
-    ThePlacingOrder,
+    TheCheckout,
   },
 
   // data() {
@@ -25,7 +25,7 @@ export default defineComponent({
 
 <template>
   <app-pages />
-  <the-placing-order />
+  <the-checkout />
 </template>
 
 <style scoped>
