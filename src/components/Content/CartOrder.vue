@@ -3,6 +3,9 @@ import AppTitle from '@/components/Base/AppTitle.vue';
 import AppContainer from '@/components/Base/AppContainer.vue';
 import AppCounter from '@/components/Base/AppCounter.vue';
 import { defineComponent } from 'vue';
+import { useCartStore } from '@/store/cart.js';
+import { mapStores } from 'pinia';
+
 
 export default defineComponent({
   name: 'CartOrder',
@@ -13,15 +16,18 @@ export default defineComponent({
     AppCounter,
   },
 
-  // data() {
-  //   return {
-      
-  //   }
-  // },
 
-  // methods: {
+  computed: {
+    ...mapStores(useCartStore),
+
+    cartItems() {
+      return this.cartStore.cartItem;
+    },
+  },
+
+  methods: {
     
-  // }
+  }
 });
 </script>
 
@@ -32,33 +38,22 @@ export default defineComponent({
         Ваше замовлення
       </app-title>
       <div class="card-order__body">
-        <div class="order">
+        <div 
+          v-for="item in cartItems" 
+          :key="item.id" 
+          class="order"
+        >
           <div class="order__img">
-            <img src="https://www.oponeo.pl/Temp/michelin-pilot-alpin-5-suv-18806-234724-f-f-l600-sk3.webp" alt="">
+            <img :src="item.imageUrl" alt="">
           </div>
 
           <div class="order__content">
-            <h3 class="order__title">Michelin X-Ice Snow</h3>
-            <div class="order__article">Артикул: MXIS001</div>
+            <h3 class="order__title">{{ item.title }}</h3>
+            <div class="order__article">Артикул: </div>
             <div class="order__row">
               <app-counter />
 
-              <div class="order__price">6 415₴</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="order">
-          <div class="order__img">
-            <img src="https://www.oponeo.pl/Temp/michelin-pilot-alpin-5-suv-18806-234724-f-f-l600-sk3.webp" alt="">
-          </div>
-
-          <div class="order__content">
-            <h3 class="order__title">Michelin X-Ice Snow</h3>
-            <div class="order__article">Артикул: MXIS001</div>
-            <div class="order__row">
-              <app-counter />
-              <div class="order__price">6 415₴</div>
+              <div class="order__price">{{ item.price }}₴</div>
             </div>
           </div>
         </div>

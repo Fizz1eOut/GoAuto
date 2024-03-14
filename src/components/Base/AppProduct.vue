@@ -3,7 +3,9 @@ import AppContainer from '@/components/Base/AppContainer.vue';
 import AppUnderlay from '@/components/Base/AppUnderlay.vue';
 import AppButton from '@/components/Base/AppButton.vue';
 import { defineComponent } from 'vue';
+import { useCartStore } from '@/store/cart.js';
 import IconCart from '@/components/icons/IconCart.vue';
+import { mapStores } from 'pinia';
 
 export default defineComponent({
   name: 'AppProduct',
@@ -22,23 +24,29 @@ export default defineComponent({
     },
   },
 
-  data() {
-    return {
-      added: false,
-    }
-  },
+  // data() {
+  //   return {
+  //   }
+  // },
 
   computed: {
+    ...mapStores(useCartStore),
+
     optionValue() {
       const option = this.product.options.find(opt => opt.id === 6);
       return option.value;
     },
   },
 
+  mounted() {
+    this.cartStore.loadFromLocalStorage();
+  },
+
   methods: {
-    buttonClick() {
-      this.added = !this.added;
-    },
+    addToCart() {
+      this.cartStore.addProductInCart(this.product);
+      this.cartStore.saveToLocalStorage();
+    }
   }
 });
 </script>
@@ -60,7 +68,7 @@ export default defineComponent({
         </div>
         <div class="product__row">
           <div class="product__price">{{ product.price }}₴</div>
-          <app-button :disabled="added" @click="buttonClick">
+          <app-button :disabled="product.addedToCart" @click="addToCart">
             Купити
             <IconCart class="icon" />
           </app-button>
