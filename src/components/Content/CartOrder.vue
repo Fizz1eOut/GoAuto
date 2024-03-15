@@ -19,14 +19,17 @@ export default defineComponent({
 
   computed: {
     ...mapStores(useCartStore),
-
-    cartItems() {
-      return this.cartStore.cartItem;
-    },
   },
 
+  mounted() {
+    this.cartStore.loadFromLocalStorage();
+  },
+  
   methods: {
-    
+    getValue(product) {
+      const option = product.options.find(opt => opt.id === 6);
+      return option.value;
+    },
   }
 });
 </script>
@@ -39,21 +42,21 @@ export default defineComponent({
       </app-title>
       <div class="card-order__body">
         <div 
-          v-for="item in cartItems" 
-          :key="item.id" 
+          v-for="product in cartStore.products" 
+          :key="product.id" 
           class="order"
         >
           <div class="order__img">
-            <img :src="item.imageUrl" alt="">
+            <img :src="product.imageUrl" alt="">
           </div>
 
           <div class="order__content">
-            <h3 class="order__title">{{ item.title }}</h3>
-            <div class="order__article">Артикул: </div>
+            <h3 class="order__title">{{ product.title }}</h3>
+            <div class="order__article">Артикул: {{ getValue(product) }}</div>
             <div class="order__row">
               <app-counter />
 
-              <div class="order__price">{{ item.price }}₴</div>
+              <div class="order__price">{{ product.price }}₴</div>
             </div>
           </div>
         </div>

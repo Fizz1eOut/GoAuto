@@ -3,7 +3,7 @@ export const useCartStore = defineStore('cart', {
 
   state: () => {
     return {
-      cartItem: [],
+      products: [],
     }
   },
 
@@ -12,12 +12,12 @@ export const useCartStore = defineStore('cart', {
 
   actions: {
     addProductInCart(product) {
-      const existingItem = this.cartItem.find(item => item.id === product.id);
+      const existingItem = this.products.find(item => item.id === product.id);
       // console.log(existingItem);
       if (!existingItem) {
-        this.cartItem.push(product);
+        this.products.push(product);
       }
-      // this.cartItem.push(product);
+      // this.products.push(product);
       // this.saveToLocalStorage();
     },
 
@@ -25,12 +25,12 @@ export const useCartStore = defineStore('cart', {
       const storedItems = JSON.parse(localStorage.getItem('cart'));
       // console.log(storedItems);
       if (storedItems) {
-        this.cartItem = storedItems;
+        this.products = storedItems;
       }
     },
 
     saveToLocalStorage() {
-      localStorage.setItem('cart', JSON.stringify(this.cartItem));
+      localStorage.setItem('cart', JSON.stringify(this.products));
     }
   },
 });
