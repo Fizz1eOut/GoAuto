@@ -8,6 +8,9 @@ export const useCartStore = defineStore('cart', {
   },
 
   getters: {
+    getQuantity() {
+      return this.products.length;
+    },
   },
 
   actions: {
@@ -17,8 +20,6 @@ export const useCartStore = defineStore('cart', {
       if (!existingItem) {
         this.products.push(product);
       }
-      // this.products.push(product);
-      // this.saveToLocalStorage();
     },
 
     loadFromLocalStorage() {

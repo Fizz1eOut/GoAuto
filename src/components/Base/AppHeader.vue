@@ -9,7 +9,9 @@ import AppBurger from '@/components/Base/AppBurger.vue';
 import AppButton from '@/components/Base/AppButton.vue';
 import IconCart from '@/components/icons/IconCart.vue';
 import AppUnderlay from '@/components/Base/AppUnderlay.vue';
-import AppContainer from '@/components/Base/AppContainer.vue'
+import AppContainer from '@/components/Base/AppContainer.vue';
+import { useCartStore } from '@/store/cart.js';
+import { mapStores } from 'pinia';
 
 export default defineComponent({
   name: 'AppHeader',
@@ -32,6 +34,14 @@ export default defineComponent({
      open: false, 
     }
   },
+
+  computed: {
+    ...mapStores(useCartStore),
+    
+    getQuantity() {
+      return this.cartStore.products.length;
+    },
+  },
 });
 </script>
 
@@ -42,29 +52,33 @@ export default defineComponent({
         <app-container size="sm">
           <div class="header__body">
             <div class="header__item">
-              <app-burger @change="open = $event"/>
+              <app-burger @change="open = $event" />
               <router-link to="/">
                 <app-logo />
               </router-link>
             </div>
           
             <app-nav />
-            <nav-mobile :open="open"/>
+            <nav-mobile :open="open" />
 
             <div class="header__contacts">
               <div class="header__row">
                 <app-contact />
                 <header-action-button />
               </div>
-              <router-link to="/cart">
-                <app-button outline>
-                  <icon-cart class="icon-cart"/>
-                </app-button>
-              </router-link>
+
+              <div class="header__cart">
+                <router-link to="/cart">
+                  <app-button outline>
+                    <icon-cart class="icon-cart" />
+                  </app-button>
+                </router-link>
+                <span class="cart__quantity">{{ getQuantity }}</span>
+              </div>
             </div>
           </div>
         </app-container>
-    </app-underlay>
+      </app-underlay>
     </app-container>
   </div>
 </template>
@@ -92,7 +106,23 @@ export default defineComponent({
   height: 17px;
   fill: var(--color-black);
 }
-
+.header__cart {
+  position: relative;
+}
+.cart__quantity {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  background-color: var(--color-blue);
+  border-radius: 100%;
+  color: #fff;
+  font-size: 12px;
+  height: 16px;
+  width: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 @media (max-width: 499px) {
   .header__row {
     display: none;
