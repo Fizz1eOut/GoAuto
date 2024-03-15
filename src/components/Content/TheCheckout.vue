@@ -57,4 +57,20 @@ export default defineComponent({
     width: 100%;
     max-width: 40%;
   }
+  @media (max-width: 991px) {
+    .placing-order__order {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .placing-order__body {
+      flex-direction: column;
+    }
+    .placing-order__placing {
+    max-width: 100%;
+    width: 100%;
+  }
+  }
 </style>

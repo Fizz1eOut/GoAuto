@@ -37,10 +37,6 @@ export default defineComponent({
 
   computed: {
     ...mapStores(useCartStore),
-    
-    getQuantity() {
-      return this.cartStore.products.length;
-    },
   },
 });
 </script>
@@ -73,7 +69,7 @@ export default defineComponent({
                     <icon-cart class="icon-cart" />
                   </app-button>
                 </router-link>
-                <span class="cart__quantity">{{ getQuantity }}</span>
+                <span class="cart__quantity">{{ cartStore.getQuantity }}</span>
               </div>
             </div>
           </div>
