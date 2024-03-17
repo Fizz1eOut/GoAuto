@@ -1,4 +1,5 @@
 <script>
+import AppCounter from '@/components/Base/AppCounter.vue';
 import AppContainer from '@/components/Base/AppContainer.vue';
 import AppUnderlay from '@/components/Base/AppUnderlay.vue';
 import AppButton from '@/components/Base/AppButton.vue';
@@ -15,6 +16,7 @@ export default defineComponent({
     AppUnderlay,
     AppButton,
     IconCart,
+    AppCounter,
   },
   
   props: {
@@ -24,29 +26,27 @@ export default defineComponent({
     },
   },
 
-  // data() {
-  //   return {
-  //   }
-  // },
+  data() {  
+    return {
+      quantity: 1,
+      isAddingToCart: false
+    }
+  },
 
   computed: {
     ...mapStores(useCartStore),
-
-    getValue() {
+    value() {
       const option = this.product.options.find(opt => opt.id === 6);
       return option.value;
     },
   },
-
-  mounted() {
-    this.cartStore.loadFromLocalStorage();
-  },
-
+  
   methods: {
     addToCart() {
-      this.cartStore.addProductInCart(this.product);
+      this.cartStore.addProductInCart(this.product, this.quantity);
       this.cartStore.saveToLocalStorage();
-    }
+      this.isAddingToCart = true;
+    },
   }
 });
 </script>
@@ -61,17 +61,29 @@ export default defineComponent({
 
         <div class="product__content">
           <div class="product__title">{{ product.title }}</div>
-          <div class="product__article">Артикул: {{ getValue }}</div>
+          <div class="product__article">Артикул: {{ value }}</div>
           <div v-if="product.stock > 2" class="product__stock">В наявності</div>
           <div v-else-if="product.stock === 0" class="product__stock--red">Немає в наявності</div>
           <div v-else-if="product.stock <= 2" class="product__stock--red">Залишилося небагато</div>
         </div>
         <div class="product__row">
           <div class="product__price">{{ product.price }}₴</div>
-          <app-button :disabled="product.addedToCart" @click="addToCart">
-            Купити
-            <IconCart class="icon" />
-          </app-button>
+
+          <template v-if="!isAddingToCart">
+            <app-button @click="addToCart">
+              Додати в кошик
+              <IconCart class="icon" />
+            </app-button>
+          </template>
+          <template v-else>
+            <router-link to="/cart">
+              <app-button>
+                У кошик
+                <IconCart class="icon" />
+              </app-button>
+            </router-link>
+            <app-counter v-model="quantity" />
+          </template>
         </div>
       </div>
     </app-container>
@@ -123,7 +135,6 @@ export default defineComponent({
     gap: 10px;
   }
   .product__price {
-    width: 50%;
     font-weight: 700;
     font-size: 24px;
     color: var(--color-black);

@@ -27,7 +27,7 @@ export default defineComponent({
   },
   
   methods: {
-    getValue(product) {
+    value(product) {
       const option = product.options.find(opt => opt.id === 6);
       return option.value;
     },
@@ -43,7 +43,7 @@ export default defineComponent({
       </app-title>
       <div class="card-order__body">
         <div 
-          v-for="product in cartStore.products" 
+          v-for="{ product } in cartStore.products" 
           :key="product.id" 
           class="order"
         >
@@ -53,7 +53,7 @@ export default defineComponent({
 
           <div class="order__content">
             <h3 class="order__title">{{ product.title }}</h3>
-            <div class="order__article">Артикул: {{ getValue(product) }}</div>
+            <div class="order__article">Артикул: {{ value(product) }}</div>
             <div class="order__row">
               <app-counter />
 
@@ -63,15 +63,15 @@ export default defineComponent({
         </div>
       </div>
 
-      <div class="order__botton">
+      <div class="order__bottom">
         <div class="order__wrapper">
-          <span class="quantity">{{ cartStore.getQuantity }} шт на суму:</span>
-          <span class="price">{{ cartStore.getTotalPrice }}₴</span>
+          <span class="quantity">{{ cartStore.cartQuantity }} шт на суму:</span>
+          <span class="price">{{ cartStore.totalPrice }}₴</span>
         </div>
 
         <div class="order__wrapper">
           <div class="text">Всього:</div>
-          <div class="fullprice">{{ cartStore.getTotalPrice }}₴</div>
+          <div class="fullprice">{{ cartStore.totalPrice }}₴</div>
         </div>
       </div>
     </app-container>
@@ -128,7 +128,7 @@ export default defineComponent({
     line-height: 160%;
     color: var(--color-black);
   }
-  .order__botton {
+  .order__bottom {
     margin-top: 30px;
   }
   .order__wrapper {

@@ -4,27 +4,39 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'CartView',
 
-  components: {
-
+  props: {
+    modelValue: {
+      type: [Number],
+      default: 1,
+    },
   },
 
-  // data() {
-  //   return {
-      
-  //   }
-  // },
+  emits: ['update:modelValue'],
 
-  // methods: {
-    
-  // }
+  data() {
+    return {
+      
+    }
+  },
+
+  methods: {
+    increment() {
+      this.$emit('update:modelValue', this.modelValue + 1);
+    },
+    decrement() {
+      if (this.modelValue > 1) {
+        this.$emit('update:modelValue', this.modelValue - 1);
+      }
+    },
+  }
 });
 </script>
 
 <template>
   <div class="counter">
-    <div class="counter__control counter__minus">-</div>
-    <div class="counter__count">1</div>
-    <div class="counter__control counter__plus">+</div>
+    <div class="counter__control counter__minus" @click="decrement">-</div>
+    <div class="counter__count">{{ modelValue }}</div>
+    <div class="counter__control counter__plus" @click="increment">+</div>
   </div>
 </template>
 

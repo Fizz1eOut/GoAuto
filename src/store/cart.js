@@ -1,28 +1,33 @@
 import { defineStore } from 'pinia';
 export const useCartStore = defineStore('cart', {
 
-  state: () => {
+  state() {
     return {
       products: [],
     }
   },
 
   getters: {
-    getQuantity() {
+    cartQuantity() {
       return this.products.length;
     },
 
-    getTotalPrice() {
-      return this.products.reduce((total, product) => total + product.price, 0);
+    totalPrice() {
+      return this.products.reduce((total, product) => {
+        return total + (product.product ? product.product.price * product.quantity : 0);
+      }, 0);
     },
   },
 
   actions: {
-    addProductInCart(product) {
-      const existingItem = this.products.find(item => item.id === product.id);
+    addProductInCart(product, quantity) {
+      const existingItem = this.products.some(item => item.product.id === product.id);
       // console.log(existingItem);
       if (!existingItem) {
-        this.products.push(product);
+        this.products.push({product, quantity});
+      } else {
+        const existingProduct = this.products.find(item => item.product.id === product.id);
+        existingProduct.quantity += quantity;
       }
     },
 
