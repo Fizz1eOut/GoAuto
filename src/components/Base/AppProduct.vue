@@ -26,26 +26,28 @@ export default defineComponent({
     },
   },
 
-  data() {  
-    return {
-      quantity: 1,
-      isAddingToCart: false
-    }
-  },
+  // data() {  
+  //   return {
+  //   }
+  // },
 
   computed: {
     ...mapStores(useCartStore),
-    value() {
+
+    sku() {
       const option = this.product.options.find(opt => opt.id === 6);
       return option.value;
     },
+
+    isAddded() {
+      return this.cartStore.products.some((product) => product.id === this.product.id)
+    }
   },
   
   methods: {
     addToCart() {
-      this.cartStore.addProductInCart(this.product, this.quantity);
+      this.cartStore.addProductInCart(this.product);
       this.cartStore.saveToLocalStorage();
-      this.isAddingToCart = true;
     },
   }
 });
@@ -61,7 +63,7 @@ export default defineComponent({
 
         <div class="product__content">
           <div class="product__title">{{ product.title }}</div>
-          <div class="product__article">Артикул: {{ value }}</div>
+          <div class="product__article">Артикул: {{ sku }}</div>
           <div v-if="product.stock > 2" class="product__stock">В наявності</div>
           <div v-else-if="product.stock === 0" class="product__stock--red">Немає в наявності</div>
           <div v-else-if="product.stock <= 2" class="product__stock--red">Залишилося небагато</div>
@@ -69,7 +71,7 @@ export default defineComponent({
         <div class="product__row">
           <div class="product__price">{{ product.price }}₴</div>
 
-          <template v-if="!isAddingToCart">
+          <template v-if="!isAddded">
             <app-button @click="addToCart">
               Додати в кошик
               <IconCart class="icon" />
@@ -91,8 +93,6 @@ export default defineComponent({
 </template>
 
 <style>
-  .product {
-  }
   .product__img {
     text-align: center;
   }

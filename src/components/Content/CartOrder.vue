@@ -1,4 +1,5 @@
 <script>
+import productsData from '@/api/products.json';
 import AppTitle from '@/components/Base/AppTitle.vue';
 import AppContainer from '@/components/Base/AppContainer.vue';
 import AppCounter from '@/components/Base/AppCounter.vue';
@@ -20,6 +21,22 @@ export default defineComponent({
   computed: {
     ...mapStores(useCartStore),
 
+    cartProducts() {
+      return this.cartStore.products.map(cartProduct => {
+        // console.log(cartProduct)
+        const productData = productsData.find(product => product.id === cartProduct.id);
+        // console.log(productData)
+        if (productData) {
+          return {
+            ...cartProduct,
+            title: productData.title,
+            imageUrl: productData.imageUrl,
+            price: productData.price,
+            options: productData.options,
+          };
+        }
+      });
+    },
   },
 
   mounted() {
@@ -27,7 +44,7 @@ export default defineComponent({
   },
   
   methods: {
-    value(product) {
+    sku(product) {
       const option = product.options.find(opt => opt.id === 6);
       return option.value;
     },
@@ -43,7 +60,7 @@ export default defineComponent({
       </app-title>
       <div class="card-order__body">
         <div 
-          v-for="{ product } in cartStore.products" 
+          v-for="product in cartProducts" 
           :key="product.id" 
           class="order"
         >
@@ -53,9 +70,9 @@ export default defineComponent({
 
           <div class="order__content">
             <h3 class="order__title">{{ product.title }}</h3>
-            <div class="order__article">Артикул: {{ value(product) }}</div>
+            <div class="order__article">Артикул: {{ sku(product) }}</div>
             <div class="order__row">
-              <app-counter />
+              <app-counter v-model="quantity" />
 
               <div class="order__price">{{ product.price }}₴</div>
             </div>
@@ -65,7 +82,7 @@ export default defineComponent({
 
       <div class="order__bottom">
         <div class="order__wrapper">
-          <span class="quantity">{{ cartStore.cartQuantity }} шт на суму:</span>
+          <span class="quantity">{{ cartStore.totalQuantity }} шт на суму:</span>
           <span class="price">{{ cartStore.totalPrice }}₴</span>
         </div>
 

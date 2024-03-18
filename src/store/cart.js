@@ -8,28 +8,24 @@ export const useCartStore = defineStore('cart', {
   },
 
   getters: {
-    cartQuantity() {
-      return this.products.length;
+    totalQuantity() {
+      return this.products.reduce((acc, product) => acc + product.quantity, 0);
     },
 
     totalPrice() {
-      return this.products.reduce((total, product) => {
-        return total + (product.product ? product.product.price * product.quantity : 0);
-      }, 0);
+      return this.products.reduce((acc, product) => acc + product.price * product.quantity, 0);
     },
   },
 
   actions: {
-    addProductInCart(product, quantity) {
-      const existingItem = this.products.some(item => item.product.id === product.id);
+    addProductInCart(product) {
+      const existingItem = this.products.find(item => item.product.id === product.id);
       // console.log(existingItem);
       if (!existingItem) {
-        this.products.push({product, quantity});
-      } else {
-        const existingProduct = this.products.find(item => item.product.id === product.id);
-        existingProduct.quantity += quantity;
+        return this.products.push({ id: product.id, price: product.price, quantity: 1 });
       }
-    },
+      existingItem.quantity++;
+      },
 
     loadFromLocalStorage() {
       const storedItems = JSON.parse(localStorage.getItem('cart'));
