@@ -2,31 +2,23 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'CartView',
+  name: 'AppCounter',
 
   props: {
-    modelValue: {
-      type: [Number],
-      default: 1,
+    count: {
+      type: Number,
+      required: true
     },
   },
 
-  emits: ['update:modelValue'],
-
-  data() {
-    return {
-      
-    }
-  },
+  emits: ['increment', 'decrement'],
 
   methods: {
     increment() {
-      this.$emit('update:modelValue', this.modelValue + 1);
+      this.$emit('increment',);
     },
     decrement() {
-      if (this.modelValue > 1) {
-        this.$emit('update:modelValue', this.modelValue - 1);
-      }
+      this.$emit('decrement');
     },
   }
 });
@@ -35,7 +27,7 @@ export default defineComponent({
 <template>
   <div class="counter">
     <div class="counter__control counter__minus" @click="decrement">-</div>
-    <div class="counter__count">{{ modelValue }}</div>
+    <div class="counter__count">{{ count }}</div>
     <div class="counter__control counter__plus" @click="increment">+</div>
   </div>
 </template>

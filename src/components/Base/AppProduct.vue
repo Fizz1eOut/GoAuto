@@ -26,10 +26,10 @@ export default defineComponent({
     },
   },
 
-  // data() {  
-  //   return {
-  //   }
-  // },
+  data() {  
+    return {
+    }
+  },
 
   computed: {
     ...mapStores(useCartStore),
@@ -41,7 +41,12 @@ export default defineComponent({
 
     isAddded() {
       return this.cartStore.products.some((product) => product.id === this.product.id)
-    }
+    },
+
+    productQuantity()  {
+      const productInCart = this.cartStore.products.find(product => product.id === this.product.id);
+      return productInCart.quantity;
+    },
   },
   
   methods: {
@@ -84,7 +89,7 @@ export default defineComponent({
                 <IconCart class="icon" />
               </app-button>
             </router-link>
-            <app-counter v-model="quantity" />
+            <app-counter :count="productQuantity" @increment="addToCart" />
           </template>
         </div>
       </div>

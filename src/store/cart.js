@@ -19,7 +19,7 @@ export const useCartStore = defineStore('cart', {
 
   actions: {
     addProductInCart(product) {
-      const existingItem = this.products.find(item => item.product.id === product.id);
+      const existingItem = this.products.find(item => item.id === product.id);
       // console.log(existingItem);
       if (!existingItem) {
         return this.products.push({ id: product.id, price: product.price, quantity: 1 });

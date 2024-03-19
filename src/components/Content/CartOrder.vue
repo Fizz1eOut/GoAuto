@@ -17,6 +17,10 @@ export default defineComponent({
     AppCounter,
   },
 
+  // data() {
+  //   return {
+  //   }
+  // },
 
   computed: {
     ...mapStores(useCartStore),
@@ -48,6 +52,11 @@ export default defineComponent({
       const option = product.options.find(opt => opt.id === 6);
       return option.value;
     },
+
+    addToCart(product) {
+      this.cartStore.addProductInCart(product);
+      this.cartStore.saveToLocalStorage();
+    },
   }
 });
 </script>
@@ -72,7 +81,7 @@ export default defineComponent({
             <h3 class="order__title">{{ product.title }}</h3>
             <div class="order__article">Артикул: {{ sku(product) }}</div>
             <div class="order__row">
-              <app-counter v-model="quantity" />
+              <app-counter :count="product.quantity" @increment="addToCart(product)" />
 
               <div class="order__price">{{ product.price }}₴</div>
             </div>
