@@ -30,16 +30,29 @@ export const useCartStore = defineStore('cart', {
       this.saveToLocalStorage();
       },
 
-    loadFromLocalStorage() {
-      const storedItems = JSON.parse(localStorage.getItem('cart'));
-      // console.log(storedItems);
-      if (storedItems) {
-        this.products = storedItems;
-      }
-    },
+      removeProductCart(product) {
+        const existingIndex = this.products.findIndex(item => item.id === product.id);
+        // console.log(existingIndex);
+        const existingItem = this.products[existingIndex];
+        // console.log(existingItem);
+        if (existingItem.quantity <= 1) {
+          this.products.splice(existingIndex, 1);
+        } else {
+          existingItem.quantity--;
+        }
+        this.saveToLocalStorage();
+      },
 
-    saveToLocalStorage() {
-      localStorage.setItem('cart', JSON.stringify(this.products));
-    }
+      loadFromLocalStorage() {
+        const storedItems = JSON.parse(localStorage.getItem('cart'));
+        // console.log(storedItems);
+        if (storedItems) {
+          this.products = storedItems;
+        }
+      },
+
+      saveToLocalStorage() {
+        localStorage.setItem('cart', JSON.stringify(this.products));
+      }
   },
 });

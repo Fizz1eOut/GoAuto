@@ -53,6 +53,9 @@ export default defineComponent({
     addToCart() {
       this.cartStore.addProductInCart(this.product);
     },
+    removeProduct() {
+      this.cartStore.removeProductCart(this.product)
+    },
   }
 });
 </script>
@@ -88,7 +91,7 @@ export default defineComponent({
                 <IconCart class="icon" />
               </app-button>
             </router-link>
-            <app-counter :count="productQuantity" @increment="addToCart" />
+            <app-counter :count="productQuantity" @increment="addToCart" @decrement="removeProduct" />
           </template>
         </div>
       </div>

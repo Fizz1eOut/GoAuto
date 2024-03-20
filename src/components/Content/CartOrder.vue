@@ -31,13 +31,7 @@ export default defineComponent({
         const productData = productsData.find(product => product.id === cartProduct.id);
         // console.log(productData)
         if (productData) {
-          return {
-            ...cartProduct,
-            title: productData.title,
-            imageUrl: productData.imageUrl,
-            price: productData.price,
-            options: productData.options,
-          };
+          return { ...productData, ...cartProduct };
         }
       });
     },
@@ -55,6 +49,9 @@ export default defineComponent({
 
     addToCart(product) {
       this.cartStore.addProductInCart(product);
+    },
+    removeProduct(product) {
+      this.cartStore.removeProductCart(product)
     },
   }
 });
@@ -80,7 +77,7 @@ export default defineComponent({
             <h3 class="order__title">{{ product.title }}</h3>
             <div class="order__article">Артикул: {{ sku(product) }}</div>
             <div class="order__row">
-              <app-counter :count="product.quantity" @increment="addToCart(product)" />
+              <app-counter :count="product.quantity" @increment="addToCart(product)" @decrement="removeProduct(product)" />
 
               <div class="order__price">{{ product.price }}₴</div>
             </div>
