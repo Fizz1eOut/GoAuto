@@ -64,6 +64,7 @@ export default defineComponent({
         Ваше замовлення
       </app-title>
       <div class="card-order__body">
+        <TransitionGroup name="list" tag="ul">
         <div 
           v-for="product in cartProducts" 
           :key="product.id" 
@@ -83,6 +84,7 @@ export default defineComponent({
             </div>
           </div>
         </div>
+      </TransitionGroup>
       </div>
 
       <div class="order__bottom">
@@ -199,5 +201,15 @@ export default defineComponent({
       padding-bottom: 30px;
       border-bottom: 1px solid #abbed1;
     }
+  }
+
+  .list-enter-active,
+  .list-leave-active {
+    transition: all 0.5s ease;
+  }
+  .list-enter-from,
+  .list-leave-to {
+    opacity: 0;
+    transform: translateX(330px);
   }
 </style>
