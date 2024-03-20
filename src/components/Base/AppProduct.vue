@@ -52,7 +52,6 @@ export default defineComponent({
   methods: {
     addToCart() {
       this.cartStore.addProductInCart(this.product);
-      this.cartStore.saveToLocalStorage();
     },
   }
 });

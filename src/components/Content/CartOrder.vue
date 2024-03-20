@@ -55,7 +55,6 @@ export default defineComponent({
 
     addToCart(product) {
       this.cartStore.addProductInCart(product);
-      this.cartStore.saveToLocalStorage();
     },
   }
 });
