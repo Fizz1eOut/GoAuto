@@ -64,6 +64,7 @@ export default defineComponent({
   <app-underlay>
     <app-container size="sm">
       <div class="product">
+        <div v-if="product.featured" class="product__stiker">Хіт</div>
         <div class="product__img">
           <img :src="product.imageUrl" alt="image">
         </div>
@@ -99,6 +100,23 @@ export default defineComponent({
 </template>
 
 <style>
+  .product {
+    position: relative;
+  }
+  .product__stiker {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    z-index: 1;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 50px;
+    color: var(--color-white);
+    background-color: #EA3F20;
+    padding: 6px 12px;
+  }
   .product__img {
     text-align: center;
   }

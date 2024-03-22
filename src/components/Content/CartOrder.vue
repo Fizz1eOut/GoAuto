@@ -65,26 +65,26 @@ export default defineComponent({
       </app-title>
       <div class="card-order__body">
         <TransitionGroup name="list" tag="ul">
-        <div 
-          v-for="product in cartProducts" 
-          :key="product.id" 
-          class="order"
-        >
-          <div class="order__img">
-            <img :src="product.imageUrl" alt="">
-          </div>
+          <div 
+            v-for="product in cartProducts" 
+            :key="product.id" 
+            class="order"
+          >
+            <div class="order__img">
+              <img :src="product.imageUrl" alt="">
+            </div>
 
-          <div class="order__content">
-            <h3 class="order__title">{{ product.title }}</h3>
-            <div class="order__article">Артикул: {{ sku(product) }}</div>
-            <div class="order__row">
-              <app-counter :count="product.quantity" @increment="addToCart(product)" @decrement="removeProduct(product)" />
+            <div class="order__content">
+              <h3 class="order__title">{{ product.title }}</h3>
+              <div class="order__article">Артикул: {{ sku(product) }}</div>
+              <div class="order__row">
+                <app-counter :count="product.quantity" @increment="addToCart(product)" @decrement="removeProduct(product)" />
 
-              <div class="order__price">{{ product.price }}₴</div>
+                <div class="order__price">{{ product.price }}₴</div>
+              </div>
             </div>
           </div>
-        </div>
-      </TransitionGroup>
+        </TransitionGroup>
       </div>
 
       <div class="order__bottom">

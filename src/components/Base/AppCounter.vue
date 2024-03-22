@@ -62,5 +62,6 @@ export default defineComponent({
     font-size: 16px;
     line-height: 160%;
     color: var(--color-black);
+    font-variant-numeric: tabular-nums;
   }
 </style>
