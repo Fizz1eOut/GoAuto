@@ -74,10 +74,9 @@ export default defineComponent({
           <div v-if="product.stock > 2" class="product__stock">В наявності</div>
           <div v-else-if="product.stock === 0" class="product__stock--red">Немає в наявності</div>
           <div v-else-if="product.stock <= 2" class="product__stock--red">Залишилося небагато</div>
+          <div class="product__price">{{ product.price }}₴</div>
         </div>
         <div class="product__row">
-          <div class="product__price">{{ product.price }}₴</div>
-
           <template v-if="!isAddded">
             <app-button @click="addToCart">
               Додати в кошик
@@ -85,13 +84,13 @@ export default defineComponent({
             </app-button>
           </template>
           <template v-else>
+            <app-counter :count="productQuantity" @increment="addToCart" @decrement="removeProduct" />
             <router-link to="/cart">
               <app-button>
                 У кошик
                 <IconCart class="icon" />
               </app-button>
             </router-link>
-            <app-counter :count="productQuantity" @increment="addToCart" @decrement="removeProduct" />
           </template>
         </div>
       </div>
@@ -140,6 +139,9 @@ export default defineComponent({
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+  }
+  .product__row a {
+    width: 100%;
   }
   .product__price {
     font-weight: 700;

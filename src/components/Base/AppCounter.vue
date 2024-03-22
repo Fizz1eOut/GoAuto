@@ -40,11 +40,11 @@ export default defineComponent({
   }
   .counter__control {
     font-weight: 400;
-    font-size: 20px;
+    font-size: 24px;
     line-height: 100%;
     color: var(--color-grey);
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,7 +59,7 @@ export default defineComponent({
   }
   .counter__count {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 160%;
     color: var(--color-black);
   }
