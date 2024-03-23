@@ -65,7 +65,7 @@ export default defineComponent({
       </app-title>
       <div class="card-order__body">
         <TransitionGroup name="list" tag="ul">
-          <div 
+          <li 
             v-for="product in cartProducts" 
             :key="product.id" 
             class="order"
@@ -83,7 +83,7 @@ export default defineComponent({
                 <div class="order__price">{{ product.price }}₴</div>
               </div>
             </div>
-          </div>
+          </li>
         </TransitionGroup>
       </div>
 

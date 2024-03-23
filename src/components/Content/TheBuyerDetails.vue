@@ -4,21 +4,48 @@ import AppInput from '@/components/Inputs/AppInput.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  fullName: 'TheBuyerDetails',
+  name: 'TheBuyerDetails',
 
   components: {
     AppInput,
     AppSubtitle,
   },
-
+  emits: ['input'],
   data() {
     return {
       fullName: '',
       phoneNumber: '',
       email: '',
+      fullNameValid: false,
+      phoneNumberValid: false,
+      emailValid: false,
+      fullNameDirty: false,
+      phoneNumberDirty: false,
+      emailDirty: false,
     };
   },
 
+  methods: {
+    checkInput(field) {
+      switch (field) {
+        case 'fullName':
+          this.fullNameDirty = true;
+          this.fullNameValid = /^[а-яА-ЯёЁa-zA-Z]+ [а-яА-ЯёЁa-zA-Z]+ ?[а-яА-ЯёЁa-zA-Z]*$/.test(this.fullName.trim());
+          break;
+        case 'phoneNumber':
+          this.phoneNumberDirty = true;
+          this.phoneNumberValid = /^\d{10,12}$/.test(this.phoneNumber.trim());
+          break;
+        case 'email':
+          this.emailDirty = true;
+          this.emailValid = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/.test(this.email.trim());
+          break;
+        default:
+          break;
+      }
+    },
+
+  }
 });
 </script>
 
@@ -29,25 +56,34 @@ export default defineComponent({
     </app-subtitle>
 
     <div class="buyer-details__items">
-      <div class="buyer-details__item">
+      <div class="buyer-details__item" :class="{ 'error': !fullNameValid && fullNameDirty, 'success': fullNameValid }">
         <app-input  
           v-model="fullName"
           placeholder="Імʼя та прізвище"
+          @input="checkInput('fullName')"
         />
+        <span v-if="!fullNameValid && fullName.trim() && fullNameDirty" class="validation-message">Дані введені не коректно</span>
+        <span v-else-if="fullNameValid" class="validation-message success">Дані введені коректно</span>
       </div>
 
-      <div class="buyer-details__item">
+      <div class="buyer-details__item" :class="{ 'error': !phoneNumberValid && phoneNumberDirty, 'success': phoneNumberValid }">
         <app-input 
           v-model="phoneNumber"
-          placeholder="Номер телефону" 
+          placeholder="Номер телефону"
+          @input="checkInput('phoneNumber')"
         />
+        <span v-if="!phoneNumberValid && phoneNumber.trim() && phoneNumberDirty" class="validation-message">Дані введені не коректно</span>
+        <span v-else-if="phoneNumberValid" class="validation-message success">Дані введені коректно</span>
       </div>
 
-      <div class="buyer-details__item">
+      <div class="buyer-details__item" :class="{ 'error': !emailValid && emailDirty, 'success': emailValid }">
         <app-input 
           v-model="email"
-          placeholder="Електронна пошта" 
+          placeholder="Електронна пошта"
+          @input="checkInput('email')"
         />
+        <span v-if="!emailValid && email.trim() && emailDirty" class="validation-message">Дані введені не коректно</span>
+        <span v-else-if="emailValid" class="validation-message success">Дані введені коректно</span>
       </div>
     </div>
   </div>
@@ -62,5 +98,22 @@ export default defineComponent({
   }
   .buyer-details__items> *:not(:last-child) {
     margin-bottom: 30px;
+  }
+
+  .error .input {
+    border-color: red;
+  }
+
+  .success .input {
+    border-color: green;
+  }
+
+  .validation-message {
+    color: red;
+    font-size: 14px;
+  }
+
+  .validation-message.success {
+    color: green;
   }
 </style>

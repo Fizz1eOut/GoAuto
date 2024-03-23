@@ -64,7 +64,7 @@ export default defineComponent({
   <app-underlay>
     <app-container size="sm">
       <div class="product">
-        <div v-if="product.featured" class="product__stiker">Хіт</div>
+        <div v-if="product.featured" class="product__badge">Хіт</div>
         <div class="product__img">
           <img :src="product.imageUrl" alt="image">
         </div>
@@ -103,7 +103,7 @@ export default defineComponent({
   .product {
     position: relative;
   }
-  .product__stiker {
+  .product__badge {
     position: absolute;
     top: 0px;
     left: 10px;

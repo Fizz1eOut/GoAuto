@@ -13,19 +13,30 @@ export default defineComponent({
     TheDelivery,
     ThePayment,
     AppButton,
-  }
+  },
+
+  // data() {
+  //   return {
+      
+  //   };
+  // },
+  // mounted() {
+
+  // },
+  // methods: {
+  // }
 });
 </script>
 
 <template>
-  <div class="order-payment">
+  <form class="order-payment">
     <the-buyer-details />
     <the-delivery />
     <the-payment />
     <div class="order-payment__row">
       <app-button>Замовлення підтверджую</app-button>
     </div>
-  </div>
+  </form>
 </template>
 
 <style scoped>
