@@ -23,14 +23,6 @@ export default defineComponent({
   },
 
   methods: {
-    handleChange(value) {
-      // Обработка изменения значения
-      console.log('Новое значение:', value);
-    },
-    handleBlur(value) {
-      // Обработка потери фокуса
-      console.log('Значение потеряло фокус:', value);
-    }
   }
 });
 </script>
@@ -47,12 +39,12 @@ export default defineComponent({
           <app-input  
             v-model="fullName"
             placeholder="Імʼя та прізвище"
-            type="text"
+            type="fullName"
             @change="handleChange" 
             @blur="handleBlur"
           />
         </Field>
-        <ErrorMessage name="fullName" />
+        <ErrorMessage class="error-message" name="fullName" />
       </div>
 
       <div class="buyer-details__item">
@@ -65,7 +57,7 @@ export default defineComponent({
             @blur="handleBlur"
           />
         </Field>
-        <ErrorMessage name="phoneNumber" />
+        <ErrorMessage class="error-message" name="phoneNumber" />
       </div>
 
       <div class="buyer-details__item">
@@ -78,7 +70,7 @@ export default defineComponent({
             @blur="handleBlur"
           />
         </Field>
-        <ErrorMessage name="email" />
+        <ErrorMessage class="error-message" name="email" />
       </div>
     </div>
   </div>
@@ -94,21 +86,8 @@ export default defineComponent({
   .buyer-details__items> *:not(:last-child) {
     margin-bottom: 30px;
   }
-
-  .error .input {
-    border-color: red;
-  }
-
-  .success .input {
-    border-color: green;
-  }
-
-  .validation-message {
-    color: red;
-    font-size: 14px;
-  }
-
-  .validation-message.success {
-    color: green;
-  }
+ .error-message {
+  color: #EA3F20;
+  font-size: 16px;
+ }
 </style>

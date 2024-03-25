@@ -26,15 +26,15 @@ export default defineComponent({
   computed: {
     schema() {
       return yup.object({
-        email: yup.string().required().email('Введіть правильну адресу електронної пошти'),
-        fullName: yup.string().required(),
-        phoneNumber: yup.string().required().min(8, 'Номер телефону повинен містити щонайменше 8 цифр'),
+        email: yup.string().required(`Заповніть обов'язкове поле`).email('Введіть правильну адресу електронної пошти'),
+        fullName: yup.string().required(`Заповніть обов'язкове поле`).matches(/^[а-яА-ЯёЁa-zA-Z]+ [а-яА-ЯёЁa-zA-Z]+ ?[а-яА-ЯёЁa-zA-Z]*$/, 'Введіть імʼя та прізвище'),
+        phoneNumber: yup.string().required(`Заповніть обов'язкове поле`).matches(/^\d{9,}$/, 'Номер телефону повинен містити щонайменше 9 цифр'),
       });
     },
   },
   methods: {
     onSubmit() {
-      alert("КУРЬВА");
+      this.$router.push('/processed');
     }
   }
 });
@@ -46,7 +46,7 @@ export default defineComponent({
     <the-delivery />
     <the-payment />
     <div class="order-payment__row">
-      <app-button>Замовлення підтверджую</app-button>
+      <app-button type="submit">Замовлення підтверджую</app-button>
     </div>
   </form-wrapper>
 </template>
