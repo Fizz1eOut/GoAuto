@@ -9,7 +9,7 @@ import { defineComponent } from 'vue';
 import AppButton from '@/components/Base/AppButton.vue';
 
 export default defineComponent({
-  name: 'FilterBlockTires',
+  name: 'FilterBlockRims',
 
   components: {
     AppSelect,
@@ -110,13 +110,13 @@ export default defineComponent({
 <template>
   <AppUnderlay>
     <AppContainer size="md">
-      <div class="tires">
+      <div class="rims">
         <app-title>
           Диски
         </app-title>
 
-        <div class="tires__items">
-          <div class="tires__item">
+        <div class="rims__items">
+          <div class="rims__item">
             <app-select 
               v-model="width"
               :options="widthOptions"
@@ -143,7 +143,7 @@ export default defineComponent({
             </AppButton>
           </div>
 
-          <div class="tires__item">
+          <div class="rims__item">
             <app-select 
               v-model="rebalancing"
               :options="rebalancingOptions"
@@ -165,27 +165,27 @@ export default defineComponent({
 </template>
 
 <style scoped>
-  .tires {
+  .rims {
   text-align: center;
   }
-  .tires__items {
+  .rims__items {
     margin-top: 40px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 10px;
   }
-  .tires__item {
+  .rims__item {
     width: 100%;
   }
-  .tires__item> *:not(:last-child) {
+  .rims__item> *:not(:last-child) {
     margin-bottom: 20px;
   }
   @media (max-width: 480px) {
-  .tires__items {
+  .rims__items {
     flex-direction: column;
   }
-  .tires__item:first-child {
+  .rims__item:first-child {
     order: 1;
   }
 } 
