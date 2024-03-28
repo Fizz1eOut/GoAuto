@@ -11,14 +11,6 @@ import AppSocialMedia from '@/components/Base/AppSocialMedia.vue';
 export default defineComponent({
   name: 'NavMobile',
 
-  props: {
-    open: {
-      type: Boolean,
-      required: false,
-      default: false
-    }
-  },
-  
   components: {
     AppLink,
     AppDropdown,
@@ -28,6 +20,15 @@ export default defineComponent({
     AppSchedule,
     AppSocialMedia,
   },
+
+  props: {
+    open: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
+
   data() {
     return {
       dropdownActive: false,
@@ -47,64 +48,66 @@ export default defineComponent({
       v-if="open" 
       class="nav-modile" 
     >
-    <ul class="nav-modile__list">
-      <li class="nav-modile__item">
-        <app-link>
-          Головна
-        </app-link>
-      </li>
+      <ul class="nav-modile__list">
+        <li class="nav-modile__item">
+          <app-link>
+            Головна
+          </app-link>
+        </li>
 
-      <li class="nav-modile__item">
-        <app-link>
-          Шини
-        </app-link>
-      </li>
+        <li class="nav-modile__item">
+          <router-link to="/tires">
+            <app-link>
+              Шини
+            </app-link>
+          </router-link>
+        </li>
 
-      <li class="nav-modile__item">
-        <app-link>
-          Диски
-        </app-link>
-      </li>
+        <li class="nav-modile__item">
+          <app-link>
+            Диски
+          </app-link>
+        </li>
 
-      <li class="nav-modile__item">
-        <app-link>
-          Доставка та оплата
-        </app-link>
-      </li>
+        <li class="nav-modile__item">
+          <app-link>
+            Доставка та оплата
+          </app-link>
+        </li>
 
-      <li class="nav-modile__item">
-        <app-link 
-          @click="toggle"
-        >
-          Клієнтам 
-          <icon-arrow :class="{ 'active': dropdownActive }"/>
-
-          <app-dropdown 
-            :dropdownActive="dropdownActive"
+        <li class="nav-modile__item">
+          <app-link 
+            @click="toggle"
           >
-            <app-dropdown-item>
-              Шиномонтаж
-            </app-dropdown-item>
+            Клієнтам 
+            <icon-arrow :class="{ 'active': dropdownActive }" />
 
-            <app-dropdown-item>
-              Фарбування дисків
-            </app-dropdown-item>
-          </app-dropdown>
-        </app-link>
-      </li>
+            <app-dropdown 
+              :dropdownActive="dropdownActive"
+            >
+              <app-dropdown-item>
+                Шиномонтаж
+              </app-dropdown-item>
 
-      <li class="nav-modile__item">
-        <app-link>
-          Контакти
-        </app-link>
-      </li>
+              <app-dropdown-item>
+                Фарбування дисків
+              </app-dropdown-item>
+            </app-dropdown>
+          </app-link>
+        </li>
 
-      <app-contact/>
-      <app-schedule />
+        <li class="nav-modile__item">
+          <app-link>
+            Контакти
+          </app-link>
+        </li>
 
-      <app-social-media />
-    </ul>
-  </nav>
+        <app-contact />
+        <app-schedule />
+
+        <app-social-media />
+      </ul>
+    </nav>
   </Transition>
 </template>
 

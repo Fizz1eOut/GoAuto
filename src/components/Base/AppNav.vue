@@ -28,7 +28,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <nav class="nav">
+  <nav class="nav">
     <ul class="nav__list">
       <li class="nav__item">
         <app-link>
@@ -37,9 +37,11 @@ export default defineComponent({
       </li>
 
       <li class="nav__item">
-        <app-link>
-          Шини
-        </app-link>
+        <router-link to="/tires">
+          <app-link>
+            Шини
+          </app-link>
+        </router-link>
       </li>
 
       <li class="nav__item">
@@ -62,17 +64,17 @@ export default defineComponent({
           <icon-arrow 
             :class="{ 'active': dropdownActive }"
           />
-         <app-dropdown 
-          :dropdownActive="dropdownActive"
-         >
-          <app-dropdown-item>
-            Шиномонтаж
-          </app-dropdown-item>
+          <app-dropdown 
+            :dropdownActive="dropdownActive"
+          >
+            <app-dropdown-item>
+              Шиномонтаж
+            </app-dropdown-item>
 
-          <app-dropdown-item>
-            Фарбування дисків
-          </app-dropdown-item>
-         </app-dropdown>
+            <app-dropdown-item>
+              Фарбування дисків
+            </app-dropdown-item>
+          </app-dropdown>
         </app-link>
       </li>
 
