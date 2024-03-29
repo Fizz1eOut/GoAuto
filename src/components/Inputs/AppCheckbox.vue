@@ -61,26 +61,22 @@ export default {
   width: 0;
 }
 .checkbox input:checked ~ .checkbox__checkmark {
-  background-color: #fff;
+  background-color: var(--color-blue);
+  border: 1px solid var(--color-blue);
 }
 .checkbox input:checked ~ .checkbox__checkmark:after {
   opacity: 1;
 }
-.checkbox:hover input ~ .checkbox__checkmark {
-  background-color: #eee;
-}
-.checkbox:hover input:checked ~ .checkbox__checkmark {
-  background-color: #fff;
-}
+
 .checkbox .checkbox__checkmark {
   position: absolute;
-  top: 4px;
+  top: 0;
   left: 0;
-  height: 16px;
-  width: 16px;
+  height: 18px;
+  width: 18px;
   background-color: #fff;
-  border: 1px solid #333;
-  transition: background-color 0.25s ease;
+  border: 1px solid var(--color-black);
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
   border-radius: 3px;
 }
 .checkbox .checkbox__checkmark:after {
@@ -88,17 +84,18 @@ export default {
   position: absolute;
   left: 5px;
   top: 1px;
-  width: 5px;
+  width: 6px;
   height: 10px;
-  border: solid #333;
+  border: 1px solid var(--color-white);
   border-width: 0 1px 1px 0;
   transform: rotate(45deg);
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.3s ease-in-out;
 }
 .checkbox .checkbox__body {
-  color: #333;
-  line-height: 1.4;
+  color: var(--color-black);
+  font-weight: 400;
   font-size: 16px;
-}
+  line-height: 100%;
+  }
 </style>

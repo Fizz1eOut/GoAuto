@@ -3,10 +3,12 @@ import AppContainer from '@/components/Base/AppContainer.vue';
 import AppUnderlay from '@/components/Base/AppUnderlay.vue';
 import AppSubtitle from '@/components/Base/AppSubtitle.vue';
 import AppSelect from '@/components/Inputs/AppSelect.vue';
-import AppCheckbox from '@/components/Inputs/AppCheckbox.vue'
+import AppCheckbox from '@/components/Inputs/AppCheckbox.vue';
+import AppInput from '@/components/Inputs/AppInput.vue';
 import optionsData from '@/api/options.json';
 import productsData from '@/api/products.json';
 import { defineComponent } from 'vue';
+import AppButton from '@/components/Base/AppButton.vue';
 
 export default defineComponent({
   name: 'TiresFilter',
@@ -17,7 +19,9 @@ export default defineComponent({
     AppSubtitle,
     AppSelect,
     AppCheckbox,
-  },
+    AppInput,
+    AppButton
+},
 
   data() {
     return {
@@ -26,7 +30,13 @@ export default defineComponent({
       selectedDiameterTires: 0,
       checkbox1: false,
       checkbox2: false,
-      checkbox3: false
+      checkbox3: false,
+      checkbox4: false,
+      checkbox5: false,
+      checkbox6: false,
+      checkbox7: false,
+      priceFrom: '',
+      priceTo: '',
     };
   },
 
@@ -131,6 +141,43 @@ export default defineComponent({
               <app-checkbox v-model="checkbox3" title="Всесезонні" />
             </div>
           </div>
+
+          <div class="tires-filter__item">
+            <app-subtitle>
+              Бренд
+            </app-subtitle>
+
+            <div class="tires-filter__content">
+              <app-checkbox v-model="checkbox4" title="Mishilen" />
+              <app-checkbox v-model="checkbox5" title="Goodyear" />
+              <app-checkbox v-model="checkbox6" title="Bridgestone" />
+              <app-checkbox v-model="checkbox7" title="Pirelli" />
+            </div>
+          </div>
+
+          <div class="tires-filter__item">
+            <app-subtitle>
+              Ціна
+            </app-subtitle>
+
+            <div class="tires-filter__price">
+              <app-input 
+                v-model="priceFrom"
+                placeholder="від 837"
+                type="number"
+              />
+
+              <app-input 
+                v-model="priceTo"
+                placeholder="до 28923"
+                type="number"
+              />
+            </div>
+          </div>
+
+          <app-button>
+            Застосувати фільтри
+          </app-button>
         </div>
       </div>
     </app-container>
@@ -152,5 +199,11 @@ export default defineComponent({
 }
 .tires-filter__content> *:not(:last-child) {
   margin-bottom: 10px;
+}
+.tires-filter__price {
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
 }
 </style>
