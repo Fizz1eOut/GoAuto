@@ -50,9 +50,11 @@ export default defineComponent({
     >
       <ul class="nav-modile__list">
         <li class="nav-modile__item">
-          <app-link>
-            Головна
-          </app-link>
+          <router-link to="/">
+            <app-link>
+              Головна
+            </app-link>
+          </router-link>
         </li>
 
         <li class="nav-modile__item">

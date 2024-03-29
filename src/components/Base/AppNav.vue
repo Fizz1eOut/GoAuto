@@ -31,9 +31,11 @@ export default defineComponent({
   <nav class="nav">
     <ul class="nav__list">
       <li class="nav__item">
-        <app-link>
-          Головна
-        </app-link>
+        <router-link to="/">
+          <app-link>
+            Головна
+          </app-link>
+        </router-link>
       </li>
 
       <li class="nav__item">
