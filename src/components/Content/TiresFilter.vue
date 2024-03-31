@@ -73,6 +73,30 @@ export default defineComponent({
       }
       return [];
     },
+
+    summerOption() {
+      const summer = optionsData.find(option => option.title === 'Сезон');
+      // console.log(summer);
+      const arr = this.findProductOptions(summer.id).find(opt => opt.value === 'Літня');
+      // console.log(arr.value);
+      return arr.value;
+    },
+
+    winterOption() {
+      const winter = optionsData.find(option => option.title === 'Сезон');
+      // console.log(winter);
+      const arr = this.findProductOptions(winter.id).find(opt => opt.value === 'Зимова');
+      // console.log(arr.value);
+      return arr.value;
+    },
+
+    allSeasonOption() {
+      const allSeason = optionsData.find(option => option.title === 'Сезон');
+      // console.log(allSeason);
+      const arr = this.findProductOptions(allSeason.id).find(opt => opt.value === 'Всесезонна');
+      // console.log(arr.value);
+      return arr.value;
+    },
   },
 
   methods: {
@@ -136,9 +160,15 @@ export default defineComponent({
             </app-subtitle>
 
             <div class="tires-filter__content">
-              <app-checkbox v-model="checkbox1" title="Літні" />
-              <app-checkbox v-model="checkbox2" title="Зимові" />
-              <app-checkbox v-model="checkbox3" title="Всесезонні" />
+              <app-checkbox v-model="checkbox1">
+                {{ summerOption }}
+              </app-checkbox>
+              <app-checkbox v-model="checkbox2">
+                {{ winterOption }}
+              </app-checkbox>
+              <app-checkbox v-model="checkbox3">
+                {{ allSeasonOption }}
+              </app-checkbox>
             </div>
           </div>
 
@@ -148,10 +178,7 @@ export default defineComponent({
             </app-subtitle>
 
             <div class="tires-filter__content">
-              <app-checkbox v-model="checkbox4" title="Mishilen" />
-              <app-checkbox v-model="checkbox5" title="Goodyear" />
-              <app-checkbox v-model="checkbox6" title="Bridgestone" />
-              <app-checkbox v-model="checkbox7" title="Pirelli" />
+
             </div>
           </div>
 

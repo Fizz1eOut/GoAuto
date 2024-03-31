@@ -2,20 +2,15 @@
 export default {
   props: {
     modelValue: {
-      type: Boolean,
+      type: [String, Number, Boolean, Array, Function],
       required: true
     },
-    title: {
-      type: String,
-      required: true
-    }
   },
 
   emits: ['update:modelValue'],
 
   data() {
     return {
-      isChecked: false
     };
   },
 
@@ -37,7 +32,7 @@ export default {
     <label class="checkbox">
       <input v-model="checked" type="checkbox">
       <div class="checkbox__checkmark"></div>
-      <div class="checkbox__body">{{ title }}</div>
+      <div class="checkbox__body"><slot /></div>
     </label>
   </div>
 </template>
