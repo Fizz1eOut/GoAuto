@@ -1,6 +1,6 @@
 <script>
 import AppBreadcrumbs from '@/components/Base/AppBreadcrumbs.vue';
-import PagesItem from '@/components/Content/PagesItem.vue';
+import BreadcrumbItem from '@/components/Content/BreadcrumbItem.vue';
 import AppLink from '@/components/Base/AppLink.vue';
 import IconArrowRight from '@/components/icons/IconArrowRight.vue';
 import TheTires from '@/components/Content/TheTires.vue';
@@ -11,7 +11,7 @@ export default defineComponent({
 
   components: {
     AppBreadcrumbs,
-    PagesItem,
+    BreadcrumbItem,
     AppLink,
     IconArrowRight,
     TheTires,
@@ -21,25 +21,25 @@ export default defineComponent({
 
 <template>
   <app-breadcrumbs>
-    <pages-item>
+    <breadcrumb-item>
       <router-link to="/">
         <app-link>
           Головна
         </app-link>
       </router-link>
-    </pages-item>
+    </breadcrumb-item>
 
-    <pages-item>
+    <breadcrumb-item>
       <icon-arrow-right class="icon-arrow" />
-    </pages-item>
+    </breadcrumb-item>
 
-    <pages-item>
+    <breadcrumb-item>
       <router-link to="/cart">
         <app-link class="active-link">
           Шини
         </app-link>
       </router-link>
-    </pages-item>
+    </breadcrumb-item>
   </app-breadcrumbs>
 
   <the-tires />
