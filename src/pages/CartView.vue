@@ -1,5 +1,5 @@
 <script>
-import PagesItem from '@/components/Content/PagesItem.vue';
+import BreadcrumbItem from '@/components/Content/BreadcrumbItem.vue';
 import AppLink from '@/components/Base/AppLink.vue';
 import IconArrowRight from '@/components/icons/IconArrowRight.vue';
 import TheCheckout from '@/components/Content/TheCheckout.vue';
@@ -12,7 +12,7 @@ export default defineComponent({
   components: {
     AppBreadcrumbs,
     TheCheckout,
-    PagesItem,
+    BreadcrumbItem,
     AppLink,
     IconArrowRight,
   },
@@ -31,25 +31,25 @@ export default defineComponent({
 
 <template>
   <app-breadcrumbs>
-    <pages-item>
+    <breadcrumb-item>
       <router-link to="/">
         <app-link>
           Головна
         </app-link>
       </router-link>
-    </pages-item>
+    </breadcrumb-item>
 
-    <pages-item>
+    <breadcrumb-item>
       <icon-arrow-right class="icon-arrow" />
-    </pages-item>
+    </breadcrumb-item>
 
-    <pages-item>
+    <breadcrumb-item>
       <router-link to="/cart">
         <app-link class="active-link">
           Кошик
         </app-link>
       </router-link>
-    </pages-item>
+    </breadcrumb-item>
   </app-breadcrumbs>
   <the-checkout />
 </template>
