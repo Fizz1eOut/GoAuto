@@ -26,9 +26,6 @@ export default defineComponent({
       const endIndex = startIndex + this.itemsPerPage; // Индекс конечного элемента на текущей странице
       return this.products.slice(startIndex, endIndex); // Возвращаем продукты на текущей странице
     },
-    totalPages() { // Вычисляемое свойство для определения общего количества страниц
-      return Math.ceil(this.products.length / this.itemsPerPage);
-    }
   },
 
   created() {
@@ -44,7 +41,11 @@ export default defineComponent({
         <app-product :product="tiresProduct" />
       </div>
     </div>
-    <app-pagination v-model:currentPage="currentPage" :total-pages="totalPages" />
+    <app-pagination 
+      v-model:currentPage="currentPage"
+      :total-items="products.length" 
+      :items-per-page="itemsPerPage" 
+    />
   </div>
 </template>
 

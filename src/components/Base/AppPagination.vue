@@ -10,13 +10,18 @@ export default defineComponent({
   },
 
   props: {
-    // текущая страница
+    // Текущая активная страница пагинации.
     currentPage: {
       type: Number,
       required: true
     },
-    // общее количество страниц
-    totalPages: {
+    // Общее количество элементов, которые должны быть разбиты на страницы.
+    totalItems: {
+      type: Number,
+      required: true
+    },
+    // Количество элементов, отображаемых на одной странице.
+    itemsPerPage: {
       type: Number,
       required: true
     }
@@ -24,13 +29,32 @@ export default defineComponent({
 
   emits: ['update:currentPage'],
 
+  computed: {
+    // Вычисляемое свойство для определения общего количества страниц
+    totalPages() {
+      return Math.ceil(this.totalItems / this.itemsPerPage);
+    },
+
+    // Вычисляемое свойство для определения диапазона отображаемых элементов на текущей странице
+    paginatedItems() {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      return {
+        startIndex,
+        endIndex
+      };
+    }
+  },
+
   methods: {
+    // Метод для перехода к следующей странице
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.$emit('update:currentPage', this.currentPage + 1);
       }
     },
 
+    // Метод для перехода к предыдущей странице
     prevPage() {
       if (this.currentPage > 1) {
         this.$emit('update:currentPage', this.currentPage - 1);
