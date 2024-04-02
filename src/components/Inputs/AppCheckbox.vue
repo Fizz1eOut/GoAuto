@@ -3,7 +3,7 @@ export default {
   props: {
     modelValue: {
       type: [String, Number, Boolean, Array,],
-      default: null
+      required: true,
     },
   },
 

@@ -149,9 +149,9 @@ export default defineComponent({
             </app-subtitle>
 
             <div class="tires-filter__content">
-              <app-checkbox v-for="(season, index) in seasonOptions" :key="index" v-model="selectedSeasons[index]">
+              <!-- <app-checkbox v-for="(season, index) in seasonOptions" :key="index" v-model="selectedSeasons[index]">
                 {{ season.value }}
-              </app-checkbox>
+              </app-checkbox> -->
             </div>
           </div>
 
@@ -161,7 +161,12 @@ export default defineComponent({
             </app-subtitle>
 
             <div class="tires-filter__content">
-              <app-checkbox v-for="(brand, index) in brandOptions" :key="index" v-model="selectedBrands[index]">
+              <app-checkbox 
+                v-for="brand in brandOptions" 
+                :key="brand.id" 
+                v-model="selectedBrands"
+                :value="brand.id"
+              >
                 {{ brand.value }}
               </app-checkbox>
             </div>
