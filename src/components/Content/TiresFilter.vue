@@ -29,6 +29,7 @@ export default defineComponent({
       selectedProfileTires: 0,
       selectedDiameterTires: 0,
       selectedSeasons: [],
+      selectedBrands: [],
       priceFrom: '',
       priceTo: '',
     };
@@ -69,12 +70,21 @@ export default defineComponent({
     },
 
     seasonOptions() {
-      const seasonOptions = optionsData.find(option => option.title === 'Сезон');
-      if (seasonOptions) {
-        const arr = this.findProductOptions(seasonOptions.id);
+      const seasonOption = optionsData.find(option => option.title === 'Сезон');
+      if (seasonOption) {
+        const arr = this.findProductOptions(seasonOption.id);
         return arr;
       }
       return [];
+    },
+
+    brandOptions() {
+      const brandOption = optionsData.find(option => option.title === 'Бренд');
+      if (brandOption) {
+        const arr = this.findProductOptions(brandOption.id);
+        return arr
+      }
+      return []
     },
   },
 
@@ -151,7 +161,9 @@ export default defineComponent({
             </app-subtitle>
 
             <div class="tires-filter__content">
-
+              <app-checkbox v-for="(brand, index) in brandOptions" :key="index" v-model="selectedBrands[index]">
+                {{ brand.value }}
+              </app-checkbox>
             </div>
           </div>
 
