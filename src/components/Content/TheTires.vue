@@ -2,7 +2,7 @@
 import AppContainer from '@/components/Base/AppContainer.vue';
 import AppTitle from '@/components/Base/AppTitle.vue';
 import TiresFilter from '@/components/Content/TiresFilter.vue';
-import TiresProducts from '@/components/Content/TIresProducts.vue';
+import TiresProducts from '@/components/Content/TiresProducts.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({

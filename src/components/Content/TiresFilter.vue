@@ -28,13 +28,7 @@ export default defineComponent({
       selectedWidthTires: 0,
       selectedProfileTires: 0,
       selectedDiameterTires: 0,
-      checkbox1: false,
-      checkbox2: false,
-      checkbox3: false,
-      checkbox4: false,
-      checkbox5: false,
-      checkbox6: false,
-      checkbox7: false,
+      selectedSeasons: [],
       priceFrom: '',
       priceTo: '',
     };
@@ -74,28 +68,13 @@ export default defineComponent({
       return [];
     },
 
-    summerOption() {
-      const summer = optionsData.find(option => option.title === 'Сезон');
-      // console.log(summer);
-      const arr = this.findProductOptions(summer.id).find(opt => opt.value === 'Літня');
-      // console.log(arr.value);
-      return arr.value;
-    },
-
-    winterOption() {
-      const winter = optionsData.find(option => option.title === 'Сезон');
-      // console.log(winter);
-      const arr = this.findProductOptions(winter.id).find(opt => opt.value === 'Зимова');
-      // console.log(arr.value);
-      return arr.value;
-    },
-
-    allSeasonOption() {
-      const allSeason = optionsData.find(option => option.title === 'Сезон');
-      // console.log(allSeason);
-      const arr = this.findProductOptions(allSeason.id).find(opt => opt.value === 'Всесезонна');
-      // console.log(arr.value);
-      return arr.value;
+    seasonOptions() {
+      const seasonOptions = optionsData.find(option => option.title === 'Сезон');
+      if (seasonOptions) {
+        const arr = this.findProductOptions(seasonOptions.id);
+        return arr;
+      }
+      return [];
     },
   },
 
@@ -160,14 +139,8 @@ export default defineComponent({
             </app-subtitle>
 
             <div class="tires-filter__content">
-              <app-checkbox v-model="checkbox1">
-                {{ summerOption }}
-              </app-checkbox>
-              <app-checkbox v-model="checkbox2">
-                {{ winterOption }}
-              </app-checkbox>
-              <app-checkbox v-model="checkbox3">
-                {{ allSeasonOption }}
+              <app-checkbox v-for="(season, index) in seasonOptions" :key="index" v-model="selectedSeasons[index]">
+                {{ season.value }}
               </app-checkbox>
             </div>
           </div>
