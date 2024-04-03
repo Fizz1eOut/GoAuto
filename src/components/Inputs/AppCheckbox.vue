@@ -5,6 +5,10 @@ export default {
       type: [String, Number, Boolean, Array,],
       required: true,
     },
+    value: {
+      type: [String, Number, Boolean],
+      required: true,
+    }
   },
 
   emits: ['update:modelValue'],
@@ -30,7 +34,7 @@ export default {
 <template>
   <div>
     <label class="checkbox">
-      <input v-model="checked" type="checkbox">
+      <input v-model="checked" type="checkbox" :value="value">
       <div class="checkbox__checkmark"></div>
       <div class="checkbox__body"><slot /></div>
     </label>

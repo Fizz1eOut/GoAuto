@@ -70,7 +70,7 @@ export default defineComponent({
     },
 
     seasonOptions() {
-      const seasonOption = optionsData.find(option => option.title === 'Сезон');
+      const seasonOption = optionsData.find(option => option.id === 5);
       if (seasonOption) {
         const arr = this.findProductOptions(seasonOption.id);
         return arr;
@@ -79,7 +79,7 @@ export default defineComponent({
     },
 
     brandOptions() {
-      const brandOption = optionsData.find(option => option.title === 'Бренд');
+      const brandOption = optionsData.find(option => option.id === 4);
       if (brandOption) {
         const arr = this.findProductOptions(brandOption.id);
         return arr
@@ -149,9 +149,14 @@ export default defineComponent({
             </app-subtitle>
 
             <div class="tires-filter__content">
-              <!-- <app-checkbox v-for="(season, index) in seasonOptions" :key="index" v-model="selectedSeasons[index]">
+              <app-checkbox 
+                v-for="season in seasonOptions" 
+                :key="season.id" 
+                v-model="selectedSeasons"
+                :value="season.id"
+              >
                 {{ season.value }}
-              </app-checkbox> -->
+              </app-checkbox>
             </div>
           </div>
 
