@@ -86,6 +86,20 @@ export default defineComponent({
       }
       return []
     },
+
+
+    // Создание объекта query для использования в $router.push
+    queryParams() {
+      return {
+        width: this.selectedWidthTires,
+        profile: this.selectedProfileTires,
+        diameter: this.selectedDiameterTires,
+        seasons: this.selectedSeasons.join(','),
+        brands: this.selectedBrands.join(','),
+        priceFrom: this.priceFrom,
+        priceTo: this.priceTo
+      };
+    },
   },
 
   methods: {
@@ -104,6 +118,20 @@ export default defineComponent({
       });
 
        return Array.from(productOptions).map((value) => ({ id: value, value }));
+    },
+
+    // Применение текущих выбранных фильтров и обновление URL
+    applyFilters() {
+      const query = {};
+      if (this.selectedWidthTires) query.width = this.selectedWidthTires;
+      if (this.selectedProfileTires) query.profile = this.selectedProfileTires;
+      if (this.selectedDiameterTires) query.diameter = this.selectedDiameterTires;
+      if (this.selectedSeasons.length > 0) query.seasons = this.selectedSeasons.join(',');
+      if (this.selectedBrands.length > 0) query.brands = this.selectedBrands.join(',');
+      if (this.priceFrom) query.priceFrom = this.priceFrom;
+      if (this.priceTo) query.priceTo = this.priceTo;
+
+      this.$router.push({ query });
     }
   },
 });
@@ -197,7 +225,7 @@ export default defineComponent({
             </div>
           </div>
 
-          <app-button>
+          <app-button @click="applyFilters">
             Застосувати фільтри
           </app-button>
         </div>

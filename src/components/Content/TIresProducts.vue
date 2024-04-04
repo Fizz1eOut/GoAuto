@@ -10,26 +10,52 @@ export default defineComponent({
   components: {
     AppProduct,
     AppPagination
-},
+  },
 
   data() {
     return {
-      currentPage: 1, // Текущая страница пагинации
-      itemsPerPage: 6, // Количество элементов на странице
-      products: [] // Массив для хранения всех продуктов
+      currentPage: 1,
+      itemsPerPage: 6,
+      products: [],
+      filteredProducts: [], // Добавляем свойство для хранения отфильтрованных продуктов
     };
   },
 
   computed: {
-    paginatedProducts() { // Вычисляемое свойство для отображения продуктов на текущей странице
-      const startIndex = (this.currentPage - 1) * this.itemsPerPage; // Индекс начального элемента на текущей странице
-      const endIndex = startIndex + this.itemsPerPage; // Индекс конечного элемента на текущей странице
-      return this.products.slice(startIndex, endIndex); // Возвращаем продукты на текущей странице
+    paginatedProducts() {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      return this.filteredProducts.slice(startIndex, endIndex); // Используем отфильтрованные продукты для пагинации
     },
+  },
+
+  watch: {
+    '$route.query': 'updateFilteredProducts', // Следим за изменениями query и обновляем отфильтрованные продукты
   },
 
   created() {
     this.products = productsData.filter(item => item.category === 1);
+    this.updateFilteredProducts();
+  },
+
+  methods: {
+    updateFilteredProducts() { // Функция обновления отфильтрованных продуктов
+      const query = this.$route.query; // Получаем текущий query параметр маршрута
+      this.filteredProducts = this.products.filter(product => { // Фильтруем продукты на основе query параметров
+        return Object.keys(query).every(filterKey => { // Проверяем, что все ключи query параметров соответствуют условиям фильтрации
+          const selectedValues = query[filterKey].split(','); // Получаем выбранные значения фильтра
+          console.log(selectedValues);
+          if (filterKey === 'seasons' || filterKey === 'brands') { // Если ключ соответствует сезонам или брендам
+            return selectedValues.some(selectedValue => { // Проверяем, что хотя бы одно из выбранных значений соответствует опции продукта
+              return product.options.some(option => option.value === selectedValue);
+            });
+          } else { // Если ключ соответствует другим свойствам продукта
+            return selectedValues.includes(product[filterKey]); // Проверяем, что выбранные значения включают значение свойства продукта
+          }          
+        });
+      });
+      this.currentPage = 1; // При изменении отфильтрованных продуктов сбрасываем текущую страницу пагинации на первую
+    },
   },
 });
 </script>
@@ -43,7 +69,7 @@ export default defineComponent({
     </div>
     <app-pagination 
       v-model:currentPage="currentPage"
-      :total-items="products.length" 
+      :total-items="filteredProducts.length" 
       :items-per-page="itemsPerPage" 
     />
   </div>
