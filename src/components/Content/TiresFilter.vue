@@ -87,6 +87,10 @@ export default defineComponent({
       return []
     },
 
+    seasoneTitle() {
+      const title = optionsData.find(option => option.id === 5);
+      return title;
+    },
 
     // Создание объекта query для использования в $router.push
     queryParams() {
@@ -100,7 +104,8 @@ export default defineComponent({
         priceTo: this.priceTo
       };
     },
-  },
+    
+  },  
 
   methods: {
     findProductOptions(optionId) {
@@ -173,7 +178,7 @@ export default defineComponent({
 
           <div class="tires-filter__item">
             <app-subtitle>
-              Сезон
+              {{ seasoneTitle.title }}
             </app-subtitle>
 
             <div class="tires-filter__content">
