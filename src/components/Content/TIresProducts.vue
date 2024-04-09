@@ -44,6 +44,19 @@ export default defineComponent({
         // console.log(values);
         const option = optionsData.find(({ name }) => name === key); // ищем опцию по ключу quey-параметра (у опции должен совпадать name
         // console.log(option);
+
+        if (key === 'priceFrom' && parseFloat(product.price) < parseFloat(param)) {
+          // Если ключ параметра равен 'priceFrom' (цена от) и цена продукта меньше указанного значения,
+          // то возвращаем false, чтобы исключить продукт из результатов фильтрации.
+          return false;
+        }
+        
+        if (key === 'priceTo' && parseFloat(product.price) > parseFloat(param)) {
+          // Если ключ параметра равен 'priceTo' (цена до) и цена продукта больше указанного значения,
+          // то также возвращаем false, чтобы исключить продукт из результатов фильтрации.
+          return false;
+        }
+
         if (!option) { // если опция не существует, значит фильтр невалидный, пропускаем его
           return true;
         }
