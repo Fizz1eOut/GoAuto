@@ -9,7 +9,7 @@ export const router = createRouter({
   routes: [
     { path: '/', component: HomeView, name: 'HomeView'},
     { path: '/cart', component: CartView, name: 'CartView'},
-    { path: '/OrderSuccess', component: OrderSuccessView, name: 'OrderSuccessView'},
+    { path: '/order-success', component: OrderSuccessView, name: 'OrderSuccessView'},
     { path: '/tires', component: TiresView, name: 'TiresView'},
   ]
 });

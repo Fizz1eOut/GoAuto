@@ -1,6 +1,7 @@
 <script>
 import AppProduct from '@/components/Base/AppProduct.vue';
 import productsData from '@/api/products.json';
+import optionsData from '@/api/options.json';
 import { defineComponent } from 'vue';
 import AppPagination from '@/components/Base/AppPagination.vue'
 
@@ -27,24 +28,8 @@ export default defineComponent({
       return this.filteredProducts.slice(startIndex, endIndex); // Используем отфильтрованные продукты для пагинации
     },
 
-    filteredProducts() { // Функция обновления отфильтрованных продуктов
-      // const query = this.$route.query; // Получаем текущий query параметр маршрута
-      // // console.log(query);
-      // this.products.filter(product => { // Фильтруем продукты на основе query параметров
-      //   return Object.keys(query).every(filterKey => { // Проверяем, что все ключи query параметров соответствуют условиям фильтрации
-      //     const selectedValues = query[filterKey].split(','); // Получаем выбранные значения фильтра
-      //     if (filterKey === 'seasons' || filterKey === 'brands') { // Если ключ соответствует сезонам или брендам
-      //       return selectedValues.some(selectedValue => { // Проверяем, что хотя бы одно из выбранных значений соответствует опции продукта
-      //         return product.options.some(option => option.value === selectedValue);
-      //       });
-      //     } else { // Если ключ соответствует другим свойствам продукта
-      //       return selectedValues.includes(product[filterKey]); // Проверяем, что выбранные значения включают значение свойства продукта
-      //     }
-      //   });
-      // });
-      // // this.currentPage = 1; // При изменении отфильтрованных продуктов сбрасываем текущую страницу пагинации на первую
-
-      return 1
+    filteredProducts() {
+      return this.products.filter((product) => this.hasFilters(product));
     },
   },
 
@@ -52,9 +37,31 @@ export default defineComponent({
     this.products = productsData.filter(item => item.category === 1);
   },
 
-  // methods: {
+  methods: {
+    hasFilters(product) {
+      return Object.entries(this.$route.query).every(([key, param]) => { // проходимся в цикле по всем query-параметрам в формате [ключ, значение] const values = param.split(',');
+        const values = param.split(','); // собираем значения в массив, разбивая его по запятой const option = optionsData.find(({ name }) = name === key); 
+        // console.log(values);
+        const option = optionsData.find(({ name }) => name === key); // ищем опцию по ключу quey-параметра (у опции должен совпадать name
+        // console.log(option);
+        if (!option) { // если опция не существует, значит фильтр невалидный, пропускаем его
+          return true;
+        }
 
-  // },
+        const productOptions = product.options.find(({ id }) => id === option.id); // опция существует, значит ищем ее по id среди опций нашего товара
+        // console.log(productOptions);
+        if (!productOptions) {  // если не нашли - у товара отсутствует эта опция, под фильтрацию не попадает, сворачиваемся
+          return false;
+        }
+
+        // опция есть, значит проверяем, что у этого товара хотя бы одно из значений в массиве (values) присутствует 
+        // если опция - { "id": 5, "value": "Зимова"
+        // a values - ["Літня", "Зимова"]
+        // значит товар подходит
+        return values.some((value) => String(productOptions.value) === value);
+      });
+    }
+  },
 });
 </script>
 
@@ -74,6 +81,9 @@ export default defineComponent({
 </template>
 
 <style scoped>
+  .tires-products {
+    width: 100%;
+  }
   .tires-products__items {
     width: 100%;
     display: flex;
