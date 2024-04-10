@@ -4,20 +4,27 @@ import productsData from '@/api/products.json';
 import optionsData from '@/api/options.json';
 import { defineComponent } from 'vue';
 import AppPagination from '@/components/Base/AppPagination.vue'
+import AppSelect from '@/components/Inputs/AppSelect.vue';
 
 export default defineComponent({
   name: 'TiresProducts',
 
   components: {
     AppProduct,
-    AppPagination
-  },
+    AppPagination,
+    AppSelect
+},
 
   data() {
     return {
       currentPage: 1,
       itemsPerPage: 6,
       products: [],
+      sortOptions: [
+        { id: 1, value: 'Від дешевих до дорогих' },
+        { id: 2, value: 'Від дорогих до дешевих' }
+      ],
+      selectedSortOption: null
     };
   },
 
@@ -33,8 +40,15 @@ export default defineComponent({
     },
   },
 
+  watch: {
+    selectedSortOption(newValue) {
+      this.sortByPrice(newValue);
+    }
+  },
+
   created() {
     this.products = productsData.filter(item => item.category === 1);
+    this.selectedSortOption = this.sortOptions[0].id;
   },
 
   methods: {
@@ -73,13 +87,26 @@ export default defineComponent({
         // значит товар подходит
         return values.some((value) => String(productOptions.value) === value);
       });
-    }
+    },
+
+    sortByPrice(sortOptionId) {
+      if (sortOptionId === 1) {
+        this.products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      } else if (sortOptionId === 2) {
+        this.products.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      }
+    },
   },
 });
 </script>
 
 <template>
   <div class="tires-products">
+    <div class="tires__sort">
+      <div class="tires__text">Сортувати:</div>
+      <app-select v-model="selectedSortOption" :options="sortOptions" />
+    </div>
+
     <div class="tires-products__items">
       <div v-for="tiresProduct in paginatedProducts" :key="tiresProduct.id" class="tires-products__item">
         <app-product :product="tiresProduct" />
@@ -96,6 +123,20 @@ export default defineComponent({
 <style scoped>
   .tires-products {
     width: 100%;
+  }
+  .tires__sort {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    max-width: 400px;
+    width: 100%;
+  }
+  .tires__text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--color-black);
   }
   .tires-products__items {
     width: 100%;

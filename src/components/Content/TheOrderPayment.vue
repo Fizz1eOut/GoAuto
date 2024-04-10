@@ -34,7 +34,7 @@ export default defineComponent({
   },
   methods: {
     onSubmit() {
-      this.$router.push('/OrderSuccess');
+      this.$router.push('/order-success');
     }
   }
 });
