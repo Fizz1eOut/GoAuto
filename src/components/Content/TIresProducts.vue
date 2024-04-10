@@ -43,12 +43,13 @@ export default defineComponent({
   watch: {
     selectedSortOption(newValue) {
       this.sortByPrice(newValue);
+      localStorage.setItem('sort', newValue);
     }
   },
 
   created() {
     this.products = productsData.filter(item => item.category === 1);
-    this.selectedSortOption = this.sortOptions[0].id;
+    this.selectedSortOption = parseInt(localStorage.getItem('sort')) || this.sortOptions[0].id;
   },
 
   methods: {

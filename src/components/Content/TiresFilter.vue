@@ -87,7 +87,7 @@ export default defineComponent({
       return []
     },
 
-    seasoneTitle() {
+    seasonTitle() {
       const title = optionsData.find(option => option.id === 5);
       return title;
     },
@@ -107,7 +107,48 @@ export default defineComponent({
     
   },  
 
+  // Загрузка сохраненных фильтров из LocalStorage при создании компонента
+  created() {
+    // Получаем сохраненные фильтры из LocalStorage
+    const filters = JSON.parse(localStorage.getItem('filters'));
+
+    // Если есть сохраненные фильтры, инициализируем переменные компонента значениями из LocalStorage,
+    // в противном случае используем значения по умолчанию
+    if (filters) {
+      this.selectedWidthTires = filters.selectedWidthTires || 0;
+      this.selectedProfileTires = filters.selectedProfileTires || 0;
+      this.selectedDiameterTires = filters.selectedDiameterTires || 0;
+      this.selectedSeasons = filters.selectedSeasons || [];
+      this.selectedBrands = filters.selectedBrands || [];
+      this.priceFrom = filters.priceFrom || '';
+      this.priceTo = filters.priceTo || '';
+    }
+  },
+
   methods: {
+     // метод для сохранения выбранных фильтров в LocalStorage
+     saveFiltersToLocalStorage() {
+      // Формируем объект с выбранными фильтрами
+      const filters = {
+        selectedWidthTires: this.selectedWidthTires,
+        selectedProfileTires: this.selectedProfileTires,
+        selectedDiameterTires: this.selectedDiameterTires,
+        selectedSeasons: this.selectedSeasons,
+        selectedBrands: this.selectedBrands,
+        priceFrom: this.priceFrom,
+        priceTo: this.priceTo
+      };
+
+      // Сохраняем выбранные фильтры в LocalStorage
+      localStorage.setItem('filters', JSON.stringify(filters));
+    },
+
+    // метод для удаления фильтров из LocalStorage
+    removeFiltersFromLocalStorage() {
+      // Удаляем сохраненные фильтры из LocalStorage
+      localStorage.removeItem('filters');
+    },
+
     findProductOptions(optionId) {
       const productOptions = new Set();
       // console.log(productOptions)
@@ -127,6 +168,9 @@ export default defineComponent({
 
     // Применение текущих выбранных фильтров и обновление URL
     applyFilters() {
+      this.saveFiltersToLocalStorage(); // сохраняем выбранные фильтры перед применением
+
+      // Формируем объект с параметрами для URL
       const query = {};
       if (this.selectedWidthTires) query.width = this.selectedWidthTires;
       if (this.selectedProfileTires) query.profile = this.selectedProfileTires;
@@ -136,7 +180,23 @@ export default defineComponent({
       if (this.priceFrom) query.priceFrom = this.priceFrom;
       if (this.priceTo) query.priceTo = this.priceTo;
 
+      // Обновляем URL с новыми параметрами
       this.$router.push({ query });
+    },
+
+    // метод для снятия фильтров и удаления их из LocalStorage
+    clearFilters() {
+      // Сбрасываем значения фильтров на значения по умолчанию
+      this.selectedWidthTires = 0;
+      this.selectedProfileTires = 0;
+      this.selectedDiameterTires = 0;
+      this.selectedSeasons = [];
+      this.selectedBrands = [];
+      this.priceFrom = '';
+      this.priceTo = '';
+
+      this.removeFiltersFromLocalStorage(); // Удаляем сохраненные фильтры из LocalStorage
+      this.applyFilters(); // Применяем изменения к фильтрам
     }
   },
 });
@@ -178,7 +238,7 @@ export default defineComponent({
 
           <div class="tires-filter__item">
             <app-subtitle>
-              {{ seasoneTitle.title }}
+              {{ seasonTitle.title }}
             </app-subtitle>
 
             <div class="tires-filter__content">
