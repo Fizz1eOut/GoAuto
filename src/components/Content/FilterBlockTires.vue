@@ -102,7 +102,20 @@ export default defineComponent({
       });
 
        return Array.from(productOptions).map((value) => ({ id: value, value }));
-    }
+    },
+
+    applyFilters() {
+      // Формируем объект с параметрами для URL
+      const query = {};
+      if (this.selectedWidthTires) query.width = this.selectedWidthTires;
+      if (this.selectedProfileTires) query.profile = this.selectedProfileTires;
+      if (this.selectedDiameterTires) query.diameter = this.selectedDiameterTires;
+      if (this.selectedSeasonTires) query.season = this.selectedSeasonTires;
+      if (this.selectedBrandTires) query.brand = this.selectedBrandTires;
+      
+      // Переход на страницу с фильтрами и передача параметров через URL
+      this.$router.push({ path: '/tires', query });
+    },
   },
 });
 </script>
@@ -138,7 +151,7 @@ export default defineComponent({
               label-key="value"
             />
 
-            <AppButton>
+            <AppButton @click="applyFilters">
               Підібрати шини
             </AppButton>
           </div>
