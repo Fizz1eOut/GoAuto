@@ -114,10 +114,12 @@ export default defineComponent({
       </div>
     </div>
     <app-pagination 
+      v-if="filteredProducts.length >= 1"
       v-model:currentPage="currentPage"
       :total-items="filteredProducts.length" 
       :items-per-page="itemsPerPage" 
     />
+    <div v-else class="tires-products__text">Вибачте, немає в наявності</div>
   </div>
 </template>
 
@@ -140,6 +142,7 @@ export default defineComponent({
     color: var(--color-black);
   }
   .tires-products__items {
+    margin-top: 10px;
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -150,5 +153,15 @@ export default defineComponent({
   .tires-products__item {
     max-width: 260px;
     width: 100%;
+  }
+  .tires-products__text {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    color: var(--color-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
   }
 </style>
