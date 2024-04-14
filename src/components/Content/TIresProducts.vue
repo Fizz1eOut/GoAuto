@@ -53,6 +53,32 @@ export default defineComponent({
   },
 
   methods: {
+    checkFilter(product, key, param) {
+      if (key === 'priceFrom') {
+        // Если ключ фильтрации - 'priceFrom' (цена от),
+        // и параметр является числом, то проверяем, что цена товара больше или равна указанной цене
+        if (!isNaN(parseFloat(param))) {
+          return parseFloat(product.price) >= parseFloat(param);
+        } else {
+          // Если параметр не является числом, не применяем фильтр и возвращаем true
+          return true;
+        }
+      } else if (key === 'priceTo') {
+        // Если ключ фильтрации - 'priceTo' (цена до),
+        // и параметр является числом, то проверяем, что цена товара меньше или равна указанной цене
+        if (!isNaN(parseFloat(param))) {
+          return parseFloat(product.price) <= parseFloat(param);
+        } else {
+          // Если параметр не является числом, не применяем фильтр и возвращаем true
+          return true;
+        }
+      } else {
+        // Если ключ фильтрации неизвестен или не требует специальной обработки,
+        // всегда возвращаем true
+        return true; // По умолчанию возвращаем true для неизвестных фильтров
+      }
+    },
+
     hasFilters(product) {
       return Object.entries(this.$route.query).every(([key, param]) => { // проходимся в цикле по всем query-параметрам в формате [ключ, значение] const values = param.split(',');
         const values = param.split(','); // собираем значения в массив, разбивая его по запятой const option = optionsData.find(({ name }) = name === key); 
@@ -60,15 +86,10 @@ export default defineComponent({
         const option = optionsData.find(({ name }) => name === key); // ищем опцию по ключу quey-параметра (у опции должен совпадать name
         // console.log(option);
 
-        if (key === 'priceFrom' && parseFloat(product.price) < parseFloat(param)) {
-          // Если ключ параметра равен 'priceFrom' (цена от) и цена продукта меньше указанного значения,
-          // то возвращаем false, чтобы исключить продукт из результатов фильтрации.
-          return false;
-        }
-        
-        if (key === 'priceTo' && parseFloat(product.price) > parseFloat(param)) {
-          // Если ключ параметра равен 'priceTo' (цена до) и цена продукта больше указанного значения,
-          // то также возвращаем false, чтобы исключить продукт из результатов фильтрации.
+       // Проверяем фильтр, используя функцию checkFilter
+        if (!this.checkFilter(product, key, param)) {
+          // Если товар не удовлетворяет условиям фильтрации, возвращаем false,
+          // чтобы исключить его из результатов фильтрации
           return false;
         }
 
