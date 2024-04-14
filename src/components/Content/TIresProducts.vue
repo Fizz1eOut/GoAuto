@@ -15,21 +15,16 @@ export default defineComponent({
     AppSelect
   },
 
-  beforeRouteUpdate(to, from, next) {
-    this.sortByPrice();
-    next();
-  },
-
   data() {
     return {
       currentPage: 1,
       itemsPerPage: 6,
       products: [],
       sortOptions: [
-        { id: 1, value: 'Від дешевих до дорогих' },
-        { id: 2, value: 'Від дорогих до дешевих' }
+        { id: 1, value: 'Від дешевих до дорогих', sortOrder: 'asc' },
+        { id: 2, value: 'Від дорогих до дешевих', sortOrder: 'desc' }
       ],
-      selectedSortOption: parseInt(this.$route.query.sort) || 1
+      selectedSortOption: this.$route.query.sort || 'asc'
     };
   },
 
@@ -43,12 +38,21 @@ export default defineComponent({
     filteredProducts() {
       return this.products.filter((product) => this.hasFilters(product));
     },
+
+    sortedProducts() {
+      const sorted = [...this.products]; // Создаем копию исходного массива товаров
+      if (this.selectedSortOption === 'asc') {
+        return sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      } else if (this.selectedSortOption === 'desc') {
+        return sorted.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      }
+      return sorted;
+    },
   },
 
   
   created() {
     this.products = productsData.filter(item => item.category === 1);
-    this.sortByPrice();
   },
 
   methods: {
@@ -110,19 +114,11 @@ export default defineComponent({
       });
     },
 
-    sortByPrice() {
-      if (this.selectedSortOption === 1) {
-        this.products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-      } else if (this.selectedSortOption === 2) {
-        this.products.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-      }
-    },
-
     updateSortOption(optionId) {
-      // Обновляем параметр запроса sort исходя из выбранной опции
-      this.$router.push({ query: { ...this.$route.query, sort: optionId } });
-      // Вызываем метод sortByPrice() при изменении выбранной опции сортировки
-      this.sortByPrice();
+      // Получаем текстовое обозначение сортировки из выбранной опции
+      const sortOrder = this.sortOptions.find(option => option.id === optionId).sortOrder;
+      // Обновляем параметр запроса sort с текстовым обозначением сортировки вместо id
+      this.$router.push({ query: { ...this.$route.query, sort: sortOrder } });
     }
   },
 });
