@@ -13,7 +13,12 @@ export default defineComponent({
     AppProduct,
     AppPagination,
     AppSelect
-},
+  },
+
+  beforeRouteUpdate(to, from, next) {
+    this.sortByPrice();
+    next();
+  },
 
   data() {
     return {
@@ -24,7 +29,7 @@ export default defineComponent({
         { id: 1, value: 'Від дешевих до дорогих' },
         { id: 2, value: 'Від дорогих до дешевих' }
       ],
-      selectedSortOption: null
+      selectedSortOption: parseInt(this.$route.query.sort) || 1
     };
   },
 
@@ -40,16 +45,10 @@ export default defineComponent({
     },
   },
 
-  watch: {
-    selectedSortOption(newValue) {
-      this.sortByPrice(newValue);
-      localStorage.setItem('sort', newValue);
-    }
-  },
-
+  
   created() {
     this.products = productsData.filter(item => item.category === 1);
-    this.selectedSortOption = parseInt(localStorage.getItem('sort')) || this.sortOptions[0].id;
+    this.sortByPrice();
   },
 
   methods: {
@@ -111,13 +110,20 @@ export default defineComponent({
       });
     },
 
-    sortByPrice(sortOptionId) {
-      if (sortOptionId === 1) {
+    sortByPrice() {
+      if (this.selectedSortOption === 1) {
         this.products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-      } else if (sortOptionId === 2) {
+      } else if (this.selectedSortOption === 2) {
         this.products.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
       }
     },
+
+    updateSortOption(optionId) {
+      // Обновляем параметр запроса sort исходя из выбранной опции
+      this.$router.push({ query: { ...this.$route.query, sort: optionId } });
+      // Вызываем метод sortByPrice() при изменении выбранной опции сортировки
+      this.sortByPrice();
+    }
   },
 });
 </script>
@@ -126,7 +132,7 @@ export default defineComponent({
   <div class="tires-products">
     <div class="tires__sort">
       <div class="tires__text">Сортувати:</div>
-      <app-select v-model="selectedSortOption" :options="sortOptions" />
+      <app-select v-model="selectedSortOption" :options="sortOptions" @change="updateSortOption(selectedSortOption)" />
     </div>
 
     <div class="tires-products__items">
