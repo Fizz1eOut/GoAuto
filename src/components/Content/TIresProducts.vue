@@ -21,36 +21,38 @@ export default defineComponent({
       itemsPerPage: 6,
       products: [],
       sortOptions: [
-        { id: 1, value: 'Від дешевих до дорогих', sortOrder: 'asc' },
-        { id: 2, value: 'Від дорогих до дешевих', sortOrder: 'desc' }
+        { id: 'asc', value: 'Від дешевих до дорогих' },
+        { id: 'desc', value: 'Від дорогих до дешевих'}
       ],
       selectedSortOption: this.$route.query.sort || 'asc'
     };
   },
 
   computed: {
+    // Вычисляемое свойство для отображения товаров на текущей странице с учетом пагинации
     paginatedProducts() {
-      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-      const endIndex = startIndex + this.itemsPerPage;
-      return this.filteredProducts.slice(startIndex, endIndex); // Используем отфильтрованные продукты для пагинации
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage; // Определение индекса начального товара на текущей странице
+      const endIndex = startIndex + this.itemsPerPage; // Определение индекса конечного товара на текущей странице
+      return this.sortedProducts.slice(startIndex, endIndex); // Возвращаем отсортированные товары с учетом пагинации
     },
 
+    // Вычисляемое свойство для отфильтрованных товаров
     filteredProducts() {
-      return this.products.filter((product) => this.hasFilters(product));
+      return this.products.filter((product) => this.hasFilters(product)); // Применяем фильтры к списку товаров
     },
 
+    // Вычисляемое свойство для отсортированных товаров с учетом выбранной пользователем опции сортировки
     sortedProducts() {
-      const sorted = [...this.products]; // Создаем копию исходного массива товаров
+      const sorted = [...this.filteredProducts]; // Копируем отфильтрованные товары для безопасности
       if (this.selectedSortOption === 'asc') {
-        return sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        return sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price)); // Сортируем по возрастанию цены
       } else if (this.selectedSortOption === 'desc') {
-        return sorted.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+        return sorted.sort((a, b) => parseFloat(b.price) - parseFloat(a.price)); // Сортируем по убыванию цены
       }
-      return sorted;
+      return sorted; // Возвращаем отсортированные товары
     },
   },
 
-  
   created() {
     this.products = productsData.filter(item => item.category === 1);
   },
@@ -114,11 +116,10 @@ export default defineComponent({
       });
     },
 
+    // Метод для обновления опции сортировки и обновления URL-адреса страницы
     updateSortOption(optionId) {
-      // Получаем текстовое обозначение сортировки из выбранной опции
-      const sortOrder = this.sortOptions.find(option => option.id === optionId).sortOrder;
-      // Обновляем параметр запроса sort с текстовым обозначением сортировки вместо id
-      this.$router.push({ query: { ...this.$route.query, sort: sortOrder } });
+      const sortOrder = this.sortOptions.find(option => option.id === optionId).id; // Получаем выбранный порядок сортировки
+      this.$router.push({ query: { ...this.$route.query, sort: sortOrder } }); // Обновляем параметр запроса sort в URL-адресе
     }
   },
 });
@@ -137,9 +138,9 @@ export default defineComponent({
       </div>
     </div>
     <app-pagination 
-      v-if="filteredProducts.length >= 1"
+      v-if="sortedProducts.length >= 1"
       v-model:currentPage="currentPage"
-      :total-items="filteredProducts.length" 
+      :total-items="sortedProducts.length" 
       :items-per-page="itemsPerPage" 
     />
     <div v-else class="tires-products__text">Вибачте, немає в наявності</div>
