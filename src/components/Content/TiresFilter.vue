@@ -20,7 +20,7 @@ export default defineComponent({
     AppSelect,
     AppCheckbox,
     AppInput,
-    AppButton
+    AppButton,
 },
 
   data() {
@@ -92,20 +92,39 @@ export default defineComponent({
       return title;
     },
 
+    brandTitle() {
+      const title = optionsData.find(option => option.id === 4);
+      return title;
+    },
+
     // Создание объекта query для использования в $router.push
     queryParams() {
       return {
         width: this.selectedWidthTires,
         profile: this.selectedProfileTires,
         diameter: this.selectedDiameterTires,
-        seasons: this.selectedSeasons.join(','),
-        brands: this.selectedBrands.join(','),
+        season: this.selectedSeasons.join(','),
+        brand: this.selectedBrands.join(','),
         priceFrom: this.priceFrom,
         priceTo: this.priceTo
       };
     },
     
   },  
+
+  created() {
+    // Получаем параметры запроса из URL
+    const params = this.$route.query;
+    
+    // Устанавливаем значения переменным данных на основе параметров запроса
+    this.selectedWidthTires = params.width || 0;
+    this.selectedProfileTires = params.profile || 0;
+    this.selectedDiameterTires = params.diameter || 0;
+    this.selectedSeasons = params.season ? params.season.split(',') : [];
+    this.selectedBrands = params.brand ? params.brand.split(',') : [];
+    this.priceFrom = params.priceFrom || '';
+    this.priceTo = params.priceTo || '';
+  },
 
   methods: {
     findProductOptions(optionId) {
@@ -125,26 +144,29 @@ export default defineComponent({
        return Array.from(productOptions).map((value) => ({ id: value, value }));
     },
 
-    // Применение текущих выбранных фильтров и обновление URL
     applyFilters() {
+      // Создаем объект для хранения параметров запроса
       const query = {};
+
+      // Устанавливаем параметры запроса на основе текущих значений переменных данных
       if (this.selectedWidthTires) query.width = this.selectedWidthTires;
       if (this.selectedProfileTires) query.profile = this.selectedProfileTires;
       if (this.selectedDiameterTires) query.diameter = this.selectedDiameterTires;
-      if (this.selectedSeasons.length > 0) query.seasons = this.selectedSeasons.join(',');
-      if (this.selectedBrands.length > 0) query.brands = this.selectedBrands.join(',');
+      if (this.selectedSeasons.length > 0) query.season = this.selectedSeasons.join(',');
+      if (this.selectedBrands.length > 0) query.brand = this.selectedBrands.join(',');
       if (this.priceFrom) query.priceFrom = this.priceFrom;
       if (this.priceTo) query.priceTo = this.priceTo;
 
+      // Обновляем URL с новыми параметрами запроса
       this.$router.push({ query });
-    }
+    },
   },
 });
 </script>
 
 <template>
   <app-underlay>
-    <app-container>
+    <app-container> 
       <div class="tires-filter">
         <div class="tires-filter__body">
           <div class="tires-filter__item">
@@ -195,7 +217,7 @@ export default defineComponent({
 
           <div class="tires-filter__item">
             <app-subtitle>
-              Бренд
+              {{ brandTitle.title }}
             </app-subtitle>
 
             <div class="tires-filter__content">
