@@ -34,7 +34,7 @@ export default defineComponent({
     </breadcrumb-item>
 
     <breadcrumb-item>
-      <router-link to="/cart">
+      <router-link to="/tires">
         <app-link class="active-link">
           Шини
         </app-link>

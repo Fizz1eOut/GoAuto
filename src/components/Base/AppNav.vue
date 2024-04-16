@@ -47,9 +47,11 @@ export default defineComponent({
       </li>
 
       <li class="nav__item">
-        <app-link>
-          Диски
-        </app-link>
+        <router-link to="/rims">
+          <app-link>
+            Диски
+          </app-link>
+        </router-link>
       </li>
 
       <li class="nav__item">

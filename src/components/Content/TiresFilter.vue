@@ -87,14 +87,14 @@ export default defineComponent({
       return []
     },
 
-    seasonTitle() {
-      const title = optionsData.find(option => option.id === 5);
-      return title;
+    season() {
+      const option = optionsData.find(option => option.id === 5);
+      return option;
     },
 
-    brandTitle() {
-      const title = optionsData.find(option => option.id === 4);
-      return title;
+    brand() {
+      const option = optionsData.find(option => option.id === 4);
+      return option;
     },
 
     // Создание объекта query для использования в $router.push
@@ -200,7 +200,7 @@ export default defineComponent({
 
           <div class="tires-filter__item">
             <app-subtitle>
-              {{ seasonTitle.title }}
+              {{ season.title }}
             </app-subtitle>
 
             <div class="tires-filter__content">
@@ -217,7 +217,7 @@ export default defineComponent({
 
           <div class="tires-filter__item">
             <app-subtitle>
-              {{ brandTitle.title }}
+              {{ brand.title }}
             </app-subtitle>
 
             <div class="tires-filter__content">
