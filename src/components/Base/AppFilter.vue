@@ -2,8 +2,6 @@
 import AppContainer from '@/components/Base/AppContainer.vue';
 import AppUnderlay from '@/components/Base/AppUnderlay.vue';
 import AppSubtitle from '@/components/Base/AppSubtitle.vue';
-// import optionsData from '@/api/options.json';
-// import productsData from '@/api/products.json';
 import { defineComponent } from 'vue';
 import AppButton from '@/components/Base/AppButton.vue';
 
@@ -17,29 +15,6 @@ export default defineComponent({
     AppButton
   },
 
-  props: {
-    checkboxOptions: {
-      type: Array,
-      default: () => []
-    },
-    selectOptions: {
-      type: Array,
-      default: () => []
-    }
-  },
-
-  // data() {
-  //   return {
-  //   };
-  // },
-
-  // computed: {
-    
-  // },  
-
-  // methods: {
-    
-  // },
 });
 </script>
 
@@ -56,7 +31,7 @@ export default defineComponent({
             <slot />
           </div>
 
-          <app-button @click="applyFilters">
+          <app-button>
             Застосувати фільтри
           </app-button>
         </div>
