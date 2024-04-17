@@ -11,7 +11,7 @@ export default defineComponent({
 
   props: {
     options: {
-      type: [String, Number, Array, Object, Boolean],
+      type: Array,
       required: true
     },
     modelValue: {
@@ -46,12 +46,21 @@ export default defineComponent({
 </script>
 
 <template>
-  <app-checkbox 
-    v-model="selectedValue"
-    :options="options"
-  />
+  <div>
+    <app-checkbox 
+      v-for="option in options"
+      :key="option.id"
+      v-model="selectedValue"
+      :value="option.id"
+      class="filter__checkbox"
+    >
+      {{ option.value }}
+    </app-checkbox>
+  </div>
 </template>
 
 <style scoped>
-
+  .filter__checkbox:not(:last-child) {
+    margin-bottom: 10px;
+  }
 </style>

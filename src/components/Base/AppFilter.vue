@@ -15,6 +15,13 @@ export default defineComponent({
     AppButton
   },
 
+  emits: ['search'],
+
+  methods: {
+    buttonSearch() {
+      this.$emit('search');
+    }
+  },
 });
 </script>
 
@@ -31,7 +38,7 @@ export default defineComponent({
             <slot />
           </div>
 
-          <app-button>
+          <app-button @click="buttonSearch">
             Застосувати фільтри
           </app-button>
         </div>

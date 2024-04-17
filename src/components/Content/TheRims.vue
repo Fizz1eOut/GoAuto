@@ -5,6 +5,7 @@ import TiresProducts from '@/components/Content/TiresProducts.vue';
 import AppFilter from '@/components/Base/AppFilter.vue';
 import FilterCheckbox from '@/components/Content/FilterCheckbox.vue';
 import FilterSelect from '@/components/Content/FilterSelect.vue';
+import AppSubtitle from '@/components/Base/AppSubtitle.vue';
 import optionsData from '@/api/options.json';
 import productsData from '@/api/products.json';
 import { defineComponent } from 'vue';
@@ -19,17 +20,19 @@ export default defineComponent({
     AppFilter,
     FilterCheckbox,
     FilterSelect,
+    AppSubtitle
 },
 
 data() {
-    return {
-      rebalancing: 0,
-      et: 0,
-      diameter: 0,
-      width: 0,
-      brand: 0,
-    };
-  },
+  return {
+    rebalancing: 0,
+    et: 0,
+    diameter: 0,
+    width: 0,
+    brand: 0,
+    selectedBrands: [],
+  };
+},
   
   computed: {
     rebalancingOptions() {
@@ -77,15 +80,18 @@ data() {
     },
 
     brandOptions() {
-      const brandOption = optionsData.find(option => option.title === 'Бренд');
+      const brandOption = optionsData.find(option => option.id === 4);
       if (brandOption) {
         const arr = this.findProductOptions(brandOption.id);
-        // console.log(arr);
-        arr.unshift({ id: 0,  value: "Виберіть бренд"});
-        return arr;
+        return arr
       }
-      return [];
+      return []
     },
+
+    brandOption() {
+      const option = optionsData.find(option => option.id === 4);
+      return option;
+    }
   }, 
 
   methods: {
@@ -104,8 +110,11 @@ data() {
       });
 
        return Array.from(productOptions).map((value) => ({ id: value, value }));
-    }
-  },
+    },
+    buttonAlert() {
+      alert('Hell World');
+    },
+  }
 });
 </script>
 
@@ -117,13 +126,15 @@ data() {
       </app-title>
 
       <div class="tires__items">
-        <app-filter>
-          <filter-checkbox />
-          <filter-select v-model="rebalancing" :options="rebalancingOptions" />
-          <filter-select v-model="et" :options="etOptions" />
-          <filter-select v-model="diameter" :options="diameterOptions" />
-          <filter-select v-model="width" :options="widthOptions" />
-          <filter-select v-model="brand" :options="brandOptions" />
+        <app-filter @search="buttonAlert">
+          <filter-select v-model="rebalancing" :options="rebalancingOptions" class="filter__item" />
+          <filter-select v-model="et" :options="etOptions" class="filter__item" />
+          <filter-select v-model="diameter" :options="diameterOptions" class="filter__item" />
+          <filter-select v-model="width" :options="widthOptions" class="filter__item" />
+          <app-subtitle class="subtitle">
+            {{ brandOption.title }}
+          </app-subtitle>
+          <filter-checkbox v-model="selectedBrands" :options="brandOptions" class="filter__item" />
         </app-filter>
 
         <tires-products />
@@ -133,11 +144,15 @@ data() {
 </template>
 
 <style scoped>
-.tires__items {
-  margin-top: 30px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
-}
+  .tires__items {
+    margin-top: 30px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .subtitle {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
 </style>

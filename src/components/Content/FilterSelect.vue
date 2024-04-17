@@ -46,12 +46,16 @@ export default defineComponent({
 </script>
 
 <template>
-  <app-select 
-    v-model="selectedValue"
-    :options="options"
-  />
+  <div class="filter__select">
+    <app-select 
+      v-model="selectedValue"
+      :options="options"
+    />
+  </div>
 </template>
 
 <style scoped>
-
+  .filter__select:not(:last-child) {
+    margin-bottom: 10px;
+  }
 </style>
