@@ -1,5 +1,6 @@
 <script>
 import AppCheckbox from '@/components/Inputs/AppCheckbox.vue';
+import FilterQuery from '@/components/Content/FilterQuery.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -7,6 +8,7 @@ export default defineComponent({
 
   components: {
     AppCheckbox,
+    FilterQuery,
   },
 
   props: {
@@ -17,7 +19,7 @@ export default defineComponent({
     modelValue: {
       type: [String, Number, Array, Object, Boolean],
       required: true
-    }
+    },
   },
 
   emits: ['update:modelValue'],
@@ -47,15 +49,17 @@ export default defineComponent({
 
 <template>
   <div>
-    <app-checkbox 
-      v-for="option in options"
-      :key="option.id"
-      v-model="selectedValue"
-      :value="option.id"
-      class="filter__checkbox"
-    >
-      {{ option.value }}
-    </app-checkbox>
+    <filter-query v-slot="{ model }" :name="name">
+      <app-checkbox 
+        v-for="option in options"
+        :key="option.id"
+        v-model="selectedValue"
+        :value="option.id"
+        class="filter__checkbox"
+      >
+        {{ option.value }}
+      </app-checkbox>
+    </filter-query>
   </div>
 </template>
 

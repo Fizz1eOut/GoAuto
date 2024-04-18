@@ -8,11 +8,36 @@ export default defineComponent({
     
   },
 
-  // data() {
-  //   return {
-      
-  //   }
-  // },
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    query: {
+      type: Object,
+      required: true
+    }
+  },
+
+  emits: ['update:model'],
+
+  data() {
+    return {
+
+    }
+  },
+
+
+  computed: {
+    model: {
+      get() {
+        return this.query[this.name];
+      },
+      set(value) {
+        this.$emit('update:model', value);
+      }
+    }
+  },
 
   // methods: {
     
@@ -21,7 +46,9 @@ export default defineComponent({
 </script>
 
 <template>
-d
+  <div class="filter__query">
+    <slot :model="model" />
+  </div>
 </template>
 
 <style scoped>

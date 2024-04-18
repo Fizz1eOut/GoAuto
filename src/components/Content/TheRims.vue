@@ -20,7 +20,7 @@ export default defineComponent({
     AppFilter,
     FilterCheckbox,
     FilterSelect,
-    AppSubtitle
+    AppSubtitle,
 },
 
 data() {
@@ -127,14 +127,16 @@ data() {
 
       <div class="tires__items">
         <app-filter @search="buttonAlert">
-          <filter-select v-model="rebalancing" :options="rebalancingOptions" class="filter__item" />
-          <filter-select v-model="et" :options="etOptions" class="filter__item" />
-          <filter-select v-model="diameter" :options="diameterOptions" class="filter__item" />
-          <filter-select v-model="width" :options="widthOptions" class="filter__item" />
+          <filter-select v-model="rebalancing" :options="rebalancingOptions" />
+          <filter-select v-model="et" :options="etOptions" />
+          <filter-select v-model="diameter" :options="diameterOptions" />
+          <filter-select v-model="width" :options="widthOptions" />
+
           <app-subtitle class="subtitle">
             {{ brandOption.title }}
           </app-subtitle>
-          <filter-checkbox v-model="selectedBrands" :options="brandOptions" class="filter__item" />
+
+          <filter-checkbox v-model="selectedBrands" :options="brandOptions" />
         </app-filter>
 
         <tires-products />

@@ -1,5 +1,6 @@
 <script>
 import AppSelect from '@/components/Inputs/AppSelect.vue';
+import FilterQuery from '@/components/Content/FilterQuery.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -7,6 +8,7 @@ export default defineComponent({
 
   components: {
     AppSelect,
+    FilterQuery,
   },
 
   props: {
@@ -47,10 +49,12 @@ export default defineComponent({
 
 <template>
   <div class="filter__select">
-    <app-select 
-      v-model="selectedValue"
-      :options="options"
-    />
+    <filter-query>
+      <app-select 
+        v-model="selectedValue"
+        :options="options"
+      />
+    </filter-query>
   </div>
 </template>
 
