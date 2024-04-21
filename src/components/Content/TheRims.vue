@@ -1,7 +1,7 @@
 <script>
 import AppContainer from '@/components/Base/AppContainer.vue';
 import AppTitle from '@/components/Base/AppTitle.vue';
-import TiresProducts from '@/components/Content/TiresProducts.vue';
+import AppFilterProducts from '@/components/Base/AppFilterProducts.vue';
 import AppFilter from '@/components/Base/AppFilter.vue';
 import FilterCheckbox from '@/components/Content/FilterCheckbox.vue';
 import FilterSelect from '@/components/Content/FilterSelect.vue';
@@ -16,7 +16,7 @@ export default defineComponent({
   components: {
     AppContainer,
     AppTitle,
-    TiresProducts,
+    AppFilterProducts,
     AppFilter,
     FilterCheckbox,
     FilterSelect,
@@ -39,7 +39,7 @@ data() {
       const rebalancingOption = optionsData.find(option => option.title === 'Разболтовка');
       if (rebalancingOption) {
         const arr = this.findProductOptions(rebalancingOption.id);
-        // console.log(arr);
+        console.log(arr);
         arr.unshift({ id: 0,  value: "Виберіть разболтовку"});
         return arr;
       }
@@ -111,7 +111,7 @@ data() {
 
        return Array.from(productOptions).map((value) => ({ id: value, value }));
     },
-    buttonAlert() {
+    applyFilters() {
       alert('Hell World');
     },
   }
@@ -126,20 +126,20 @@ data() {
       </app-title>
 
       <div class="tires__items">
-        <app-filter @search="buttonAlert">
-          <filter-select v-model="rebalancing" :options="rebalancingOptions" />
-          <filter-select v-model="et" :options="etOptions" />
-          <filter-select v-model="diameter" :options="diameterOptions" />
-          <filter-select v-model="width" :options="widthOptions" />
+        <app-filter @apply="applyFilters">
+          <filter-select v-model="rebalancing" :options="rebalancingOptions" name="bolt-pattern" />
+          <filter-select v-model="et" :options="etOptions" name="et" />
+          <filter-select v-model="diameter" :options="diameterOptions" name="diameter" />
+          <filter-select v-model="width" :options="widthOptions" name="width-rims" />
 
           <app-subtitle class="subtitle">
             {{ brandOption.title }}
           </app-subtitle>
 
-          <filter-checkbox v-model="selectedBrands" :options="brandOptions" />
+          <filter-checkbox v-model="selectedBrands" :options="brandOptions" name="brand" />
         </app-filter>
 
-        <tires-products />
+        <app-filter-products />
       </div>
     </app-container>
   </div>

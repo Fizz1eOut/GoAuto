@@ -5,57 +5,33 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'FilterCheckbox',
-
   components: {
     AppCheckbox,
     FilterQuery,
   },
-
   props: {
     options: {
       type: Array,
-      required: true
+      required: true,
     },
-    modelValue: {
-      type: [String, Number, Array, Object, Boolean],
-      required: true
+    name: {
+      type: String,
+      required: true,
     },
   },
-
-  emits: ['update:modelValue'],
-  
-  data() {
-    return {
-      
-    }
-  },
-
-  computed: {
-    selectedValue: {
-      get() {
-        return this.modelValue;
-      },
-      set(newValue) {
-        this.$emit('update:modelValue', newValue);
-      }
-    }
-  },
-
-  methods: {
-    
-  }
 });
 </script>
 
 <template>
   <div>
-    <filter-query v-slot="{ model }" :name="name">
+    <filter-query v-slot="{ value, update }" :name="name">
       <app-checkbox 
         v-for="option in options"
         :key="option.id"
-        v-model="selectedValue"
+        :model-value="value"
         :value="option.id"
         class="filter__checkbox"
+        @update:model-value="update"
       >
         {{ option.value }}
       </app-checkbox>

@@ -6,7 +6,7 @@ export default defineComponent({
 
   props: {
     modelValue: {
-      type: [String, Number],
+      type: [Array, String, Number, Object],
       default: null
     },
     options: {
@@ -33,7 +33,7 @@ export default defineComponent({
   },
 
   emits: ['update:modelValue'],
-
+  
   computed: {
     selectedOption: {
       get() {

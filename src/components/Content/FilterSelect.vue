@@ -13,26 +13,13 @@ export default defineComponent({
 
   props: {
     options: {
-      type: [String, Number, Array, Object, Boolean],
-      required: true
+      type: Array,
+      required: true,
     },
-    modelValue: {
-      type: [String, Number, Array, Object, Boolean],
-      required: true
-    }
-  },
-
-  emits: ['update:modelValue'],
-
-  computed: {
-    selectedValue: {
-      get() {
-        return this.modelValue;
-      },
-      set(newValue) {
-        this.$emit('update:modelValue', newValue);
-      }
-    }
+    name: {
+      type: String,
+      required: true,
+    },
   },
 
   // data() {
@@ -49,10 +36,11 @@ export default defineComponent({
 
 <template>
   <div class="filter__select">
-    <filter-query>
+    <filter-query v-slot="{ value, update }" :name="name">
       <app-select 
-        v-model="selectedValue"
         :options="options"
+        :model-value="value"
+        @update:model-value="update"
       />
     </filter-query>
   </div>

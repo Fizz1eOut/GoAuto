@@ -86,7 +86,8 @@ export default defineComponent({
 
     hasFilters(product) {
       return Object.entries(this.$route.query).every(([key, param]) => { // проходимся в цикле по всем query-параметрам в формате [ключ, значение] const values = param.split(',');
-        const values = param.split(','); // собираем значения в массив, разбивая его по запятой const option = optionsData.find(({ name }) = name === key); 
+        // const values = param.split(','); // собираем значения в массив, разбивая его по запятой const option = optionsData.find(({ name }) = name === key);
+        const values = Array.isArray(param) ? param : [param];
         // console.log(values);
         const option = optionsData.find(({ name }) => name === key); // ищем опцию по ключу quey-параметра (у опции должен совпадать name
         // console.log(option);
@@ -112,7 +113,9 @@ export default defineComponent({
         // если опция - { "id": 5, "value": "Зимова"
         // a values - ["Літня", "Зимова"]
         // значит товар подходит
-        return values.some((value) => String(productOptions.value) === value);
+        // return values.some((value) => String(productOptions.value) === value);
+
+        return values.length <= 0 || values.some((value) => String(productOptions.value) === value);
       });
     },
 
