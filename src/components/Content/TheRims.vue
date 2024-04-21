@@ -139,7 +139,7 @@ data() {
           <filter-checkbox v-model="selectedBrands" :options="brandOptions" name="brand" />
         </app-filter>
 
-        <app-filter-products />
+        <app-filter-products :category="2" />
       </div>
     </app-container>
   </div>
