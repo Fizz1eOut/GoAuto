@@ -71,18 +71,12 @@ export default defineComponent({
         // и параметр является числом, то проверяем, что цена товара больше или равна указанной цене
         if (!isNaN(parseFloat(param))) {
           return parseFloat(product.price) >= parseFloat(param);
-        } else {
-          // Если параметр не является числом, не применяем фильтр и возвращаем true
-          return true;
         }
       } else if (key === 'priceTo') {
         // Если ключ фильтрации - 'priceTo' (цена до),
         // и параметр является числом, то проверяем, что цена товара меньше или равна указанной цене
         if (!isNaN(parseFloat(param))) {
           return parseFloat(product.price) <= parseFloat(param);
-        } else {
-          // Если параметр не является числом, не применяем фильтр и возвращаем true
-          return true;
         }
       } else {
         // Если ключ фильтрации неизвестен или не требует специальной обработки,

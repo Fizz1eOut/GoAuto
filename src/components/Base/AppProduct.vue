@@ -121,8 +121,8 @@ export default defineComponent({
     text-align: center;
   }
   .product__img img {
-    max-width: 266px;
-    max-height: 266px;
+    max-width: 220px;
+    height: 220px;
   }
   .product__content {
     margin-top: 20px;
