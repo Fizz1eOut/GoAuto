@@ -1,15 +1,15 @@
 [
-  { "id": 1, "title": "Ширина", "name": "width" },
-  { "id": 2, "title": "Діаметр", "name": "diameter" },
-  { "id": 3, "title": "Профіль", "name": "profile" },
-  { "id": 4, "title": "Бренд", "name": "brand" },
-  { "id": 5, "title": "Сезон", "name": "season" },
+  { "id": 1, "title": "Ширина", "name": "width", "type": "single" },
+  { "id": 2, "title": "Діаметр", "name": "diameter", "type": "single" },
+  { "id": 3, "title": "Профіль", "name": "profile", "type": "single" },
+  { "id": 4, "title": "Бренд", "name": "brand", "type": "multiple" },
+  { "id": 5, "title": "Сезон", "name": "season", "type": "multiple" },
   { "id": 6, "title": "Артикул", "name": "sku" },
-  { "id": 7, "title": "Модель", "name": "model" },
+  { "id": 7, "title": "Модель", "name": "model", "type": "single" },
   { "id": 8, "title": "Тип протектору", "name": "tread-type" },
   { "id": 9, "title": "Індекс швидкості", "name": "index" },
-  { "id": 10, "title": "Ширина диска", "name": "width-rims" },
-  { "id": 11, "title": "Тип диска", "name": "type" },
-  { "id": 12, "title": "Разболтовка", "name": "bolt-pattern" },
-  { "id": 13, "title": "ET", "name": "et" }
+  { "id": 10, "title": "Ширина диска", "name": "width-rims", "type": "single" },
+  { "id": 11, "title": "Тип диска", "name": "type", "type": "single" },
+  { "id": 12, "title": "Разболтовка", "name": "bolt-pattern", "type": "single" },
+  { "id": 13, "title": "ET", "name": "et", "type": "single" }
 ]

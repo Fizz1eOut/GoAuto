@@ -6,6 +6,7 @@ import AppFilter from '@/components/Base/AppFilter.vue';
 import FilterCheckbox from '@/components/Content/FilterCheckbox.vue';
 import FilterSelect from '@/components/Content/FilterSelect.vue';
 import AppSubtitle from '@/components/Base/AppSubtitle.vue';
+import AppInput from '@/components/Inputs/AppInput.vue';
 import optionsData from '@/api/options.json';
 import productsData from '@/api/products.json';
 import { defineComponent } from 'vue';
@@ -21,96 +22,86 @@ export default defineComponent({
     FilterCheckbox,
     FilterSelect,
     AppSubtitle,
-},
+    AppInput,
+  },
 
-data() {
-  return {
-    rebalancing: 0,
-    et: 0,
-    diameter: 0,
-    width: 0,
-    brand: 0,
-    selectedBrands: [],
-  };
-},
-  
-  computed: {
-    rebalancingOptions() {
-      const rebalancingOption = optionsData.find(option => option.title === 'Разболтовка');
-      if (rebalancingOption) {
-        const arr = this.findProductOptions(rebalancingOption.id);
-        console.log(arr);
-        arr.unshift({ id: 0,  value: "Виберіть разболтовку"});
-        return arr;
-      }
-      return [];
-    },
-
-    etOptions() {
-      const etOption = optionsData.find(option => option.title === 'ET');
-      if (etOption) {
-        const arr = this.findProductOptions(etOption.id);
-        // console.log(arr);
-        arr.unshift({ id: 0,  value: "Виберіть виліт"});
-        return arr;
-      }
-      return [];
-    },
+  data() {
+    return {
+      rebalancing: 0,
+      et: 0,
+      diameter: 0,
+      width: 0,
+      brand: 0,
+      selectedBrands: [],
+    };
+  },
     
-    diameterOptions() {
-      const diameterOption = optionsData.find(option => option.title === 'Діаметр');
-      if (diameterOption) {
-        const arr = this.findProductOptions(diameterOption.id);
-        // console.log(arr);
-        arr.unshift({ id: 0,  value: "Виберіть діаметр"});
-        return arr;
-      }
-      return [];
-    },
-
-    widthOptions() {
-      const widthOption = optionsData.find(option => option.title === 'Ширина диска');
-      if (widthOption) {
-        const arr = this.findProductOptions(widthOption.id);
-        // console.log(arr);
-        arr.unshift({ id: 0,  value: "Виберіть ширину"});
-        return arr;
-      }
-      return [];
-    },
-
-    brandOptions() {
-      const brandOption = optionsData.find(option => option.id === 4);
-      if (brandOption) {
-        const arr = this.findProductOptions(brandOption.id);
-        return arr
-      }
-      return []
-    },
-
+  computed: {
     brandOption() {
       const option = optionsData.find(option => option.id === 4);
       return option;
-    }
-  }, 
+    },
 
-  methods: {
-    findProductOptions(optionId) {
+       // Создание объекта query для использования в $router.push
+    queryParams() {
+      return {
+        priceFrom: this.priceFrom,
+        priceTo: this.priceTo
+      };
+    },
+
+
+    productsOptions() {
+      // Фильтруем продукты по категории
+      const categoryProducts = productsData.filter(product => product.category === 2);
+      console.log(categoryProducts);
+
+      // Создаем новый Set для хранения опций
       const productOptions = new Set();
-      // console.log(productOptions)
-      const filter = productsData.filter(product => product.category === 2);
-      // console.log(productsData)
-      // console.log(filter)
-      filter.forEach(product => {
-        const option = product.options.find(opt => opt.id === optionId);
-        // console.log(option)
-        if (option) {
-          productOptions.add(option.value);
-        }
+      console.log(productOptions);
+
+      // Проходим по каждому продукту из категории
+      categoryProducts.forEach(product => {
+        // Добавляем все id опций продукта в Set
+        product.options.forEach(option => productOptions.add(option.id));
       });
 
-       return Array.from(productOptions).map((value) => ({ id: value, value }));
+      // Преобразуем Set обратно в массив и возвращаем его
+      const productOptionsArray = Array.from(productOptions);
+      console.log(productOptionsArray);
+
+      // Фильтруем опции по id
+      const filteredOptions = optionsData.filter(option => productOptionsArray.includes(option.id));
+      console.log(filteredOptions);
+
+      return filteredOptions;
     },
+  }, 
+
+  created() {
+    // Получаем параметры запроса из URL
+    const params = this.$route.query;
+    
+    // Устанавливаем значения переменным данных на основе параметров запроса
+    this.priceFrom = params.priceFrom || '';
+    this.priceTo = params.priceTo || '';
+  },
+
+  methods: {
+    updatePrice() {
+      const query = {};
+
+      if (/^\d+$/.test(this.priceFrom)) {
+        query.priceFrom = this.priceFrom;
+      }
+
+      if (/^\d+$/.test(this.priceTo)) {
+        query.priceTo = this.priceTo;
+      }
+
+      this.$router.push({ query });
+    },
+
     applyFilters() {
       alert('Hell World');
     },
@@ -127,16 +118,50 @@ data() {
 
       <div class="tires__items">
         <app-filter @apply="applyFilters">
-          <filter-select v-model="rebalancing" :options="rebalancingOptions" name="bolt-pattern" />
-          <filter-select v-model="et" :options="etOptions" name="et" />
-          <filter-select v-model="diameter" :options="diameterOptions" name="diameter" />
-          <filter-select v-model="width" :options="widthOptions" name="width-rims" />
+          <!-- <filter-select 
+            v-for="option in productsOptions"
+            :key="option"
+            v-model="rebalancing" 
+            :options="option"
+            name="bolt-pattern"
+          /> -->
+
+          <template
+            v-for="option in productsOptions"
+            :key="option.id"
+          >
+            <filter-select 
+              v-if="option.type === 'single'"
+              v-model="rebalancing" 
+              :options="option"
+              name="bolt-pattern"
+            />
+          </template>
+          <!-- <filter-select v-model="et" :options="productsOptions" name="et" />
+          <filter-select v-model="diameter" :options="productsOptions" name="diameter" />
+          <filter-select v-model="width" :options="productsOptions" name="width-rims" /> -->
 
           <app-subtitle class="subtitle">
             {{ brandOption.title }}
           </app-subtitle>
 
-          <filter-checkbox v-model="selectedBrands" :options="brandOptions" name="brand" />
+          <!-- <filter-checkbox v-model="selectedBrands" :options="productsOptions" name="brand" /> -->
+
+          <div class="filter__price">
+            <app-input 
+              v-model="priceFrom"
+              placeholder="від 837"
+              type="number"
+              @input="updatePrice"
+            />
+
+            <app-input 
+              v-model="priceTo"
+              placeholder="до 28923"
+              type="number"
+              @input="updatePrice"
+            />
+          </div>
         </app-filter>
 
         <app-filter-products :category="2" />
@@ -156,5 +181,11 @@ data() {
   .subtitle {
     margin-top: 30px;
     margin-bottom: 20px;
+  }
+  .filter__price {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
   }
 </style>
