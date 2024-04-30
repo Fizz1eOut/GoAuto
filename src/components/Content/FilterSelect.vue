@@ -39,7 +39,7 @@ export default defineComponent({
     <filter-query v-slot="{ value, update }" :name="name">
       <app-select 
         :options="options"
-        :model-value="value"
+        :model-value="value.length < 0 ? value: 0"
         @update:model-value="update"
       />
     </filter-query>
