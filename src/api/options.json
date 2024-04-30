@@ -11,5 +11,5 @@
   { "id": 10, "title": "Ширина диска", "name": "width-rims", "type": "single" },
   { "id": 11, "title": "Тип диска", "name": "type", "type": "single" },
   { "id": 12, "title": "Разболтовка", "name": "bolt-pattern", "type": "single" },
-  { "id": 13, "title": "ET", "name": "et", "type": "single" }
+  { "id": 13, "title": "Ступиця", "name": "et", "type": "single" }
 ]

@@ -50,33 +50,49 @@ export default defineComponent({
       };
     },
 
-
     productsOptions() {
       // Фильтруем продукты по категории
       const categoryProducts = productsData.filter(product => product.category === 2);
       console.log(categoryProducts);
 
-      // Создаем новый Set для хранения опций
-      const productOptions = new Set();
+      // Создаем объект productOptions для хранения опций
+      const productOptions = {};
       console.log(productOptions);
 
       // Проходим по каждому продукту из категории
       categoryProducts.forEach(product => {
-        // Добавляем все id опций продукта в Set
-        product.options.forEach(option => productOptions.add(option.id));
+        // Проходим по каждой опции продукта
+        product.options.forEach(option => {
+          // Если опция с таким id уже существует в productOptions, добавляем её значение в существующий Set
+          if (option.id in productOptions) {
+           return productOptions[option.id].add(option.value);
+          } else {
+            // Если опция с таким id ещё не существует, создаем новый Set и добавляем в него значение опции
+            productOptions[option.id] = new Set([option.value]);
+          }
+        });
       });
 
-      // Преобразуем Set обратно в массив и возвращаем его
-      const productOptionsArray = Array.from(productOptions);
-      console.log(productOptionsArray);
+      // Получаем массив ключей объекта productOptions
+      const options = Object.keys(productOptions);
 
-      // Фильтруем опции по id
-      const filteredOptions = optionsData.filter(option => productOptionsArray.includes(option.id));
-      console.log(filteredOptions);
-
-      return filteredOptions;
-    },
-  }, 
+      const filteredOptions = optionsData
+        // Фильтруем опции из optionsData по id и присваиваем каждой опции связанный с ней Set значений из productOptions
+        .filter(option => options.includes(option.id.toString()))
+        .map(option => ({
+          // Присваиваем свойству option объект опции
+          option,
+           // Преобразуем значения из Set в массив, а затем мапим каждое значение в объект с одинаковыми id и value
+          data: [
+                { id: 0, value: `${option.title}` }, // Добавляем опцию "Выберите"
+                ...Array.from(productOptions[option.id]).map(optionObject => ({ id: optionObject, value: optionObject }))
+            ]
+        }));
+            
+        console.log(filteredOptions);
+        return filteredOptions; // Возвращаем отфильтрованные опции
+      },
+    }, 
 
   created() {
     // Получаем параметры запроса из URL
@@ -118,34 +134,34 @@ export default defineComponent({
 
       <div class="tires__items">
         <app-filter @apply="applyFilters">
-          <!-- <filter-select 
-            v-for="option in productsOptions"
-            :key="option"
-            v-model="rebalancing" 
-            :options="option"
-            name="bolt-pattern"
-          /> -->
-
           <template
-            v-for="option in productsOptions"
-            :key="option.id"
+            v-for="productOption in productsOptions"
+            :key="productOption.option.id"
           >
             <filter-select 
-              v-if="option.type === 'single'"
+              v-if="productOption.option.type === 'single'"
               v-model="rebalancing" 
-              :options="option"
-              name="bolt-pattern"
+              :options="productOption.data"
+              :name="productOption.option.name"
             />
           </template>
-          <!-- <filter-select v-model="et" :options="productsOptions" name="et" />
-          <filter-select v-model="diameter" :options="productsOptions" name="diameter" />
-          <filter-select v-model="width" :options="productsOptions" name="width-rims" /> -->
 
           <app-subtitle class="subtitle">
             {{ brandOption.title }}
           </app-subtitle>
 
           <!-- <filter-checkbox v-model="selectedBrands" :options="productsOptions" name="brand" /> -->
+          <template
+            v-for="productOption in productsOptions"
+            :key="productOption.option.id"
+          >
+            <filter-checkbox 
+              v-if="productOption.option.type === 'multiple'"
+              v-model="rebalancing" 
+              :options="productOption.data"
+              :name="productOption.option.name"
+            />
+          </template>
 
           <div class="filter__price">
             <app-input 
