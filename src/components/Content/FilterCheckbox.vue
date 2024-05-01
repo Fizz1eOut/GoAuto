@@ -24,7 +24,7 @@ export default defineComponent({
 
 <template>
   <div>
-    <filter-query v-slot="{ value, update }" :name="name">
+    <filter-query v-slot="{ value, update }" :name="name" type="multiple">
       <app-checkbox 
         v-for="option in options"
         :key="option.id"

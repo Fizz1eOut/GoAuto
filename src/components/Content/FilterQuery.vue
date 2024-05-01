@@ -13,12 +13,22 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    type: {
+      type: String,
+      required: true,
+      default: 'single',
+      validator: (value) => ['single', 'multiple'].includes(value)
+    }
   },
 
   computed: {
     value() { // берет данные по имени из урл
+      if (this.type !== 'multiple') {
+        return this.$route.query[this.name] ?? 0;
+      }
       const value = this.$route.query[this.name] ?? [];
       // console.log(value);
+
       return Array.isArray(value) ? value : [value];
     },
   },
