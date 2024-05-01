@@ -51,47 +51,49 @@ export default defineComponent({
     },
 
     productsOptions() {
-      // Фильтруем продукты по категории
-      const categoryProducts = productsData.filter(product => product.category === 2);
-      console.log(categoryProducts);
-
-      // Создаем объект productOptions для хранения опций
-      const productOptions = {};
-      console.log(productOptions);
-
-      // Проходим по каждому продукту из категории
-      categoryProducts.forEach(product => {
-        // Проходим по каждой опции продукта
-        product.options.forEach(option => {
-          // Если опция с таким id уже существует в productOptions, добавляем её значение в существующий Set
-          if (option.id in productOptions) {
-           return productOptions[option.id].add(option.value);
-          } else {
-            // Если опция с таким id ещё не существует, создаем новый Set и добавляем в него значение опции
-            productOptions[option.id] = new Set([option.value]);
+      // Фильтрация продуктов по категории с идентификатором 2
+      const categoryProducts = productsData.filter((product) => product.category === 2);
+      
+      // Создание карты опций для каждого продукта
+      const options = categoryProducts.reduce((map, product) => {
+        // Для каждого продукта в категории
+        return product.options.reduce((acc, option) => {
+          // Получаем набор значений для опции или создаем новый набор, если он еще не существует
+          const value = acc.get(option.id);
+          if (!value) {
+            return acc.set(option.id, new Set([option.value]));
           }
-        });
+
+          // Если набор уже существует, добавляем значение к нему
+          value.add(option.value);
+          return acc;
+        }, map);
+      }, new Map());
+      
+      // Выводим созданные опции для отладки
+      console.log(options)
+
+      // Фильтрация опций из массива optionsData на основе созданных наборов
+      return optionsData
+        .filter((option) => options.has(option.id))
+        .map((option) => {
+          // Получаем уникальные значения для опции из карты options
+          const values = options.get(option.id);
+          // Выводим уникальные значения для отладки
+          console.log(values);
+          // Создаем массив объектов с уникальными значениями
+          const data = [...values].map((id) => ({ id, value: id }));
+          // Выводим массив объектов для отладки
+          console.log(data);
+          // Если тип опции "single", добавляем заголовок опции в начало массива данных
+          if (option.type === 'single') {
+            data.unshift({ id: 0, value: option.title });
+          }
+
+          // Возвращаем объект, содержащий опцию и ее уникальные значения
+          return { option, data };
       });
-
-      // Получаем массив ключей объекта productOptions
-      const options = Object.keys(productOptions);
-
-      const filteredOptions = optionsData
-        // Фильтруем опции из optionsData по id и присваиваем каждой опции связанный с ней Set значений из productOptions
-        .filter(option => options.includes(option.id.toString()))
-        .map(option => ({
-          // Присваиваем свойству option объект опции
-          option,
-           // Преобразуем значения из Set в массив, а затем мапим каждое значение в объект с одинаковыми id и value
-          data: [
-                { id: 0, value: `${option.title}` }, // Добавляем опцию "Выберите"
-                ...Array.from(productOptions[option.id]).map(optionObject => ({ id: optionObject, value: optionObject }))
-            ]
-        }));
-            
-        console.log(filteredOptions);
-        return filteredOptions; // Возвращаем отфильтрованные опции
-      },
+    }
     }, 
 
   created() {
@@ -135,14 +137,14 @@ export default defineComponent({
       <div class="tires__items">
         <app-filter @apply="applyFilters">
           <template
-            v-for="productOption in productsOptions"
-            :key="productOption.option.id"
+            v-for="{option, data} in productsOptions"
+            :key="option.id"
           >
             <filter-select 
-              v-if="productOption.option.type === 'single'"
+              v-if="option.type === 'single'"
               v-model="rebalancing" 
-              :options="productOption.data"
-              :name="productOption.option.name"
+              :options="data"
+              :name="option.name"
             />
           </template>
 
@@ -150,7 +152,6 @@ export default defineComponent({
             {{ brandOption.title }}
           </app-subtitle>
 
-          <!-- <filter-checkbox v-model="selectedBrands" :options="productsOptions" name="brand" /> -->
           <template
             v-for="productOption in productsOptions"
             :key="productOption.option.id"
