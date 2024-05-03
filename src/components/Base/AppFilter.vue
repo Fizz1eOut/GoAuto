@@ -3,7 +3,6 @@ import AppContainer from '@/components/Base/AppContainer.vue';
 import AppUnderlay from '@/components/Base/AppUnderlay.vue';
 import AppSubtitle from '@/components/Base/AppSubtitle.vue';
 import { defineComponent } from 'vue';
-import AppButton from '@/components/Base/AppButton.vue';
 
 export default defineComponent({
   name: 'AppFilter',
@@ -12,15 +11,6 @@ export default defineComponent({
     AppContainer,
     AppUnderlay,
     AppSubtitle,
-    AppButton
-  },
-
-  emits: ['apply'],
-
-  methods: {
-    apply() {
-      this.$emit('apply');
-    }
   },
 });
 </script>
@@ -37,10 +27,6 @@ export default defineComponent({
           <div class="filter__item">
             <slot />
           </div>
-
-          <app-button @click="apply">
-            Застосувати фільтри
-          </app-button>
         </div>
       </div>
     </app-container>

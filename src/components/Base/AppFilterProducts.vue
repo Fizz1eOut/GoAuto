@@ -133,7 +133,12 @@ export default defineComponent({
   <div class="tires-products">
     <div class="tires__sort">
       <div class="tires__text">Сортувати:</div>
-      <app-select v-model="selectedSortOption" :options="sortOptions" @change="updateSortOption(selectedSortOption)" />
+      <app-select 
+        v-model="selectedSortOption" 
+        :options="sortOptions" 
+        class="tires-sort"
+        @change="updateSortOption(selectedSortOption)"
+      />
     </div>
 
     <div class="tires-products__items">
@@ -191,5 +196,13 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
     height: 200px;
+  }
+  @media (max-width: 768px) {
+    .tires__text {
+      display: none;
+    }
+    .tires-sort {
+      border: none;
+    }
   }
 </style>

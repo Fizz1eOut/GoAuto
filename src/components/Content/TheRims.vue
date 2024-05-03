@@ -1,4 +1,6 @@
 <script>
+import AppFilterMobile from '@/components/Base/AppFilterMobile.vue';
+import FilterMobile from '@/components/Content/FilterMobile.vue';
 import AppContainer from '@/components/Base/AppContainer.vue';
 import AppTitle from '@/components/Base/AppTitle.vue';
 import AppFilterProducts from '@/components/Base/AppFilterProducts.vue';
@@ -23,6 +25,8 @@ export default defineComponent({
     FilterSelect,
     AppSubtitle,
     AppInput,
+    AppFilterMobile,
+    FilterMobile,
   },
 
   data() {
@@ -33,6 +37,7 @@ export default defineComponent({
       width: 0,
       brand: 0,
       selectedBrands: [],
+      active: false,
     };
   },
     
@@ -69,9 +74,7 @@ export default defineComponent({
           return acc;
         }, map);
       }, new Map());
-      
-      // Выводим созданные опции для отладки
-      console.log(options)
+      // console.log(options)
 
       // Фильтрация опций из массива optionsData на основе созданных наборов
       return optionsData
@@ -79,12 +82,10 @@ export default defineComponent({
         .map((option) => {
           // Получаем уникальные значения для опции из карты options
           const values = options.get(option.id);
-          // Выводим уникальные значения для отладки
-          console.log(values);
+          // console.log(values);
           // Создаем массив объектов с уникальными значениями
           const data = [...values].map((id) => ({ id, value: id }));
-          // Выводим массив объектов для отладки
-          console.log(data);
+          // console.log(data);
           // Если тип опции "single", добавляем заголовок опции в начало массива данных
           if (option.type === 'single') {
             data.unshift({ id: 0, value: option.title });
@@ -119,10 +120,6 @@ export default defineComponent({
 
       this.$router.push({ query });
     },
-
-    applyFilters() {
-      alert('Hell World');
-    },
   }
 });
 </script>
@@ -135,7 +132,56 @@ export default defineComponent({
       </app-title>
 
       <div class="tires__items">
-        <app-filter @apply="applyFilters">
+        <app-filter-mobile @change="active = true" />
+
+        <filter-mobile v-model="active">
+          <template
+            v-for="{option, data} in productsOptions"
+            :key="option.id"
+          >
+            <filter-select 
+              v-if="option.type === 'single'"
+              v-model="rebalancing" 
+              :options="data"
+              :name="option.name"
+            />
+          </template>
+
+          <app-subtitle class="subtitle">
+            {{ brandOption.title }}
+          </app-subtitle>
+
+          <template
+            v-for="productOption in productsOptions"
+            :key="productOption.option.id"
+          >
+            <filter-checkbox 
+              v-if="productOption.option.type === 'multiple'"
+              v-model="rebalancing" 
+              :options="productOption.data"
+              :name="productOption.option.name"
+            />
+          </template>
+
+          <div class="filter__price">
+            <app-input 
+              v-model="priceFrom"
+              placeholder="від 837"
+              type="number"
+              @input="updatePrice"
+            />
+
+            <app-input 
+              v-model="priceTo"
+              placeholder="до 28923"
+              type="number"
+              @input="updatePrice"
+            />
+          </div>
+        </filter-mobile>
+
+
+        <app-filter class="filter">
           <template
             v-for="{option, data} in productsOptions"
             :key="option.id"
@@ -204,5 +250,14 @@ export default defineComponent({
     display: flex;
     align-items: flex-start;
     gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .filter {
+      display: none;
+    }
+    .tires__items {
+      flex-direction: column;
+      row-gap: 20px;
+    }
   }
 </style>
