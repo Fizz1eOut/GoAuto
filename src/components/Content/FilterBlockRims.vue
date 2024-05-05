@@ -42,7 +42,7 @@ export default defineComponent({
     },
 
     etOptions() {
-      const etOption = optionsData.find(option => option.title === 'ET');
+      const etOption = optionsData.find(option => option.title === 'Ступиця');
       if (etOption) {
         const arr = this.findProductOptions(etOption.id);
         // console.log(arr);
@@ -102,7 +102,20 @@ export default defineComponent({
       });
 
        return Array.from(productOptions).map((value) => ({ id: value, value }));
-    }
+    },
+
+    applyFilters() {
+      // Формируем объект с параметрами для URL
+      const query = {};
+      if (this.rebalancing) query['bolt-pattern'] = this.rebalancing;
+      if (this.et) query.et = this.et;
+      if (this.diameter) query.diameter = this.diameter;
+      if (this.width) query['width-rims'] = this.width;
+      if (this.brand) query.brand = this.brand;
+      
+      // Переход на страницу с фильтрами и передача параметров через URL
+      this.$router.push({ path: '/rims', query });
+    },
   },
 });
 </script>
@@ -138,7 +151,7 @@ export default defineComponent({
               label-key="value"
             />
 
-            <AppButton>
+            <AppButton @click="applyFilters">
               Підібрати шини
             </AppButton>
           </div>

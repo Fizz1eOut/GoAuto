@@ -4,7 +4,7 @@ import productsData from '@/api/products.json';
 import AppContainer from '@/components/Base/AppContainer.vue';
 import AppUnderlay from '@/components/Base/AppUnderlay.vue';
 import AppSelect from '@/components/Inputs/AppSelect.vue';
-import AppTitle from '@/components/Base/AppTitle.vue'
+import AppTitle from '@/components/Base/AppTitle.vue';
 import { defineComponent } from 'vue';
 import AppButton from '@/components/Base/AppButton.vue';
 
