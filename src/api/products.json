@@ -286,7 +286,7 @@
     "options": [
       { "id": 4, "value": "ADV.1" },
       { "id": 10, "value": 9.5 },
-      { "id": 11, "value": "Кованый" },
+      { "id": 11, "value": "Кований" },
       { "id": 2, "value": 20 },
       { "id": 6, "value": "A105" },
       { "id": 12, "value": "5x112" },
@@ -322,7 +322,7 @@
     "options": [
       { "id": 4, "value": "BBS" },
       { "id": 10, "value": 10 },
-      { "id": 11, "value": "Кованый" },
+      { "id": 11, "value": "Кований" },
       { "id": 2, "value": 18 },
       { "id": 6, "value": "BRS-GT109" },
       { "id": 12, "value": "5x120" },
@@ -340,7 +340,7 @@
     "options": [
       { "id": 4, "value": "HRE" },
       { "id": 10, "value": 9 },
-      { "id": 11, "value": "Кованый" },
+      { "id": 11, "value": "Кований" },
       { "id": 2, "value": 19 },
       { "id": 6, "value": "HP101" },
       { "id": 12, "value": "5x112" },
@@ -376,7 +376,7 @@
     "options": [
       { "id": 4, "value": "Forgestar" },
       { "id": 10, "value": 10.5 },
-      { "id": 11, "value": "Кованый" },
+      { "id": 11, "value": "Кований" },
       { "id": 2, "value": 20 },
       { "id": 6, "value": "FF14" },
       { "id": 12, "value": "5x120" },

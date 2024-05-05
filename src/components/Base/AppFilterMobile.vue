@@ -28,7 +28,7 @@ export default defineComponent({
 <template>
   <button 
     class="filter-mobile"
-    @click="$emit('change', active = !active)"
+    @click="$emit('change', active)"
   >
     <IconFilter class="icon-filter" />
     <h3 class="filter-mobile__title">Фільтри</h3>
