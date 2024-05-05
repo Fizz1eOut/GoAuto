@@ -83,9 +83,11 @@ export default defineComponent({
       </li>
 
       <li class="nav__item">
-        <app-link>
-          Контакти
-        </app-link>
+        <router-link to="/contacts">
+          <app-link>
+            Контакти
+          </app-link>
+        </router-link>
       </li>
     </ul>
   </nav>

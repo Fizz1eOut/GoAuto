@@ -3,7 +3,8 @@ import HomeView from '@/pages/HomeView.vue';
 import CartView from '@/pages/CartView.vue';
 import OrderSuccessView from '@/pages/OrderSuccessView.vue';
 import TiresView from '@/pages/TiresView.vue';
-import RimsView from '@/pages/RimsView.vue'
+import RimsView from '@/pages/RimsView.vue';
+import ContactsView from '@/pages/ContactsView.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -13,5 +14,6 @@ export const router = createRouter({
     { path: '/order-success', component: OrderSuccessView, name: 'OrderSuccessView'},
     { path: '/tires', component: TiresView, name: 'TiresView'},
     { path: '/rims', component: RimsView, name: 'RimsView'},
+    { path: '/contacts', component: ContactsView, name: 'ContactsView'},
   ]
 });

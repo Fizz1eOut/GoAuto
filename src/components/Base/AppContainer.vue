@@ -57,7 +57,9 @@ export default defineComponent({
   }
 
   @media (max-width: 499px) {
-
+    .size-md {
+      padding: 16px;
+    }
   } 
 
 </style>

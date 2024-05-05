@@ -66,9 +66,11 @@ export default defineComponent({
         </li>
 
         <li class="nav-modile__item">
-          <app-link>
-            Диски
-          </app-link>
+          <router-link to="/rims">
+            <app-link>
+              Диски
+            </app-link>
+          </router-link>
         </li>
 
         <li class="nav-modile__item">
@@ -99,9 +101,11 @@ export default defineComponent({
         </li>
 
         <li class="nav-modile__item">
-          <app-link>
-            Контакти
-          </app-link>
+          <router-link to="/contacts">
+            <app-link>
+              Контакти
+            </app-link>
+          </router-link>
         </li>
 
         <app-contact />

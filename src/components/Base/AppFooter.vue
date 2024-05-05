@@ -46,27 +46,27 @@ export default defineComponent({
             <h2 class="title">Меню</h2>
             
             <li class="footer__item">
-              <app-link>
-                Головна
-              </app-link>
+              <router-link to="/">
+                <app-link>
+                  Головна
+                </app-link>
+              </router-link>
             </li>
 
             <li class="footer__item">
-              <app-link>
-                Літні шини
-              </app-link>
+              <router-link to="/tires">
+                <app-link>
+                  Шини
+                </app-link>
+              </router-link>
             </li>
 
             <li class="footer__item">
-              <app-link>
-                Зимові шини
-              </app-link>
-            </li>
-
-            <li class="footer__item">
-              <app-link>
-                Диски
-              </app-link>
+              <router-link to="/rims">
+                <app-link>
+                  Диски
+                </app-link>
+              </router-link>
             </li>
           </ul>
 
@@ -90,9 +90,11 @@ export default defineComponent({
             <h2 class="title">Компанія</h2>
             
             <li class="footer__item">
-              <app-link>
-                Контакти
-              </app-link>
+              <router-link to="/contacts">
+                <app-link>
+                  Контакти
+                </app-link>
+              </router-link>
             </li>
 
             <li class="footer__item">
