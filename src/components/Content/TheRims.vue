@@ -1,6 +1,4 @@
 <script>
-import AppFilterMobile from '@/components/Base/AppFilterMobile.vue';
-import FilterMobile from '@/components/Content/FilterMobile.vue';
 import AppContainer from '@/components/Base/AppContainer.vue';
 import AppTitle from '@/components/Base/AppTitle.vue';
 import AppFilterProducts from '@/components/Base/AppFilterProducts.vue';
@@ -25,8 +23,6 @@ export default defineComponent({
     FilterSelect,
     AppSubtitle,
     AppInput,
-    AppFilterMobile,
-    FilterMobile,
   },
 
   data() {
@@ -37,7 +33,6 @@ export default defineComponent({
       width: 0,
       brand: 0,
       selectedBrands: [],
-      active: false,
     };
   },
     
@@ -132,16 +127,13 @@ export default defineComponent({
       </app-title>
 
       <div class="tires__items">
-        <app-filter-mobile @change="active = true" />
-
-        <filter-mobile v-model="active">
+        <app-filter>
           <template
             v-for="{option, data} in productsOptions"
             :key="option.id"
           >
             <filter-select 
               v-if="option.type === 'single'"
-              v-model="rebalancing" 
               :options="data"
               :name="option.name"
             />
@@ -157,54 +149,6 @@ export default defineComponent({
           >
             <filter-checkbox 
               v-if="productOption.option.type === 'multiple'"
-              v-model="rebalancing" 
-              :options="productOption.data"
-              :name="productOption.option.name"
-            />
-          </template>
-
-          <div class="filter__price">
-            <app-input 
-              v-model="priceFrom"
-              placeholder="від 837"
-              type="number"
-              @input="updatePrice"
-            />
-
-            <app-input 
-              v-model="priceTo"
-              placeholder="до 28923"
-              type="number"
-              @input="updatePrice"
-            />
-          </div>
-        </filter-mobile>
-
-
-        <app-filter class="filter">
-          <template
-            v-for="{option, data} in productsOptions"
-            :key="option.id"
-          >
-            <filter-select 
-              v-if="option.type === 'single'"
-              v-model="rebalancing" 
-              :options="data"
-              :name="option.name"
-            />
-          </template>
-
-          <app-subtitle class="subtitle">
-            {{ brandOption.title }}
-          </app-subtitle>
-
-          <template
-            v-for="productOption in productsOptions"
-            :key="productOption.option.id"
-          >
-            <filter-checkbox 
-              v-if="productOption.option.type === 'multiple'"
-              v-model="rebalancing" 
               :options="productOption.data"
               :name="productOption.option.name"
             />
@@ -252,9 +196,6 @@ export default defineComponent({
     gap: 20px;
   }
   @media (max-width: 768px) {
-    .filter {
-      display: none;
-    }
     .tires__items {
       flex-direction: column;
       row-gap: 20px;
