@@ -71,9 +71,11 @@ export default defineComponent({
           <app-dropdown 
             :dropdownActive="dropdownActive"
           >
-            <app-dropdown-item>
-              Шиномонтаж
-            </app-dropdown-item>
+            <router-link to="/tire-service">
+              <app-dropdown-item>
+                Шиномонтаж
+              </app-dropdown-item>
+            </router-link>
 
             <app-dropdown-item>
               Фарбування дисків

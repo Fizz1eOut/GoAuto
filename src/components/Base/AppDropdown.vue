@@ -52,5 +52,7 @@ export default defineComponent({
   background: #F5F7FA;
   width: 158px;
 }
-
+.dropdown-list> *:not(:last-child) {
+  margin-bottom: 16px;
+}
 </style>

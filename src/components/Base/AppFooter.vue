@@ -98,9 +98,11 @@ export default defineComponent({
             </li>
 
             <li class="footer__item">
-              <app-link>
-                Шиномонтаж
-              </app-link>
+              <router-link to="/tire-service">
+                <app-link>
+                  Шиномонтаж
+                </app-link>
+              </router-link>
             </li>
 
             <li class="footer__item">

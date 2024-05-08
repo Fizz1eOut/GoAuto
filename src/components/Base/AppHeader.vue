@@ -38,6 +38,12 @@ export default defineComponent({
   computed: {
     ...mapStores(useCartStore),
   },
+  
+  methods: {
+    closeBurger() {
+      this.open = false;
+    }
+  }
 });
 </script>
 
@@ -55,7 +61,7 @@ export default defineComponent({
             </div>
           
             <app-nav />
-            <nav-mobile :open="open" />
+            <nav-mobile :open="open" @close="closeBurger" />
 
             <div class="header__contacts">
               <div class="header__row">

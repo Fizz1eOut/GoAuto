@@ -29,6 +29,8 @@ export default defineComponent({
     }
   },
 
+  emits: ['close'],
+
   data() {
     return {
       dropdownActive: false,
@@ -38,6 +40,9 @@ export default defineComponent({
     toggle() {
       this.dropdownActive = !this.dropdownActive;
     },
+    close() {
+      this.$emit('close');
+    }
   }
 });
 </script>
@@ -50,7 +55,7 @@ export default defineComponent({
     >
       <ul class="nav-modile__list">
         <li class="nav-modile__item">
-          <router-link to="/">
+          <router-link to="/" @click="close">
             <app-link>
               Головна
             </app-link>
@@ -89,10 +94,11 @@ export default defineComponent({
             <app-dropdown 
               :dropdownActive="dropdownActive"
             >
-              <app-dropdown-item>
-                Шиномонтаж
-              </app-dropdown-item>
-
+              <router-link to="/tire-service">
+                <app-dropdown-item>
+                  Шиномонтаж
+                </app-dropdown-item>
+              </router-link>
               <app-dropdown-item>
                 Фарбування дисків
               </app-dropdown-item>
@@ -186,7 +192,7 @@ export default defineComponent({
 
   .v-enter-active,
   .v-leave-active {
-    transition: opacity 0.9s ease;
+    transition: opacity 0.9s ease-in-out;
   }
 
   .v-enter-from,
