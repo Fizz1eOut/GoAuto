@@ -95,13 +95,16 @@ export default defineComponent({
               :dropdownActive="dropdownActive"
             >
               <router-link to="/tire-service">
-                <app-dropdown-item>
+                <app-dropdown-item class="dropdown-link">
                   Шиномонтаж
                 </app-dropdown-item>
               </router-link>
-              <app-dropdown-item>
-                Фарбування дисків
-              </app-dropdown-item>
+
+              <router-link to="/rims-painting">
+                <app-dropdown-item>
+                  Фарбування дисків
+                </app-dropdown-item>
+              </router-link>
             </app-dropdown>
           </app-link>
         </li>
@@ -124,6 +127,9 @@ export default defineComponent({
 </template>
 
 <style scoped>
+.dropdown-link {
+  margin-bottom: 10px;
+}
 .arrow {
   margin-bottom: 2px;
   transition: transform 0.3s ease-in-out, fill 0.3s ease-in-out

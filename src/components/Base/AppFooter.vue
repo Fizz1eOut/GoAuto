@@ -106,9 +106,11 @@ export default defineComponent({
             </li>
 
             <li class="footer__item">
-              <app-link>
-                Фарбування дисків
-              </app-link>
+              <router-link to="/rims-painting">
+                <app-link>
+                  Фарбування дисків
+                </app-link>
+              </router-link>
             </li>
           </ul>
         </div>
