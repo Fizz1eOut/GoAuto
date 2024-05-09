@@ -55,9 +55,11 @@ export default defineComponent({
       </li>
 
       <li class="nav__item">
-        <app-link>
-          Доставка та оплата
-        </app-link>
+        <router-link to="/delivery-payment">
+          <app-link>
+            Доставка та оплата
+          </app-link>
+        </router-link>
       </li>
 
       <li class="nav__item">

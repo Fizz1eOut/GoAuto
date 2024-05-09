@@ -74,9 +74,11 @@ export default defineComponent({
             <h2 class="title">Користувачам</h2>
             
             <li class="footer__item">
-              <app-link>
-                Доставка та оплата
-              </app-link>
+              <router-link to="/delivery-payment">
+                <app-link>
+                  Доставка та оплата
+                </app-link>
+              </router-link>
             </li>
 
             <li class="footer__item">
