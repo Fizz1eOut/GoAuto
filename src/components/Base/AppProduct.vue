@@ -63,43 +63,45 @@ export default defineComponent({
 <template>
   <app-underlay>
     <app-container size="sm">
-      <div class="product">
-        <div v-if="product.featured" class="product__badge">Хіт</div>
-        <div class="product__img">
-          <img :src="product.imageUrl" alt="image">
-        </div>
+      <router-link :to="{ name: 'ProductDetailView', params: { title: product.title } }">
+        <div class="product">
+          <div v-if="product.featured" class="product__badge">Хіт</div>
+          <div class="product__img">
+            <img :src="product.imageUrl" alt="image">
+          </div>
 
-        <div class="product__content">
-          <div class="product__title">{{ product.title }}</div>
-          <div class="product__article">Артикул: {{ sku }}</div>
-          <div v-if="product.stock > 2" class="product__stock">В наявності</div>
-          <div v-else-if="product.stock === 0" class="product__stock--red">Немає в наявності</div>
-          <div v-else-if="product.stock <= 2" class="product__stock--red">Залишилося небагато</div>
-          <div class="product__price">{{ product.price }}₴</div>
-        </div>
-        <div class="product__row">
-          <template v-if="!isAddded">
-            <app-button @click="addToCart">
-              Додати в кошик
-              <IconCart class="icon" />
-            </app-button>
-          </template>
-          <template v-else>
-            <app-counter :count="productQuantity" @increment="addToCart" @decrement="removeProduct" />
-            <router-link to="/cart">
-              <app-button>
-                У кошик
+          <div class="product__content">
+            <div class="product__title">{{ product.title }}</div>
+            <div class="product__article">Артикул: {{ sku }}</div>
+            <div v-if="product.stock > 2" class="product__stock">В наявності</div>
+            <div v-else-if="product.stock === 0" class="product__stock--red">Немає в наявності</div>
+            <div v-else-if="product.stock <= 2" class="product__stock--red">Залишилося небагато</div>
+            <div class="product__price">{{ product.price }}₴</div>
+          </div>
+          <div class="product__row">
+            <template v-if="!isAddded">
+              <app-button @click="addToCart">
+                Додати в кошик
                 <IconCart class="icon" />
               </app-button>
-            </router-link>
-          </template>
+            </template>
+            <template v-else>
+              <app-counter :count="productQuantity" @increment="addToCart" @decrement="removeProduct" />
+              <router-link to="/cart">
+                <app-button>
+                  У кошик
+                  <IconCart class="icon" />
+                </app-button>
+              </router-link>
+            </template>
+          </div>
         </div>
-      </div>
+      </router-link>
     </app-container>
   </app-underlay>
 </template>
 
-<style>
+<style scoped>
   .product {
     position: relative;
   }

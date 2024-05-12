@@ -8,6 +8,7 @@ import ContactsView from '@/pages/ContactsView.vue';
 import TireServiceView from '@/pages/TireServiceView.vue';
 import RimsPaintingView from '@/pages/RimsPaintingView.vue';
 import DeliveryPaymentView from '@/pages/DeliveryPaymentView.vue';
+import ProductDetailView from '@/pages/ProductDetailView.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -21,5 +22,6 @@ export const router = createRouter({
     { path: '/tire-service', component: TireServiceView, name: 'TireServiceView'},
     { path: '/rims-painting', component: RimsPaintingView, name: 'RimsPaintingView'},
     { path: '/delivery-payment', component: DeliveryPaymentView, name: 'DeliveryPaymentView'},
+    { path: '/product/:title', component: ProductDetailView, name: 'ProductDetailView', props: true},
   ]
 });

@@ -60,6 +60,9 @@ export default defineComponent({
     .size-md {
       padding: 16px;
     }
+    .size-xl {
+      padding: 20px;
+    }
   } 
 
 </style>

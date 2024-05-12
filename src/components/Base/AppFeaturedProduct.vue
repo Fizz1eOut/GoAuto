@@ -1,11 +1,9 @@
 <script>
 import AppSlider from '@/components/Base/AppSlider.vue';
 import productsData from '@/api/products.json';
-// console.log(productsData);
 import AppTitle from '@/components/Base/AppTitle.vue';
 import AppProduct from '@/components/Base/AppProduct.vue';
 import { SplideSlide } from '@splidejs/vue-splide';
-// import '@splidejs/vue-splide/css';
 import { defineComponent } from 'vue';
 
 export default defineComponent({

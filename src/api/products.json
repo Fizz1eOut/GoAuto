@@ -16,7 +16,7 @@
       { "id": 6, "value": "MXIS001" },
       { "id": 7, "value": "X-Ice Snow" },
       { "id": 8, "value": "Ламелі" },
-      { "id": 9, "value": "H" }
+      { "id": 9, "value": "H: до 210 км/год" }
     ]
   },
   {
@@ -36,7 +36,7 @@
       { "id": 6, "value": "MST002" },
       { "id": 7, "value": "Summer Tire" },
       { "id": 8, "value": "Неламельна" },
-      { "id": 9, "value": "V" }
+      { "id": 9, "value": "V: до 240 км/год" }
     ]
   },
   {
@@ -56,7 +56,7 @@
       { "id": 6, "value": "MAST003" },
       { "id": 7, "value": "All-Season Tires" },
       { "id": 8, "value": "Змішаний" },
-      { "id": 9, "value": "T" }
+      { "id": 9, "value": "T: до 190 км/год" }
     ]
   },
   {
@@ -76,7 +76,7 @@
       { "id": 6, "value": "GWPT004" },
       { "id": 7, "value": "Winter Performance" },
       { "id": 8, "value": "Ламелі" },
-      { "id": 9, "value": "V" }
+      { "id": 9, "value": "V: до 240 км/год" }
     ]
   },
   {
@@ -96,7 +96,7 @@
       { "id": 6, "value": "GAST005" },
       { "id": 7, "value": "All-Season Tires" },
       { "id": 8, "value": "Змішаний" },
-      { "id": 9, "value": "T" }
+      { "id": 9, "value": "T: до 190 км/год" }
     ]
   },
   {
@@ -116,7 +116,7 @@
       { "id": 6, "value": "GEST006" },
       { "id": 7, "value": "Eagle Sport" },
       { "id": 8, "value": "Неламельна" },
-      { "id": 9, "value": "W" }
+      { "id": 9, "value": "W: до 270 км/год" }
     ]
   },
   {
@@ -136,7 +136,7 @@
       { "id": 6, "value": "BDLT007" },
       { "id": 7, "value": "Dueler" },
       { "id": 8, "value": "Неламельна" },
-      { "id": 9, "value": "W" }
+      { "id": 9, "value": "W: до 270 км/год" }
     ]
   },
   {
@@ -156,7 +156,7 @@
       { "id": 6, "value": "BEAS008" },
       { "id": 7, "value": "Ecopia" },
       { "id": 8, "value": "Змішаний" },
-      { "id": 9, "value": "H" }
+      { "id": 9, "value": "H: до 210 км/год" }
     ]
   },
   {
@@ -176,7 +176,7 @@
       { "id": 6, "value": "PPT009" },
       { "id": 7, "value": "P Zero" },
       { "id": 8, "value": "Неламельна" },
-      { "id": 9, "value": "Y" }
+      { "id": 9, "value": "Y: до 300 км/год" }
     ]
   },
   {
@@ -196,7 +196,7 @@
       { "id": 6, "value": "PSWPT010" },
       { "id": 7, "value": "Scorpion Winter" },
       { "id": 8, "value": "Ламелі" },
-      { "id": 9, "value": "T" }
+      { "id": 9, "value": "T: до 190 км/год" }
     ]
   },
   {
@@ -216,7 +216,7 @@
       { "id": 6, "value": "PCPT011" },
       { "id": 7, "value": "Cinturato" },
       { "id": 8, "value": "Неламельна" },
-      { "id": 9, "value": "V" }
+      { "id": 9, "value": "V: до 240 км/год" }
     ]
   },
   {
@@ -236,7 +236,7 @@
       { "id": 6, "value": "PWSZ012" },
       { "id": 7, "value": "Winter Sottozero" },
       { "id": 8, "value": "Змішаний" },
-      { "id": 9, "value": "H" }
+      { "id": 9, "value": "H: до 210 км/год" }
     ]
   },
   {
