@@ -24,6 +24,7 @@ export default defineComponent({
   data() {
     return {
       active: false,
+      isMobile: false,
     };
   },
 
@@ -33,6 +34,14 @@ export default defineComponent({
     }
   },
 
+  mounted() {
+    window.addEventListener('resize', this.handleResize);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  },
+
   methods: {
     openFilter() {
       this.active = true;
@@ -40,12 +49,17 @@ export default defineComponent({
     closeFilter() {
       this.active = false;
     },
+    handleResize() {
+      this.isMobile = window.matchMedia('(max-width: 768px)').matches;
+      // console.log(this.isMobile)
+    }
   }
+  
 });
 </script>
 
 <template>
-  <app-underlay class="underlay">
+  <app-underlay v-if="!isMobile" class="underlay">
     <app-container>
       <div class="filter">
         <div class="filter__body">
@@ -61,7 +75,7 @@ export default defineComponent({
     </app-container>
   </app-underlay>
 
-  <div class="filter-mobile">
+  <div v-if="isMobile" class="filter-mobile">
     <button 
       class="filter-mobile__button"
       @click="openFilter"
@@ -113,10 +127,6 @@ export default defineComponent({
     display: flex;
     align-items: flex-start;
     gap: 20px;
-  }
-
-  .filter-mobile {
-    display: none;
   }
   .filter-mobile__body {
     position: fixed;
@@ -172,13 +182,5 @@ export default defineComponent({
   .v-enter-from,
   .v-leave-to {
     opacity: 0;
-  }
-  @media (max-width: 768px) {
-    .underlay {
-      display: none;
-    }
-    .filter-mobile {
-      display: block;
-    }
   }
 </style>
