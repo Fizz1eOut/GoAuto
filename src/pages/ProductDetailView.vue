@@ -26,9 +26,9 @@ export default defineComponent({
   computed: {
     findProduct() {
     // Получаем название товара из URL и декодируем его
-    const productName = this.$route.params.title;
+    const productName = this.$route.params.alias;
     // Находим данные о товаре по названию
-    return productsData.find(product => product.title === productName);
+    return productsData.find(product => product.alias === productName);
   },
     categoryTitle() {
       // console.log(this.findProduct);
@@ -41,13 +41,13 @@ export default defineComponent({
 <template>
   <!-- Breadcrumbs -->
   <app-breadcrumbs class="breadcrumbs">
-    <breadcrumb-item>
-      <router-link to="/">
+    <router-link to="/">
+      <breadcrumb-item>
         <app-link>
           Головна
         </app-link>
-      </router-link>
-    </breadcrumb-item>
+      </breadcrumb-item>
+    </router-link>
 
     <breadcrumb-item>
       <icon-arrow-right class="icon-arrow" />

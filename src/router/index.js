@@ -22,6 +22,6 @@ export const router = createRouter({
     { path: '/tire-service', component: TireServiceView, name: 'TireServiceView'},
     { path: '/rims-painting', component: RimsPaintingView, name: 'RimsPaintingView'},
     { path: '/delivery-payment', component: DeliveryPaymentView, name: 'DeliveryPaymentView'},
-    { path: '/product/:title', component: ProductDetailView, name: 'ProductDetailView', props: true},
+    { path: '/product/:alias', component: ProductDetailView, name: 'ProductDetailView'},
   ]
 });

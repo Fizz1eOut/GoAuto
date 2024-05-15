@@ -63,7 +63,7 @@ export default defineComponent({
 <template>
   <app-underlay>
     <app-container size="sm">
-      <router-link :to="{ name: 'ProductDetailView', params: { title: product.title } }">
+      <router-link :to="{ name: 'ProductDetailView', params: { alias: product.alias } }">
         <div class="product">
           <div v-if="product.featured" class="product__badge">Хіт</div>
           <div class="product__img">
@@ -80,7 +80,7 @@ export default defineComponent({
           </div>
           <div class="product__row">
             <template v-if="!isAddded">
-              <app-button @click="addToCart">
+              <app-button @click.prevent="addToCart">
                 Додати в кошик
                 <IconCart class="icon" />
               </app-button>
