@@ -35,6 +35,7 @@ export default defineComponent({
   },
 
   mounted() {
+    this.handleResize();
     window.addEventListener('resize', this.handleResize);
   },
 
