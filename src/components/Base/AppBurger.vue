@@ -4,24 +4,41 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'AppBurger',
 
+  props: {
+    active: {
+      type: Boolean,
+      required: true
+    }
+  },
+
   emits: ['change'],
 
   data() {
     return {
-      active: false,
+      dropdownActive: false,
     }
   },
+
   watch: {
     active(value) {
       document.body.style.overflow = value ? 'hidden' : '';
     }
   },
+
+  methods: {
+    toggle() {
+      this.dropdownActive = !this.dropdownActive;
+    },
+    toggleBurger() {
+      this.$emit('change', !this.active);
+    }
+  }
 });
 </script>
 
 <template>
   <button 
-    @click="$emit('change', active = !active)"
+    @click="toggleBurger"
     :class="{ 'burger--active': active }"
     class="burger"
   >
@@ -87,4 +104,5 @@ export default defineComponent({
     transform: rotate(-45deg);
   }
 }
+
 </style>

@@ -28,7 +28,7 @@ export default defineComponent({
       default: false
     }
   },
-
+  
   emits: ['close'],
 
   data() {
@@ -63,14 +63,14 @@ export default defineComponent({
         </li>
 
         <li class="nav-modile__item">
-          <router-link to="/tires">
+          <router-link to="/tires" @click="close">
             <app-link>
               Шини
             </app-link>
           </router-link>
         </li>
 
-        <li class="nav-modile__item">
+        <li class="nav-modile__item" @click="close">
           <router-link to="/rims">
             <app-link>
               Диски
@@ -79,7 +79,7 @@ export default defineComponent({
         </li>
 
         <li class="nav-modile__item">
-          <router-link to="/delivery-payment">
+          <router-link to="/delivery-payment" @click="close">
             <app-link>
               Доставка та оплата
             </app-link>
@@ -96,13 +96,13 @@ export default defineComponent({
             <app-dropdown 
               :dropdownActive="dropdownActive"
             >
-              <router-link to="/tire-service">
+              <router-link to="/tire-service" @click="close">
                 <app-dropdown-item class="dropdown-link">
                   Шиномонтаж
                 </app-dropdown-item>
               </router-link>
 
-              <router-link to="/rims-painting">
+              <router-link to="/rims-painting" @click="close">
                 <app-dropdown-item>
                   Фарбування дисків
                 </app-dropdown-item>
@@ -112,7 +112,7 @@ export default defineComponent({
         </li>
 
         <li class="nav-modile__item">
-          <router-link to="/contacts">
+          <router-link to="/contacts" @click="close">
             <app-link>
               Контакти
             </app-link>

@@ -38,7 +38,7 @@ export default defineComponent({
   computed: {
     ...mapStores(useCartStore),
   },
-  
+
   methods: {
     closeBurger() {
       this.open = false;
@@ -54,7 +54,7 @@ export default defineComponent({
         <app-container size="sm">
           <div class="header__body">
             <div class="header__item">
-              <app-burger @change="open = $event" />
+              <app-burger :active="open" @change="open = $event" />
               <router-link to="/">
                 <app-logo />
               </router-link>
