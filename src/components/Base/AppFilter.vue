@@ -135,7 +135,7 @@ export default defineComponent({
     top: 0px;
     max-width: 480px;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     z-index: 11;
     box-shadow: 4px 0 9px -7px rgba(0, 0, 0, 0.8);
     background-color: var(--color-white);
