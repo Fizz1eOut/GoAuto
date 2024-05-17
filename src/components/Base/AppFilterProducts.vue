@@ -205,4 +205,10 @@ export default defineComponent({
       border: none;
     }
   }
+  @media (max-width: 599px) {
+    .tires-products__item {
+    max-width: 100%;
+    width: 100%;
+  }
+  }
 </style>

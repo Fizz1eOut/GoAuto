@@ -53,7 +53,9 @@ export default defineComponent({
     padding: 16px;
   }
   @media (max-width: 768px) {
-
+    .size-xl {
+      padding: 30px;
+    }
   }
 
   @media (max-width: 499px) {

@@ -121,7 +121,7 @@ export default defineComponent({
 
 <template>
   <div class="tires">
-    <app-container>
+    <app-container class="rims__container">
       <app-title>
         Диски
       </app-title>
@@ -201,4 +201,9 @@ export default defineComponent({
       row-gap: 20px;
     }
   }
+  @media (max-width: 499px) {
+    .rims__container {
+      padding: 0;
+    }
+  } 
 </style>

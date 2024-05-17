@@ -1,7 +1,5 @@
 <script>
 import TheOrderPayment from "@/components/Content/TheOrderPayment.vue";
-import AppDivider from "@/components/Base/AppDivider.vue";
-import AppTitle from '@/components/Base/AppTitle.vue';
 import { defineComponent } from 'vue';
 import CartOrder from "@/components/Content/CartOrder.vue";
 
@@ -9,8 +7,6 @@ export default defineComponent({
   name: 'TheCheckout',
 
   components: {
-    AppTitle,
-    AppDivider,
     TheOrderPayment,
     CartOrder,
   }
@@ -19,11 +15,6 @@ export default defineComponent({
 
 <template>
   <div class="placing-order">
-    <app-title class="placing-order__title">
-      Оформлення замовлення
-    </app-title>
-    <app-divider class="divider" />
-
     <div class="placing-order__body">
       <div class="placing-order__placing">
         <the-order-payment />
@@ -69,8 +60,9 @@ export default defineComponent({
       flex-direction: column;
     }
     .placing-order__placing {
-    max-width: 100%;
-    width: 100%;
-  }
+      max-width: 100%;
+      width: 100%;
+      order: 2;
+    }
   }
 </style>

@@ -26,9 +26,9 @@ export default defineComponent({
 
 <template>
   <div class="counter">
-    <div class="counter__control counter__minus" @click="decrement">-</div>
+    <div class="counter__control counter__minus" @click.prevent="decrement">-</div>
     <div class="counter__count">{{ count }}</div>
-    <div class="counter__control counter__plus" @click="increment">+</div>
+    <div class="counter__control counter__plus" @click.prevent="increment">+</div>
   </div>
 </template>
 

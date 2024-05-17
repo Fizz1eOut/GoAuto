@@ -134,7 +134,7 @@ export default defineComponent({
   }
   .product__title {
     font-weight: 600;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 160%;
     color: var(--color-black);
   }
@@ -173,5 +173,11 @@ export default defineComponent({
     width: 12px;
     height: 12px;
     fill: var(--color-white);
+  }
+  @media (max-width: 499px) {
+    .product__img img {
+      max-width: 100%;
+      height: 300px;
+    }
   }
 </style>

@@ -121,7 +121,7 @@ export default defineComponent({
 
 <template>
   <div class="tires">
-    <app-container>
+    <app-container class="tires__container">
       <app-title>
         Шини
       </app-title>
@@ -203,4 +203,9 @@ export default defineComponent({
       row-gap: 20px;
     }
   }
+  @media (max-width: 499px) {
+    .tires__container {
+      padding: 0;
+    }
+  } 
 </style>

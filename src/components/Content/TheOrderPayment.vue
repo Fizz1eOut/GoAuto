@@ -3,6 +3,8 @@ import AppButton from '@/components/Base/AppButton.vue'
 import ThePayment from '@/components/Content/ThePayment.vue'
 import TheDelivery from '@/components/Content/TheDelivery.vue'
 import TheBuyerDetails from '@/components/Content/TheBuyerDetails.vue';
+import AppTitle from '@/components/Base/AppTitle.vue';
+import AppDivider from "@/components/Base/AppDivider.vue";
 import * as yup from 'yup';
 import { Form as FormWrapper } from 'vee-validate';
 import { defineComponent } from 'vue';
@@ -15,7 +17,9 @@ export default defineComponent({
     TheDelivery,
     ThePayment,
     AppButton,
-    FormWrapper
+    FormWrapper,
+    AppTitle,
+    AppDivider
   },
 
   // data() {
@@ -42,6 +46,10 @@ export default defineComponent({
 
 <template>
   <form-wrapper class="order-payment" :validation-schema="schema" @submit="onSubmit">
+    <app-divider class="divider" />
+    <app-title class="placing-order__title">
+      Оформлення замовлення
+    </app-title>
     <the-buyer-details />
     <the-delivery />
     <the-payment />
@@ -58,6 +66,9 @@ export default defineComponent({
   }
   .order-payment__title {
     padding-bottom: 40px;
+  }
+  .divider {
+    margin: 30px 0;
   }
 </style>
 

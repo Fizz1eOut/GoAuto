@@ -123,7 +123,7 @@ export default defineComponent({
     max-width: 800px;
   }
   .product__img img {
-    max-width: 320px;
+    max-width: 300px;
     height: 320px;
   }
   .product__content> *:not(:last-child) {
@@ -208,11 +208,6 @@ export default defineComponent({
     position: absolute;
   }
   @media (max-width: 499px) {
-    .chars__item {
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 180%;
-    }
     .chars {
       margin-top: 40px;
     }

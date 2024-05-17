@@ -106,7 +106,6 @@ export default defineComponent({
   .card-order {
     border: 1px solid #abbed1;
     border-radius: 10px;
-    margin-top: 30px;
   }
   .card-order__body {
     margin-top: 30px;
