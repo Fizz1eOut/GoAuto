@@ -68,7 +68,13 @@ export default defineComponent({
     padding-bottom: 40px;
   }
   .divider {
-    margin: 30px 0;
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .divider {
+      display: block;
+      margin: 30px 0;
+    }
   }
 </style>
 
