@@ -11,7 +11,7 @@ import DeliveryPaymentView from '@/pages/DeliveryPaymentView.vue';
 import ProductDetailView from '@/pages/ProductDetailView.vue'
 
 export const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/GoAuto'),
   routes: [
     { path: '/', component: HomeView, name: 'HomeView'},
     { path: '/cart', component: CartView, name: 'CartView'},
