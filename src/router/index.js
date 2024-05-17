@@ -23,5 +23,9 @@ export const router = createRouter({
     { path: '/rims-painting', component: RimsPaintingView, name: 'RimsPaintingView'},
     { path: '/delivery-payment', component: DeliveryPaymentView, name: 'DeliveryPaymentView'},
     { path: '/product/:alias', component: ProductDetailView, name: 'ProductDetailView'},
-  ]
+  ],
+
+  scrollBehavior() {
+    return { top: 0 }
+  },
 });
