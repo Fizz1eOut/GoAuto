@@ -17,6 +17,20 @@ export default defineComponent({
     AppTableList,
     AppTableListItem,
     AppTitle
+  },
+
+  data() {
+    return {
+      tableHeader: [
+        { id: 1, value: 'Радіус' },
+        { id: 2, value: 'Шини (4 шт.)' },
+        { id: 3, value: 'Шини з дисками (4 шт.)' }
+      ],
+      tableData: [
+        { id: 1, values: ['13-16‘‘', '150 грн/міс', '150 грн/міс'] },
+        { id: 2, values: ['17-22‘‘', '750 грн/міс', '750 грн/міс'] }
+      ]
+    };
   }
 });
 </script>
@@ -28,44 +42,14 @@ export default defineComponent({
 
   <app-table>
     <app-table-header>
-      <app-table-header-item>
-        Радіус
-      </app-table-header-item>
-
-      <app-table-header-item>
-        Шини (4 шт.)
-      </app-table-header-item>
-
-      <app-table-header-item>
-        Шини з дисками (4 шт.)
+      <app-table-header-item v-for="headerItem in tableHeader" :key="headerItem.id">
+        {{ headerItem.value }}
       </app-table-header-item>
     </app-table-header>
 
-    <app-table-list>
-      <app-table-list-item>
-        13-16‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        150 грн/міс
-      </app-table-list-item>
-
-      <app-table-list-item>
-        150 грн/міс
-      </app-table-list-item>
-    </app-table-list>
-
-    <app-table-list>
-      <app-table-list-item>
-        17-22‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        750 грн/міс
-      </app-table-list-item>
-
-      <app-table-list-item>
-        750 грн/міс
+    <app-table-list v-for="data in tableData" :key="data.id">
+      <app-table-list-item v-for="(item, index) in data.values" :key="index">
+        {{ item }}
       </app-table-list-item>
     </app-table-list>
   </app-table>

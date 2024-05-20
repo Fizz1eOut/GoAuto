@@ -17,6 +17,25 @@ export default defineComponent({
     AppTableList,
     AppTableListItem,
     AppTitle
+  },
+
+  data() {
+    return {
+      tableHeader: [
+        { id: 1, value: 'Радіус' },
+        { id: 2, value: 'Зняття та встановлення' },
+        { id: 3, value: 'Монтаж та демонтаж' },
+        { id: 4, value: 'Балансування' },
+        { id: 5, value: 'Вартість робіт за 1 колесо' },
+        { id: 6, value: 'Вартість робіт за 4 колеса' }
+      ],
+      tableData: [
+        { id: 1, values: ['15-16‘‘', 60, 60, 60, 180, 720] },
+        { id: 2, values: ['17-18‘‘', 70, 70, 85, 210, 880] },
+        { id: 3, values: ['19-20‘‘', 75, 80, 90, 245, 980] },
+        { id: 4, values: ['21-22‘‘', 80, 85, 95, 260, 1040] }
+      ]
+    };
   }
 });
 </script>
@@ -28,132 +47,14 @@ export default defineComponent({
 
   <app-table>
     <app-table-header>
-      <app-table-header-item>
-        Радіус
-      </app-table-header-item>
-
-      <app-table-header-item>
-        Зняття та встановлення
-      </app-table-header-item>
-
-      <app-table-header-item>
-        Монтаж та демонтаж
-      </app-table-header-item>
-
-      <app-table-header-item>
-        Балансування
-      </app-table-header-item>
-
-      <app-table-header-item>
-        Вартість робіт за 1 колесо
-      </app-table-header-item>
-
-      <app-table-header-item>
-        Вартість робіт за 4 колеса
+      <app-table-header-item v-for="headerItem in tableHeader" :key="headerItem.id">
+        {{ headerItem.value }}
       </app-table-header-item>
     </app-table-header>
 
-    <app-table-list>
-      <app-table-list-item>
-        15-16‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        60
-      </app-table-list-item>
-
-      <app-table-list-item>
-        60
-      </app-table-list-item>
-
-      <app-table-list-item>
-        60
-      </app-table-list-item>
-
-      <app-table-list-item>
-        180
-      </app-table-list-item>
-
-      <app-table-list-item>
-        720
-      </app-table-list-item>
-    </app-table-list>
-
-    <app-table-list>
-      <app-table-list-item>
-        17-18‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        70
-      </app-table-list-item>
-
-      <app-table-list-item>
-        70
-      </app-table-list-item>
-
-      <app-table-list-item>
-        85
-      </app-table-list-item>
-
-      <app-table-list-item>
-        210
-      </app-table-list-item>
-
-      <app-table-list-item>
-        880
-      </app-table-list-item>
-    </app-table-list>
-
-    <app-table-list>
-      <app-table-list-item>
-        19-20‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        75
-      </app-table-list-item>
-
-      <app-table-list-item>
-        80
-      </app-table-list-item>
-
-      <app-table-list-item>
-        90
-      </app-table-list-item>
-
-      <app-table-list-item>
-        245
-      </app-table-list-item>
-
-      <app-table-list-item>
-        980
-      </app-table-list-item>
-    </app-table-list>
-
-    <app-table-list>
-      <app-table-list-item>
-        21-22‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        80
-      </app-table-list-item>
-
-      <app-table-list-item>
-        85
-      </app-table-list-item>
-
-      <app-table-list-item>
-        95
-      </app-table-list-item>
-
-      <app-table-list-item>
-        260
-      </app-table-list-item>
-
-      <app-table-list-item>
-        1040
+    <app-table-list v-for="data in tableData" :key="data.id">
+      <app-table-list-item v-for="(item, index) in data.values" :key="index">
+        {{ item }}
       </app-table-list-item>
     </app-table-list>
   </app-table>

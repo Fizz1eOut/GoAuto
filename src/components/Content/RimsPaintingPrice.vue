@@ -17,6 +17,27 @@ export default defineComponent({
     AppTableList,
     AppTableListItem,
     AppTitle
+  },
+
+  data() {
+    return {
+      tableHeader: [
+        { id: 1, value: 'Радіус' },
+        { id: 2, value: 'Металеві' },
+        { id: 3, value: 'Легкосплавні' }
+      ],
+      tableData: [
+        { id: 1, values: ['13‘‘', 2000, 2500] },
+        { id: 2, values: ['14‘‘', 2100, 2700] },
+        { id: 3, values: ['15‘‘', 2300, 2900] },
+        { id: 4, values: ['16‘‘', 2500, 3200] },
+        { id: 5, values: ['17‘‘', 2800, 3400] },
+        { id: 6, values: ['18‘‘', '-', 3600] },
+        { id: 7, values: ['19‘‘', '-', 3800] },
+        { id: 8, values: ['20‘‘', '-', 4500] },
+        { id: 9, values: ['Проточка дисків за комплект', '-', 4000] }
+      ]
+    };
   }
 });
 </script>
@@ -28,147 +49,18 @@ export default defineComponent({
 
   <app-table>
     <app-table-header>
-      <app-table-header-item>
-        Радіус
-      </app-table-header-item>
-
-      <app-table-header-item>
-        Металеві
-      </app-table-header-item>
-
-      <app-table-header-item>
-        Легкосплавні
+      <app-table-header-item v-for="headerItem in tableHeader" :key="headerItem.id">
+        {{ headerItem.value }}
       </app-table-header-item>
     </app-table-header>
 
-    <app-table-list>
-      <app-table-list-item>
-        13‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        2000
-      </app-table-list-item>
-
-      <app-table-list-item>
-        2500
-      </app-table-list-item>
-    </app-table-list>
-
-    <app-table-list>
-      <app-table-list-item>
-        14‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        2100
-      </app-table-list-item>
-
-      <app-table-list-item>
-        2700
-      </app-table-list-item>
-    </app-table-list>
-
-    <app-table-list>
-      <app-table-list-item>
-        15‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        2300
-      </app-table-list-item>
-
-      <app-table-list-item>
-        2900
-      </app-table-list-item>
-    </app-table-list>
-
-    <app-table-list>
-      <app-table-list-item>
-        16‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        2500
-      </app-table-list-item>
-
-      <app-table-list-item>
-        3200
-      </app-table-list-item>
-    </app-table-list>
-
-    <app-table-list>
-      <app-table-list-item>
-        17‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        2800
-      </app-table-list-item>
-
-      <app-table-list-item>
-        3400
-      </app-table-list-item>
-    </app-table-list>
-
-    <app-table-list>
-      <app-table-list-item>
-        18‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        -
-      </app-table-list-item>
-
-      <app-table-list-item>
-        3600
-      </app-table-list-item>
-    </app-table-list>
-
-    <app-table-list>
-      <app-table-list-item>
-        19‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        -
-      </app-table-list-item>
-
-      <app-table-list-item>
-        3800
-      </app-table-list-item>
-    </app-table-list>
-
-    <app-table-list>
-      <app-table-list-item>
-        20‘‘
-      </app-table-list-item>
-
-      <app-table-list-item>
-        -
-      </app-table-list-item>
-
-      <app-table-list-item>
-        4500
-      </app-table-list-item>
-    </app-table-list>
-
-    <app-table-list>
-      <app-table-list-item>
-        Проточка дисків за комплект 
-      </app-table-list-item>
-
-      <app-table-list-item>
-        -
-      </app-table-list-item>
-
-      <app-table-list-item>
-        4000
+    <app-table-list v-for="data in tableData" :key="data.id">
+      <app-table-list-item v-for="(item, index) in data.values" :key="index">
+        {{ item }}
       </app-table-list-item>
     </app-table-list>
   </app-table>
 </template>
-
 <style scoped>
   .title {
     margin-top: 60px;
