@@ -5,6 +5,7 @@ import AppSubtitle from '@/components/Base/AppSubtitle.vue';
 import IconFilter from '@/components/icons/IconFilter.vue';
 import IconCross from '@/components/icons/IconCross.vue';
 import AppDivider from '@/components/Base/AppDivider.vue';
+import AppButton from '@/components/Base/AppButton.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -17,6 +18,7 @@ export default defineComponent({
     IconFilter,
     IconCross,
     AppDivider,
+    AppButton,
   },
 
   emits: ['change', 'update:modelValue'],
@@ -104,6 +106,7 @@ export default defineComponent({
         <div class="filter-mobile__items">
           <app-container size="sm">
             <slot />
+            <app-button class="button" @click="closeFilter">Закрити</app-button>
           </app-container>
         </div>
       </div>
@@ -112,6 +115,9 @@ export default defineComponent({
 </template>
 
 <style scoped>
+  .button {
+    margin-top: 20px;
+  }
   .filter {
     width: 300px;
   }
