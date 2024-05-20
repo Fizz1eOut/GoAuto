@@ -25,6 +25,7 @@ export default defineComponent({
     return {
       active: false,
       isMobile: false,
+      mediaQueryList: window.matchMedia('(max-width: 768px)')
     };
   },
 
@@ -35,12 +36,14 @@ export default defineComponent({
   },
 
   mounted() {
-    this.handleResize();
-    window.addEventListener('resize', this.handleResize);
+    // Подписываемся на событие изменения медиазапроса при монтировании компонента
+    this.isMobile = this.mediaQueryList.matches; // Инициализация значения isMobile при монтировании компонента
+    this.mediaQueryList.addEventListener('change', this.handleMediaChange);
   },
 
   beforeUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+    // Отписываемся от события изменения медиазапроса при размонтировании компонента
+    this.mediaQueryList.removeEventListener('change', this.handleMediaChange);
   },
 
   methods: {
@@ -50,9 +53,10 @@ export default defineComponent({
     closeFilter() {
       this.active = false;
     },
-    handleResize() {
-      this.isMobile = window.matchMedia('(max-width: 768px)').matches;
-      // console.log(this.isMobile)
+    // Обработчик изменения состояния медиазапроса
+    handleMediaChange(event) {
+      // Обновляем флаг isMobile в соответствии с состоянием медиазапроса
+      this.isMobile = event.matches;
     }
   }
   
