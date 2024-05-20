@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory} from 'vue-router';
+import { createRouter, createWebHashHistory} from 'vue-router';
 import HomeView from '@/pages/HomeView.vue';
 import CartView from '@/pages/CartView.vue';
 import OrderSuccessView from '@/pages/OrderSuccessView.vue';
@@ -11,7 +11,8 @@ import DeliveryPaymentView from '@/pages/DeliveryPaymentView.vue';
 import ProductDetailView from '@/pages/ProductDetailView.vue'
 
 export const router = createRouter({
-  history: createWebHistory('/GoAuto'),
+  // history: createWebHistory('/GoAuto'),
+  history: createWebHashHistory('/GoAuto'),
   routes: [
     { path: '/', component: HomeView, name: 'HomeView'},
     { path: '/cart', component: CartView, name: 'CartView'},
