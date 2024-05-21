@@ -142,9 +142,11 @@ export default defineComponent({
     </div>
 
     <div class="tires-products__items">
-      <div v-for="tiresProduct in paginatedProducts" :key="tiresProduct.id" class="tires-products__item">
-        <app-product :product="tiresProduct" />
-      </div>
+      <transition-group name="tires-products__item">
+        <div v-for="tiresProduct in paginatedProducts" :key="tiresProduct.id" class="tires-products__item">
+          <app-product :product="tiresProduct" />
+        </div>
+      </transition-group>
     </div>
     <app-pagination 
       v-if="sortedProducts.length >= 1"
@@ -157,6 +159,13 @@ export default defineComponent({
 </template>
 
 <style scoped>
+.tires-products__item-enter-active, .tires-products__item-leave-active {
+  transition: opacity 0.5s, transform 0.5s;
+}
+.tires-products__item-enter, .tires-products__item-leave-to /* .tires-products__item-leave-active недействителен в v-show */ {
+  opacity: 0;
+  transform: scale(0.9);
+}
   .tires-products {
     width: 100%;
   }
