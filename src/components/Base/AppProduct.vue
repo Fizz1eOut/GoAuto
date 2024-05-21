@@ -136,6 +136,9 @@ export default defineComponent({
     font-weight: 600;
     font-size: 18px;
     line-height: 160%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
     color: var(--color-black);
   }
   .product__article {
