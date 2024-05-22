@@ -7,9 +7,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <a href="#" class="link line">
+  <div class="link line">
     <slot></slot>
-  </a>
+  </div>
 </template>
 
 <style scoped>
@@ -21,6 +21,7 @@ export default defineComponent({
   font-weight: 500;
   line-height: 100%;
   transition: color 0.3s ease-in-out, fill 0.3s ease-in-out;
+  cursor: pointer;
 }
 .link:hover {
   color: var(--color-blue-hover);
