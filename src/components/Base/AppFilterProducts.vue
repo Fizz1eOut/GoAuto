@@ -2,9 +2,10 @@
 import AppProduct from '@/components/Base/AppProduct.vue';
 import productsData from '@/api/products.json';
 import optionsData from '@/api/options.json';
-import { defineComponent } from 'vue';
 import AppPagination from '@/components/Base/AppPagination.vue'
 import AppSelect from '@/components/Inputs/AppSelect.vue';
+import IconCross from '@/components/icons/IconCross.vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'AppFilterProducts',
@@ -12,15 +13,22 @@ export default defineComponent({
   components: {
     AppProduct,
     AppPagination,
-    AppSelect
+    AppSelect,
+    IconCross
   },
 
   props: {
     category: {
       type: Number,
       required: true
-    }
+    },
+    selectedFilters: {
+      type: Array,
+      required: true
+    },
   },
+
+  emits: ['remove-filter', 'clear-all-filters'],
 
   data() {
     return {
@@ -124,13 +132,51 @@ export default defineComponent({
     updateSortOption(optionId) {
       const sortOrder = this.sortOptions.find(option => option.id === optionId).id; // Получаем выбранный порядок сортировки
       this.$router.push({ query: { ...this.$route.query, sort: sortOrder } }); // Обновляем параметр запроса sort в URL-адресе
-    }
+    },
+
+     // Определяем метод удаления фильтра
+     removeFilter(title, value) {
+      // Эмитируем событие remove-filter с передачей данных фильтра
+      this.$emit('remove-filter', title, value);
+    },
+
+    // Метод для удаления всех фильтров
+    clearAllFilters() {
+      // Эмитируем событие clear-all-filters без передачи данных
+      this.$emit('clear-all-filters');
+    },
   },
 });
 </script>
 
 <template>
   <div class="tires-products">
+    <div class="selected-filters">
+      <div class="selected-filters__items">
+        <div 
+          v-for="filter in selectedFilters" 
+          :key="filter.title + filter.value" 
+          class="selected-filter"
+        >
+          {{ filter.title }}: {{ filter.value }} 
+          <button
+            class="selected-filter__button"
+            @click="removeFilter(filter.title, filter.value)"
+          >
+            <icon-cross class="cross" />
+          </button>
+        </div>
+        <button 
+          v-if="selectedFilters.length > 1"
+          class="clear-all"
+          @click="clearAllFilters"
+        >
+          Очистить все
+          <icon-cross class="cross" />
+        </button>
+      </div>
+    </div>
+
     <div class="tires__sort">
       <div class="tires__text">Сортувати:</div>
       <app-select 
@@ -159,13 +205,6 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.tires-products__item-enter-active, .tires-products__item-leave-active {
-  transition: opacity 0.5s, transform 0.5s;
-}
-.tires-products__item-enter, .tires-products__item-leave-to /* .tires-products__item-leave-active недействителен в v-show */ {
-  opacity: 0;
-  transform: scale(0.9);
-}
   .tires-products {
     width: 100%;
   }
@@ -206,6 +245,43 @@ export default defineComponent({
     justify-content: center;
     height: 200px;
   }
+  .selected-filters__items {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap ;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .selected-filter {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--color-black);
+  }
+  .selected-filter__button {
+    background-color: transparent;
+    max-height: 18px;
+    cursor: pointer;
+  }
+  .clear-all {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--color-black);
+    background-color: transparent;
+    cursor: pointer;
+  }
+  .cross {
+    width: 18px;
+    height: 18px;
+    background-color: var(--color-white);
+  }
   @media (max-width: 768px) {
     .tires__text {
       display: none;
@@ -216,8 +292,16 @@ export default defineComponent({
   }
   @media (max-width: 599px) {
     .tires-products__item {
-    max-width: 100%;
-    width: 100%;
+      max-width: 100%;
+      width: 100%;
+    }
   }
+
+  .tires-products__item-enter-active, .tires-products__item-leave-active {
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .tires-products__item-enter, .tires-products__item-leave-to /* .tires-products__item-leave-active недействителен в v-show */ {
+    opacity: 0;
+    transform: scale(0.9);
   }
 </style>

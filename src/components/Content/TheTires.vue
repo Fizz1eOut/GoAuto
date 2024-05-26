@@ -33,6 +33,7 @@ export default defineComponent({
       width: 0,
       brand: 0,
       selectedBrands: [],
+      selectedFilters: [],
     };
   },
     
@@ -95,10 +96,16 @@ export default defineComponent({
   created() {
     // Получаем параметры запроса из URL
     const params = this.$route.query;
-    
     // Устанавливаем значения переменным данных на основе параметров запроса
     this.priceFrom = params.priceFrom || '';
     this.priceTo = params.priceTo || '';
+
+    // Инициализируем selectedFilters вызовом метода updateSelectedFilters
+    for (const [key, value] of Object.entries(params)) {
+      if (value) {
+        this.updateSelectedFilters(key, Array.isArray(value) ? value : [value]);
+      }
+    }
   },
 
   methods: {
@@ -113,6 +120,88 @@ export default defineComponent({
         query.priceTo = this.priceTo;
       }
 
+      this.$router.push({ query });
+    },
+    
+    // Метод для обновления выбранных фильтров
+    updateSelectedFilters(name, value) {
+      // Ищем соответствующий объект фильтра в массиве optionsData по имени фильтра
+      const option = optionsData.find(option => option.name === name);
+      // console.log(option);
+      if (option) {
+        // Удаляем предыдущие значения этого фильтра из selectedFilters
+        this.selectedFilters = this.selectedFilters.filter(filter => filter.name !== name);
+        // console.log(this.selectedFilters);
+        // Если значение фильтра - массив
+        if (Array.isArray(value)) {
+          // console.log(value);
+          // Итерируемся по каждому значению в массиве
+          value.forEach(val => {
+            // Добавляем объект фильтра в selectedFilters
+            this.selectedFilters.push({ title: option.title, value: val, name });
+          });
+          // console.log(this.selectedFilters);
+        } else {
+          // Если значение фильтра не массив, добавляем его в selectedFilters
+          this.selectedFilters.push({ title: option.title, value, name });
+        }
+
+        // Создаем новый объект query с обновленными параметрами фильтра
+        const query = { ...this.$route.query, [name]: value };
+        // Обновляем маршрут с новым query
+        this.$router.push({ query });
+        // console.log(query);
+      }
+    },
+
+    // Метод для удаления фильтра
+    removeFilter(title, value) {
+      // Ищем соответствующий объект фильтра в массиве optionsData по заголовку фильтра
+      const option = optionsData.find(option => option.title === title);
+      if (option) {
+        // Фильтруем selectedFilters для удаления соответствующего элемента
+        this.selectedFilters = this.selectedFilters.filter(filter => !(filter.title === title && filter.value === value));
+
+        // Копируем текущий объект query из маршрута
+        const query = { ...this.$route.query };
+        // console.log(query);
+
+        // Получаем текущее значение фильтра из query
+        const currentValues = query[option.name];
+        // console.log(currentValues);
+
+        // Если текущее значение фильтра - массив
+        if (Array.isArray(currentValues)) {
+          // Удаляем значение из массива
+          query[option.name] = currentValues.filter(val => val !== value);
+          // Если массив стал пустым, удаляем фильтр из query
+          if (query[option.name].length === 0) {
+            delete query[option.name];
+          }
+        } else {
+          // Если текущее значение фильтра не массив, удаляем фильтр из query
+          delete query[option.name];
+        }
+
+        // Обновляем маршрут с новым query
+        this.$router.push({ query });
+      }
+    },
+
+    // Определение метода удаления всех фильтров
+    clearAllFilters() {
+      // Очищаем массив выбранных фильтров
+      this.selectedFilters = [];
+
+      // Создаем копию текущего объекта query из маршрута
+      const query = { ...this.$route.query };
+
+      // Удаляем все параметры фильтров из query
+      for (const option of optionsData) {
+        delete query[option.name];
+      }
+
+      // Обновляем маршрут с пустым query
       this.$router.push({ query });
     },
   }
@@ -137,6 +226,7 @@ export default defineComponent({
               v-model="rebalancing" 
               :options="data"
               :name="option.name"
+              @update-filter="updateSelectedFilters"
             />
           </template>
 
@@ -153,6 +243,7 @@ export default defineComponent({
               v-model="rebalancing" 
               :options="productOption.data"
               :name="productOption.option.name"
+              @update-filter="updateSelectedFilters"
             />
           </template>
 
@@ -173,7 +264,12 @@ export default defineComponent({
           </div>
         </app-filter>
 
-        <app-filter-products :category="1" />
+        <app-filter-products 
+          :category="1" 
+          :selectedFilters="selectedFilters" 
+          @remove-filter="removeFilter"
+          @clear-all-filters="clearAllFilters"
+        />
       </div>
     </app-container>
   </div>

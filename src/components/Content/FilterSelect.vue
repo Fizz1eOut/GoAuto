@@ -22,15 +22,13 @@ export default defineComponent({
     },
   },
 
-  // data() {
-  //   return {
-      
-  //   }
-  // },
+  emits: ['updateFilter'],
 
-  // methods: {
-    
-  // }
+  methods: {
+    updateFilter(val) {
+      this.$emit('updateFilter', this.name, val);
+    }
+  }
 });
 </script>
 
@@ -40,7 +38,7 @@ export default defineComponent({
       <app-select 
         :options="options"
         :model-value="value"
-        @update:model-value="update"
+        @update:model-value="val => { update(val); updateFilter(val); }"
       />
     </filter-query>
   </div>

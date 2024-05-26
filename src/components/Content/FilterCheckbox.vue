@@ -5,10 +5,12 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'FilterCheckbox',
+  
   components: {
     AppCheckbox,
     FilterQuery,
   },
+
   props: {
     options: {
       type: Array,
@@ -19,6 +21,14 @@ export default defineComponent({
       required: true,
     },
   },
+
+  emits: ['updateFilter'],
+
+  methods: {
+    updateFilter(val) {
+      this.$emit('updateFilter', this.name, val);
+    }
+  }
 });
 </script>
 
@@ -31,7 +41,7 @@ export default defineComponent({
         :model-value="value"
         :value="option.id"
         class="filter__checkbox"
-        @update:model-value="update"
+        @update:model-value="val => { update(val); updateFilter(val); }"
       >
         {{ option.value }}
       </app-checkbox>
