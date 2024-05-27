@@ -15,31 +15,24 @@ export default defineComponent({
     };
   },
 
-  async mounted() {
+  mounted() {
     // Получаем все файлы из папки '../../assets/images/our-products/' с расширением '.svg'
     const imageFiles = import.meta.glob('../../assets/images/our-products/*.svg');
-    // console.log(imageFiles)
-    // Загружаем все изображения асинхронно и ждем их завершения
-    const imageUrls = await Promise.all(
-      // Преобразуем объект файлов в массив пар ключ-значение и выполняем операции для каждой пары
-      Object.entries(imageFiles).map(async ([path, loader]) => {
-        console.log(path)
-        console.log(loader)
-        // Загружаем модуль изображения и ожидаем его завершения
-        const module = await loader();
-        // console.log(module)
-        // Возвращаем объект с путем к файлу и его URL
-        return { path, url: module.default };
-      })
-    );
-    // Преобразуем полученные URL в формат для отображения и сохраняем в массив images
-    this.images = imageUrls.map(({ url }, index) => ({
-      id: index + 1, // Идентификатор изображения
-      src: url, // URL изображения
-      alt: `Зображення ${index + 1}`, // Альтернативный текст изображения
-    }));
-    // console.log(imageUrls);
-    // console.log(this.images);
+    
+    for (const path in imageFiles) {
+      imageFiles[path]().then((mod) => {
+        // Извлекаем URL изображения из загруженного модуля
+        const imageUrl = mod.default;
+        // Получаем имя файла из пути
+        const fileName = path.split('/').pop();
+        // Формируем объект изображения и добавляем его в массив images
+        this.images.push({
+          id: this.images.length + 1, // Присваиваем уникальный идентификатор
+          src: imageUrl, // URL изображения
+          alt: `Зображення ${fileName}` // Альтернативный текст
+        });
+      });
+    }
   }
 });
 </script>
