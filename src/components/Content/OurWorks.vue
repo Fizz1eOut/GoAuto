@@ -15,11 +15,31 @@ export default defineComponent({
     };
   },
 
-  mounted() {
-    for (let i = 1; i <= 12; i++) {
-      const imageUrl = new URL(`../../assets/images/our-products/${i}.svg`, import.meta.url).href;
-      this.images.push({ id: i, src: imageUrl, alt: `Зображення ${i}` });
-    }
+  async mounted() {
+    // Получаем все файлы из папки '../../assets/images/our-products/' с расширением '.svg'
+    const imageFiles = import.meta.glob('../../assets/images/our-products/*.svg');
+    // console.log(imageFiles)
+    // Загружаем все изображения асинхронно и ждем их завершения
+    const imageUrls = await Promise.all(
+      // Преобразуем объект файлов в массив пар ключ-значение и выполняем операции для каждой пары
+      Object.entries(imageFiles).map(async ([path, loader]) => {
+        console.log(path)
+        console.log(loader)
+        // Загружаем модуль изображения и ожидаем его завершения
+        const module = await loader();
+        // console.log(module)
+        // Возвращаем объект с путем к файлу и его URL
+        return { path, url: module.default };
+      })
+    );
+    // Преобразуем полученные URL в формат для отображения и сохраняем в массив images
+    this.images = imageUrls.map(({ url }, index) => ({
+      id: index + 1, // Идентификатор изображения
+      src: url, // URL изображения
+      alt: `Зображення ${index + 1}`, // Альтернативный текст изображения
+    }));
+    // console.log(imageUrls);
+    // console.log(this.images);
   }
 });
 </script>
@@ -32,7 +52,6 @@ export default defineComponent({
     <div class="our-works__body">
       <div v-for="image in images" :key="image.id" class="our-works__image">
         <img :src="image.src" :alt="image.alt">
-        <img src="" alt="">
       </div>
     </div>
   </div>
