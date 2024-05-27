@@ -118,8 +118,7 @@ export default defineComponent({
   .product {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+    gap: 20px;
     max-width: 800px;
   }
   .product__img img {
