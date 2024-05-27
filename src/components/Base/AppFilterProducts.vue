@@ -6,6 +6,7 @@ import AppPagination from '@/components/Base/AppPagination.vue'
 import AppSelect from '@/components/Inputs/AppSelect.vue';
 import IconCross from '@/components/icons/IconCross.vue';
 import { defineComponent } from 'vue';
+import AppButton from '@/components/Base/AppButton.vue';
 
 export default defineComponent({
   name: 'AppFilterProducts',
@@ -14,8 +15,9 @@ export default defineComponent({
     AppProduct,
     AppPagination,
     AppSelect,
-    IconCross
-  },
+    IconCross,
+    AppButton
+},
 
   props: {
     category: {
@@ -166,14 +168,14 @@ export default defineComponent({
             <icon-cross class="cross" />
           </button>
         </div>
-        <button 
+        <app-button
           v-if="selectedFilters.length > 1"
           class="clear-all"
           @click="clearAllFilters"
         >
           Очистить все
           <icon-cross class="cross" />
-        </button>
+        </app-button>
       </div>
     </div>
 
@@ -255,11 +257,14 @@ export default defineComponent({
   .selected-filter {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     font-weight: 400;
     font-size: 16px;
     line-height: 100%;
     color: var(--color-black);
+    padding: 7px;
+    border: 1px solid var(--color-blue);
+    border-radius: 10px;
   }
   .selected-filter__button {
     background-color: transparent;
@@ -267,20 +272,20 @@ export default defineComponent({
     cursor: pointer;
   }
   .clear-all {
+    max-width: 160px;
+    height: 20px;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     font-weight: 400;
     font-size: 16px;
     line-height: 100%;
-    color: var(--color-black);
-    background-color: transparent;
     cursor: pointer;
   }
   .cross {
     width: 18px;
     height: 18px;
-    background-color: var(--color-white);
+    background-color: transparent;
   }
   @media (max-width: 768px) {
     .tires__text {
@@ -288,6 +293,16 @@ export default defineComponent({
     }
     .tires-sort {
       border: none;
+    }
+    .selected-filters__items {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      width: 100%;
+      white-space: nowrap;
+      padding-bottom: 10px;
+    }
+    .clear-all {
+      min-width: 160px;
     }
   }
   @media (max-width: 599px) {

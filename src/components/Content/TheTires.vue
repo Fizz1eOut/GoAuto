@@ -91,8 +91,22 @@ export default defineComponent({
           return { option, data };
       });
     }
-    }, 
+  }, 
 
+  watch: {
+    '$route.query': {
+      // Обработчик срабатывает при изменении $route.query
+      handler(newQuery) {
+        // Инициализируем выбранные фильтры на основе нового значения query
+        this.initializeSelectedFilters(newQuery);
+        // console.log(newQuery);
+      },
+      // Сразу выполняем обработчик при создании компонента
+      immediate: true,
+    },
+  },
+
+    
   created() {
     // Получаем параметры запроса из URL
     const params = this.$route.query;
@@ -100,12 +114,8 @@ export default defineComponent({
     this.priceFrom = params.priceFrom || '';
     this.priceTo = params.priceTo || '';
 
-    // Инициализируем selectedFilters вызовом метода updateSelectedFilters
-    for (const [key, value] of Object.entries(params)) {
-      if (value) {
-        this.updateSelectedFilters(key, Array.isArray(value) ? value : [value]);
-      }
-    }
+    // При создании компонента инициализируем выбранные фильтры на основе текущих параметров запроса из URL
+    this.initializeSelectedFilters(this.$route.query);
   },
 
   methods: {
@@ -123,12 +133,33 @@ export default defineComponent({
       this.$router.push({ query });
     },
     
+    initializeSelectedFilters(query) {
+      // Очищаем текущий массив выбранных фильтров
+      this.selectedFilters = [];
+      
+      // Проходимся по всем параметрам запроса из URL
+      for (const [key, value] of Object.entries(query)) {
+        // Если значение параметра существует
+        if (value) {
+          // Обновляем выбранные фильтры, конвертируя значение в массив (если оно не массив)
+          // Передаем false, чтобы избежать обновления маршрута, т.к. это уже значение из URL
+          this.updateSelectedFilters(key, Array.isArray(value) ? value : [value], false);
+        }
+      }
+    },
+
     // Метод для обновления выбранных фильтров
     updateSelectedFilters(name, value) {
       // Ищем соответствующий объект фильтра в массиве optionsData по имени фильтра
       const option = optionsData.find(option => option.name === name);
       // console.log(option);
       if (option) {
+        // Если значение равно 0, удаляем фильтр
+        if (value === 0) {
+          this.removeFilter(option.title, value);
+          return;
+        }
+
         // Удаляем предыдущие значения этого фильтра из selectedFilters
         this.selectedFilters = this.selectedFilters.filter(filter => filter.name !== name);
         // console.log(this.selectedFilters);
