@@ -33,6 +33,7 @@ export default defineComponent({
       width: 0,
       brand: 0,
       selectedBrands: [],
+      selectedFilters: [],
     };
   },
     
@@ -90,7 +91,20 @@ export default defineComponent({
           return { option, data };
       });
     }
-    }, 
+  }, 
+
+  watch: {
+    '$route.query': {
+      // Обработчик срабатывает при изменении $route.query
+      handler(newQuery) {
+        // Инициализируем выбранные фильтры на основе нового значения query
+        this.initializeSelectedFilters(newQuery);
+        // console.log(newQuery);
+      },
+      // Сразу выполняем обработчик при создании компонента
+      immediate: true,
+    },
+  },
 
   created() {
     // Получаем параметры запроса из URL
@@ -99,6 +113,9 @@ export default defineComponent({
     // Устанавливаем значения переменным данных на основе параметров запроса
     this.priceFrom = params.priceFrom || '';
     this.priceTo = params.priceTo || '';
+
+    // При создании компонента инициализируем выбранные фильтры на основе текущих параметров запроса из URL
+    this.initializeSelectedFilters(this.$route.query);
   },
 
   methods: {
@@ -113,6 +130,109 @@ export default defineComponent({
         query.priceTo = this.priceTo;
       }
 
+      this.$router.push({ query });
+    },
+
+    initializeSelectedFilters(query) {
+      // Очищаем текущий массив выбранных фильтров
+      this.selectedFilters = [];
+      
+      // Проходимся по всем параметрам запроса из URL
+      for (const [key, value] of Object.entries(query)) {
+        // Если значение параметра существует
+        if (value) {
+          // Обновляем выбранные фильтры, конвертируя значение в массив (если оно не массив)
+          // Передаем false, чтобы избежать обновления маршрута, т.к. это уже значение из URL
+          this.updateSelectedFilters(key, Array.isArray(value) ? value : [value], false);
+        }
+      }
+    },
+
+    // Метод для обновления выбранных фильтров
+    updateSelectedFilters(name, value) {
+      // Ищем соответствующий объект фильтра в массиве optionsData по имени фильтра
+      const option = optionsData.find(option => option.name === name);
+      // console.log(option);
+      if (option) {
+        // Если значение равно 0, удаляем фильтр
+        if (value === 0) {
+          this.removeFilter(option.title, value);
+          return;
+        }
+
+        // Удаляем предыдущие значения этого фильтра из selectedFilters
+        this.selectedFilters = this.selectedFilters.filter(filter => filter.name !== name);
+        // console.log(this.selectedFilters);
+        // Если значение фильтра - массив
+        if (Array.isArray(value)) {
+          // console.log(value);
+          // Итерируемся по каждому значению в массиве
+          value.forEach(val => {
+            // Добавляем объект фильтра в selectedFilters
+            this.selectedFilters.push({ title: option.title, value: val, name });
+          });
+          // console.log(this.selectedFilters);
+        } else {
+          // Если значение фильтра не массив, добавляем его в selectedFilters
+          this.selectedFilters.push({ title: option.title, value, name });
+        }
+
+        // Создаем новый объект query с обновленными параметрами фильтра
+        const query = { ...this.$route.query, [name]: value };
+        // Обновляем маршрут с новым query
+        this.$router.push({ query });
+        // console.log(query);
+      }
+    },
+
+    // Метод для удаления фильтра
+    removeFilter(title, value) {
+      // Ищем соответствующий объект фильтра в массиве optionsData по заголовку фильтра
+      const option = optionsData.find(option => option.title === title);
+      if (option) {
+        // Фильтруем selectedFilters для удаления соответствующего элемента
+        this.selectedFilters = this.selectedFilters.filter(filter => !(filter.title === title && filter.value === value));
+
+        // Копируем текущий объект query из маршрута
+        const query = { ...this.$route.query };
+        // console.log(query);
+
+        // Получаем текущее значение фильтра из query
+        const currentValues = query[option.name];
+        // console.log(currentValues);
+
+        // Если текущее значение фильтра - массив
+        if (Array.isArray(currentValues)) {
+          // Удаляем значение из массива
+          query[option.name] = currentValues.filter(val => val !== value);
+          // Если массив стал пустым, удаляем фильтр из query
+          if (query[option.name].length === 0) {
+            delete query[option.name];
+          }
+        } else {
+          // Если текущее значение фильтра не массив, удаляем фильтр из query
+          delete query[option.name];
+        }
+
+        // Обновляем маршрут с новым query
+        this.$router.push({ query });
+      }
+    },
+
+    // Определение метода удаления всех фильтров
+    clearAllFilters() {
+      // Очищаем массив выбранных фильтров
+      this.selectedFilters = [];
+
+      // Создаем копию текущего объекта query из маршрута
+      const query = { ...this.$route.query };
+
+      // Удаляем все параметры фильтров из query
+      for (const option of optionsData) {
+        delete query[option.name];
+      }
+
+      // Обновляем маршрут с пустым query
       this.$router.push({ query });
     },
   }
@@ -136,6 +256,7 @@ export default defineComponent({
               v-if="option.type === 'single'"
               :options="data"
               :name="option.name"
+              @update-filter="updateSelectedFilters"
             />
           </template>
 
@@ -151,6 +272,7 @@ export default defineComponent({
               v-if="productOption.option.type === 'multiple'"
               :options="productOption.data"
               :name="productOption.option.name"
+              @update-filter="updateSelectedFilters"
             />
           </template>
 
@@ -171,7 +293,12 @@ export default defineComponent({
           </div>
         </app-filter>
 
-        <app-filter-products :category="2" />
+        <app-filter-products 
+          :category="2" 
+          :selectedFilters="selectedFilters" 
+          @remove-filter="removeFilter"
+          @clear-all-filters="clearAllFilters"
+        />
       </div>
     </app-container>
   </div>
