@@ -26,7 +26,12 @@ export const router = createRouter({
     { path: '/product/:alias', component: ProductDetailView, name: 'ProductDetailView'},
   ],
 
-  scrollBehavior() {
-    return { top: 0 }
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else if (to.path !== from.path) {
+      return { top: 0 };
+    }
+    return {};
   },
 });
