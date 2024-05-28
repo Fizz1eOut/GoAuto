@@ -8,6 +8,8 @@ import AppDivider from '@/components/Base/AppDivider.vue';
 import AppButton from '@/components/Base/AppButton.vue';
 import { defineComponent } from 'vue';
 
+const mediaQueryList = window.matchMedia('(max-width: 768px)');
+
 export default defineComponent({
   name: 'AppFilter',
 
@@ -27,7 +29,6 @@ export default defineComponent({
     return {
       active: false,
       isMobile: false,
-      mediaQueryList: window.matchMedia('(max-width: 768px)')
     };
   },
 
@@ -39,13 +40,13 @@ export default defineComponent({
 
   mounted() {
     // Подписываемся на событие изменения медиазапроса при монтировании компонента
-    this.isMobile = this.mediaQueryList.matches; // Инициализация значения isMobile при монтировании компонента
-    this.mediaQueryList.addEventListener('change', this.handleMediaChange);
+    this.handleMediaChange(mediaQueryList); // Инициализация значения isMobile при монтировании компонента
+    mediaQueryList.addEventListener('change', this.handleMediaChange);
   },
 
   beforeUnmount() {
     // Отписываемся от события изменения медиазапроса при размонтировании компонента
-    this.mediaQueryList.removeEventListener('change', this.handleMediaChange);
+    mediaQueryList.removeEventListener('change', this.handleMediaChange);
   },
 
   methods: {
