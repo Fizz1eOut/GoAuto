@@ -13,12 +13,6 @@ export default defineComponent({
 
   emits: ['change'],
 
-  data() {
-    return {
-      dropdownActive: false,
-    }
-  },
-
   watch: {
     active(value) {
       document.body.style.overflow = value ? 'hidden' : '';
@@ -26,9 +20,6 @@ export default defineComponent({
   },
 
   methods: {
-    toggle() {
-      this.dropdownActive = !this.dropdownActive;
-    },
     toggleBurger() {
       this.$emit('change', !this.active);
     }

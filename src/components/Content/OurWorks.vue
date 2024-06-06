@@ -19,20 +19,21 @@ export default defineComponent({
     // Получаем все файлы из папки '../../assets/images/our-products/' с расширением '.svg'
     const imageFiles = import.meta.glob('../../assets/images/our-products/*.svg');
     
-    for (const path in imageFiles) {
-      imageFiles[path]().then((mod) => {
-        // Извлекаем URL изображения из загруженного модуля
-        const imageUrl = mod.default;
-        // Получаем имя файла из пути
-        const fileName = path.split('/').pop();
-        // Формируем объект изображения и добавляем его в массив images
-        this.images.push({
-          id: this.images.length + 1, // Присваиваем уникальный идентификатор
-          src: imageUrl, // URL изображения
-          alt: `Зображення ${fileName}` // Альтернативный текст
-        });
+    // Используем Object.entries() для итерации по свойствам объекта imageFiles
+    Object.entries(imageFiles).forEach(async ([path, imageFile]) => {
+      // Загружаем модуль с изображением
+      const mod = await imageFile();
+      // Извлекаем URL изображения из загруженного модуля
+      const imageUrl = mod.default;
+      // Получаем имя файла из пути
+      const fileName = path.split('/').pop();
+      // Формируем объект изображения и добавляем его в массив images
+      this.images.push({
+        id: this.images.length + 1, // Присваиваем уникальный идентификатор
+        src: imageUrl, // URL изображения
+        alt: `Зображення ${fileName}` // Альтернативный текст
       });
-    }
+    });
   }
 });
 </script>

@@ -90,6 +90,25 @@ export default defineComponent({
           // Возвращаем объект, содержащий опцию и ее уникальные значения
           return { option, data };
       });
+    },
+
+    // Определяем метод initializeSelectedFilters как вычисляемое свойство
+    initializeSelectedFilters() {
+      // Возвращаем функцию, которая будет автоматически вызываться при изменении $route.query
+      return () => {
+        // Очищаем текущий массив выбранных фильтров
+        this.selectedFilters = [];
+        
+        // Проходимся по всем параметрам запроса из URL
+        for (const [key, value] of Object.entries(this.$route.query)) {
+          // Если значение параметра существует
+          if (value) {
+            // Обновляем выбранные фильтры, конвертируя значение в массив (если оно не массив)
+            // Передаем false, чтобы избежать обновления маршрута, т.к. это уже значение из URL
+            this.updateSelectedFilters(key, Array.isArray(value) ? value : [value], false);
+          }
+        }
+      };
     }
   }, 
 
@@ -113,9 +132,6 @@ export default defineComponent({
     // Устанавливаем значения переменным данных на основе параметров запроса
     this.priceFrom = params.priceFrom || '';
     this.priceTo = params.priceTo || '';
-
-    // При создании компонента инициализируем выбранные фильтры на основе текущих параметров запроса из URL
-    this.initializeSelectedFilters(this.$route.query);
   },
 
   methods: {
@@ -131,22 +147,7 @@ export default defineComponent({
       }
 
       this.$router.push({ query });
-    },
-    
-    initializeSelectedFilters(query) {
-      // Очищаем текущий массив выбранных фильтров
-      this.selectedFilters = [];
-      
-      // Проходимся по всем параметрам запроса из URL
-      for (const [key, value] of Object.entries(query)) {
-        // Если значение параметра существует
-        if (value) {
-          // Обновляем выбранные фильтры, конвертируя значение в массив (если оно не массив)
-          // Передаем false, чтобы избежать обновления маршрута, т.к. это уже значение из URL
-          this.updateSelectedFilters(key, Array.isArray(value) ? value : [value], false);
-        }
-      }
-    },
+    },  
 
     // Метод для обновления выбранных фильтров
     updateSelectedFilters(name, value) {
