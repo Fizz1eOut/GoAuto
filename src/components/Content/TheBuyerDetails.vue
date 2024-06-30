@@ -1,8 +1,15 @@
 <script>
 import AppSubtitle from '@/components/Base/AppSubtitle.vue';
 import AppInput from '@/components/Inputs/AppInput.vue';
-import { ErrorMessage, Field } from 'vee-validate';
+import { ErrorMessage, Field  } from 'vee-validate';
 import { defineComponent } from 'vue';
+
+  // configure({
+  //   validateOnBlur: true,
+  //   validateOnChange: true,
+  //   validateOnInput: false,
+  //   validateOnModelUpdate: true,
+  // });
 
 export default defineComponent({
   name: 'TheBuyerDetails',
@@ -13,7 +20,9 @@ export default defineComponent({
     Field,
     ErrorMessage,
   },
+
   emits: ['input'],
+
   data() {
     return {
       fullName: '',
@@ -21,9 +30,6 @@ export default defineComponent({
       email: '',
     };
   },
-
-  methods: {
-  }
 });
 </script>
 
@@ -35,11 +41,12 @@ export default defineComponent({
 
     <div class="buyer-details__items">
       <div class="buyer-details__item">
-        <Field v-slot="{ handleChange, handleBlur }" name="fullName" rules="required">
+        <Field v-slot="{ handleChange, handleBlur, errors }" name="fullName" rules="required">
           <app-input  
             v-model="fullName"
             placeholder="Імʼя та прізвище"
             type="fullName"
+            :class="{ 'has-error': errors.length }"
             @change="handleChange" 
             @blur="handleBlur"
           />
@@ -48,11 +55,12 @@ export default defineComponent({
       </div>
 
       <div class="buyer-details__item">
-        <Field v-slot="{ handleChange, handleBlur }" name="phoneNumber" rules="required">
+        <Field v-slot="{ handleChange, handleBlur, errors }" name="phoneNumber" rules="required">
           <app-input 
             v-model="phoneNumber"
             placeholder="Номер телефону"
             type="tel"
+            :class="{ 'has-error': errors.length }"
             @change="handleChange" 
             @blur="handleBlur"
           />
@@ -61,11 +69,12 @@ export default defineComponent({
       </div>
 
       <div class="buyer-details__item">
-        <Field v-slot="{ handleChange, handleBlur }" name="email" rules="required|email">
+        <Field v-slot="{ handleChange, handleBlur, errors }" name="email" rules="required|email">
           <app-input 
             v-model="email"
             placeholder="Електронна пошта"
             type="email"
+            :class="{ 'has-error': errors.length }"
             @change="handleChange" 
             @blur="handleBlur"
           />
@@ -89,5 +98,9 @@ export default defineComponent({
  .error-message {
   color: #EA3F20;
   font-size: 16px;
+ }
+ .has-error {
+  border: 1px solid #EA3F20;
+  border-radius: 10px;
  }
 </style>
