@@ -22,7 +22,7 @@ export default defineComponent({
     Замовити консультацію
   </button>
 
-  <callback-modal v-model="active"></callback-modal>
+  <callback-modal v-model="active" @update:model-value="active = $event" />
 </template>
 
 <style scoped>

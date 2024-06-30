@@ -7,7 +7,6 @@ import AppContainer from '@/components/Base/AppContainer.vue';
 export default defineComponent({
   name: 'AppModal',
 
-  emits: ['update:modelValue'],
 
   components: {
     ModalHeader,
@@ -22,6 +21,8 @@ export default defineComponent({
     }
   },
 
+  emits: ['update:modelValue'],
+
   methods: {
     close() {
       this.$emit('update:modelValue', false);
@@ -34,13 +35,12 @@ export default defineComponent({
     <Transition>
       <div v-if="modelValue" class="modal">
         <div class="overlay" @click.self="close">
-
           <div class="content">
             <app-container size="sm">
-              <modal-header @close="close"/>
+              <modal-header @close="close" />
 
               <div class="content__body">
-                <slot></slot>
+                <slot />
               </div>
             </app-container>
           </div>
