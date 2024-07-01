@@ -1,8 +1,5 @@
 <script>
 import AppBreadcrumbs from '@/components/Base/AppBreadcrumbs.vue';
-import BreadcrumbItem from '@/components/Content/BreadcrumbItem.vue';
-import AppLink from '@/components/Base/AppLink.vue';
-import IconArrowRight from '@/components/icons/IconArrowRight.vue';
 import ServiceTerms from '@/components/Content/ServiceTerms.vue';
 import ServiceTermsItem from '@/components/Content/ServiceTermsItem.vue'
 import { defineComponent } from 'vue';
@@ -13,9 +10,6 @@ export default defineComponent({
 
   components: {
     AppBreadcrumbs,
-    BreadcrumbItem,
-    AppLink,
-    IconArrowRight,
     ServiceTerms,
     AppTitle,
     ServiceTermsItem
@@ -24,27 +18,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <app-breadcrumbs>
-    <breadcrumb-item>
-      <router-link to="/">
-        <app-link>
-          Головна
-        </app-link>
-      </router-link>
-    </breadcrumb-item>
-
-    <breadcrumb-item>
-      <icon-arrow-right class="icon-arrow" />
-    </breadcrumb-item>
-
-    <breadcrumb-item>
-      <router-link to="/delivery-payment">
-        <app-link class="active-link">
-          Доставка та оплата
-        </app-link>
-      </router-link>
-    </breadcrumb-item>
-  </app-breadcrumbs>
+  <app-breadcrumbs />
 
   <service-terms>
     <template #title>

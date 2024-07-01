@@ -39,7 +39,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- Breadcrumbs -->
   <app-breadcrumbs class="breadcrumbs">
     <router-link to="/">
       <breadcrumb-item>
